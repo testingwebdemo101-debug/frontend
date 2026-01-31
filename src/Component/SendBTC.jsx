@@ -156,16 +156,34 @@ export default function SendBTC() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
+      // Store transfer result
       setTransferResult(res.data.data);
-      setPopup({
-        show: true,
-        success: true,
-        message: "Transfer successful",
+      
+      // DIRECTLY NAVIGATE TO TRANSFER OTP PAGE
+      navigate("/transferotp", {
+        state: {
+          transferData: {
+            transferId: res.data.data._id,
+            asset: selectedCoin.key,
+            toAddress: address,
+            amount: Number(coinAmount.toFixed(8)),
+            requiresOTPVerification: true,
+            otpSent: true
+          },
+          userEmail: localStorage.getItem("userEmail") || "",
+          coinAmount: coinAmount,
+          usdAmount: amount,
+          assetName: selectedCoin.symbol,
+          assetIcon: selectedCoin.icon,
+          price: price
+        }
       });
 
+      // Clear form
       setAddress("");
       setAmount("");
       fetchBalance();
+      
     } catch (err) {
       setPopup({
         show: true,
@@ -177,21 +195,18 @@ export default function SendBTC() {
     }
   };
 
-  /* ================= UI (UNCHANGED) ================= */
+  /* ================= UI ================= */
   return (
-    <div className="btc-send-page">
-      <button className="btc-back-btn" onClick={() => navigate("/dashboard")}>
-        ← Back to Dashboard
-      </button>
-
-      <div className="btc-send-logo">
+    <div className="cryptotransfer-container">
+      <div className="cryptotransfer-logo-box">
         <img src={logo} alt="logo" />
       </div>
 
-      <div className="btc-send-card">
-        <h2 className="btc-title">SEND</h2>
+      <div className="cryptotransfer-card">
+        <span className="sendbtc-back" onClick={() => navigate(-1)}>←</span>
+        <h2 className="cryptotransfer-title">SEND</h2>
 
-        <div className="btc-form-group">
+        <div className="cryptotransfer-input-group">
           <label>Address</label>
           <input
             type="text"
@@ -201,31 +216,31 @@ export default function SendBTC() {
           />
         </div>
 
-        <div className="btc-form-group">
+        <div className="cryptotransfer-input-group">
           <label>Network</label>
 
-          <div className="btc-dropdown" onClick={() => setOpen(!open)}>
-            <div className="btc-selected">
+          <div className="cryptotransfer-network-selector" onClick={() => setOpen(!open)}>
+            <div className="cryptotransfer-selected-network">
               <img src={selectedCoin.icon} alt="" />
               <span>{selectedCoin.symbol}</span>
             </div>
-            <span className={`arrow ${open ? "rotate" : ""}`}>▼</span>
+            <span className={`cryptotransfer-dropdown-arrow ${open ? "cryptotransfer-arrow-rotated" : ""}`}>▼</span>
           </div>
 
           {open && (
-            <div className="btc-dropdown-menu">
+            <div className="cryptotransfer-network-options">
               {coins.map((coin) => (
                 <div
                   key={coin.key}
-                  className="btc-dropdown-item"
+                  className="cryptotransfer-network-option"
                   onClick={() => {
                     setSelectedCoin(coin);
                     setOpen(false);
                   }}
                 >
-                  <div className="btc-coin-left">
+                  <div className="cryptotransfer-coin-preview">
                     <img src={coin.icon} alt={coin.symbol} />
-                    <div className="btc-coin-text">
+                    <div className="cryptotransfer-coin-details">
                       <strong>{coin.symbol}</strong>
                       <small>{coin.label}</small>
                     </div>
@@ -236,17 +251,17 @@ export default function SendBTC() {
           )}
         </div>
 
-        <div className="btc-form-group">
+        <div className="cryptotransfer-input-group">
           <label>Withdrawal Amount</label>
-          <div className="btc-amount-box">
+          <div className="cryptotransfer-amount-wrapper">
             <input
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
-            <div className="btc-amount-right">
+            <div className="cryptotransfer-amount-buttons">
               <span>USD</span>
-              <span className="btc-max" onClick={handleMax}>
+              <span className="cryptotransfer-max-amount" onClick={handleMax}>
                 MAX
               </span>
             </div>
@@ -256,20 +271,20 @@ export default function SendBTC() {
           </small>
         </div>
 
-        <div className="btc-available">
+        <div className="cryptotransfer-balance-info">
           <span>Available</span>
           <span>
             {formatCurrency(usdBalance)} {selectedCoin.symbol}
           </span>
         </div>
 
-        <p className="btc-info">
+        <p className="cryptotransfer-note">
           * Make sure the address matches the selected network.
         </p>
 
-        <div className="btc-bottom">
+        <div className="cryptotransfer-btn-container">
           <button
-            className="btc-withdraw-btn"
+            className="cryptotransfer-proceed-btn"
             onClick={handleWithdraw}
             disabled={loading}
           >
@@ -278,47 +293,43 @@ export default function SendBTC() {
         </div>
       </div>
 
-      {/* ================= POPUP (REUSED STYLE) ================= */}
-     {popup.show && (
-  <div className="stx-popup-overlay">
-    <div className={`stx-popup ${popup.success ? "stx-success" : "stx-error"}`}>
+      {/* ================= POPUP (ONLY FOR ERRORS NOW) ================= */}
+      {popup.show && (
+  <div className="cryptotransfer-popup-overlay">
+    <div className="cryptotransfer-popup-card">
+      <div
+        className={`cryptotransfer-icon-box ${
+          popup.success ? "success" : "error"
+        }`}
+      >
+        <svg viewBox="0 0 100 100" className="cryptotransfer-icon">
+          <circle cx="50" cy="50" r="45" className="cryptotransfer-circle" />
 
-      {/* ✅ ICON */}
-      <div className={`stx-icon-box ${popup.success ? "stx-success" : "stx-error"}`}>
-        <svg viewBox="0 0 100 100" className="stx-icon">
-          <circle cx="50" cy="50" r="45" className="stx-circle" />
-          <path
-            className="stx-path"
-            d={
-              popup.success
-                ? "M30 52 L45 65 L70 38" // ✔ green tick
-                : "M35 35 L65 65 M65 35 L35 65" // ❌ red cross
-            }
-          />
+          {popup.success ? (
+            <path
+              className="cryptotransfer-path"
+              d="M30 52 L45 65 L70 38"
+            />
+          ) : (
+            <>
+              <path
+                className="cryptotransfer-path"
+                d="M35 35 L65 65"
+              />
+              <path
+                className="cryptotransfer-path"
+                d="M65 35 L35 65"
+              />
+            </>
+          )}
         </svg>
       </div>
 
-      {/* TITLE */}
-      <h2 className="stx-popup-title">
-        {popup.success ? "Transaction Successful!" : "Transaction Failed"}
-      </h2>
+      <p className="cryptotransfer-popup-text">{popup.message}</p>
 
-      {/* MESSAGE */}
-      <p className="stx-popup-text">
-        {popup.success
-          ? "Your amount will be credited after successful network confirmation"
-          : popup.message}
-      </p>
-
-      {/* BUTTON */}
       <button
-        className="stx-popup-btn"
-        onClick={() => {
-          setPopup({ ...popup, show: false });
-          if (popup.success && transferResult) {
-            navigate("/transaction/" + transferResult._id);
-          }
-        }}
+        className="cryptotransfer-ok-btn"
+        onClick={() => setPopup({ ...popup, show: false })}
       >
         OK
       </button>

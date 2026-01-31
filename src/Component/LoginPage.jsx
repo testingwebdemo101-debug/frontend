@@ -19,76 +19,82 @@ const LoginPage = () => {
     success: false,
   });
 
-  const handleLogin = async () => {
-    if (!email || !password) {
-      setPopup({
-        show: true,
-        message: "Please enter email and password",
-        success: false,
-      });
-      return;
-    }
+ const handleLogin = async () => {
+  if (!email || !password) {
+    setPopup({
+      show: true,
+      message: "Please enter email and password",
+      success: false,
+    });
+    return;
+  }
 
-    try {
-      const res = await axios.post(
-        "https://backend-instacoinpay-1.onrender.com/api/auth/login",
-        { email, password }
-      );
+  try {
+    const res = await axios.post(
+      "https://backend-instacoinpay-1.onrender.com/api/auth/login",
+      { email, password }
+    );
 
-      if (res.data.token) {
+    if (res.data.token) {
+      const user = res.data.data;   // ✅ backend user object
+
       localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userEmail", email); // ✅ STORE EMAIL
-      }
-
-      setPopup({
-        show: true,
-        message: res.data.message || "Login successful",
-        success: true,
-      });
-
-      setTimeout(() => navigate("/dashboard"), 1500);
-    } catch (error) {
-      setPopup({
-        show: true,
-        message:
-          error.response?.data?.message || "Invalid email or password",
-        success: false,
-      });
+      localStorage.setItem("userEmail", user.email);
+      localStorage.setItem("userName", user.name);   // ✅ fullName
+      localStorage.setItem("userId", user.id);       // ✅ optional
     }
-  };
+
+    setPopup({
+      show: true,
+      message: res.data.message || "Login successful",
+      success: true,
+    });
+
+    setTimeout(() => navigate("/dashboard"), 1500);
+  } catch (error) {
+    setPopup({
+      show: true,
+      message:
+        error.response?.data?.error || "Invalid email or password",
+      success: false,
+    });
+  }
+};
+
 
   return (
-    <div className="ca-container">
-      <div className="ca-card">
+    <div className="lp-container">
+      <div className="lp-card">
+        <span className="getstarted-back" onClick={() => navigate(-1)}>←</span>
 
-        <div className="ca-top-logo-login">
+        <div className="lp-top-logo">
           <img src={logo} alt="logo" />
         </div>
 
-        <div className="ca-coin-wrapper-login">
+        <div className="lp-coin-wrapper">
           <img src={coin} alt="coin" />
         </div>
 
-        <h2 className="ca-title">Login</h2>
+        <h2 className="lp-title">Login</h2>
 
-        <div className="ca-form-box">
-          <div className="ca-form-group">
-            <label className="ca-label">Email</label>
+        <div className="lp-form-box">
+          <div className="lp-form-group">
+            <label className="lp-label">Email</label>
             <input
               type="email"
-              className="ca-input"
+              className="lp-input"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          <div className="ca-form-group">
-            <label className="ca-label">Password</label>
+          <div className="lp-form-group">
+            <label className="lp-label">Password</label>
             <div style={{ position: "relative" }}>
               <input
                 type={showPassword ? "text" : "password"}
-                className="ca-input"
+                className="lp-input"
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -107,25 +113,25 @@ const LoginPage = () => {
               </span>
             </div>
           </div>
-          <p className="ca-forgot-password">
-  <button
-    className="ca-link-btn-forgot"
-    onClick={() => navigate("/forgotpassword")}
-  >
-    Forgot Password?
-  </button>
-</p>
 
-          <button className="ca-login-btn" onClick={handleLogin}>
+          <p className="lp-forgot-password">
+            <button
+              className="lp-link-btn-forgot"
+              onClick={() => navigate("/forgotpassword")}
+            >
+              Forgot Password?
+            </button>
+          </p>
+
+          <button className="lp-login-btn" onClick={handleLogin}>
             Login
           </button>
         </div>
-        
 
-        <p className="ca-login-link">
-          Don’t have an account?{" "}
+        <p className="lp-login-link">
+          Don't have an account?{" "}
           <button
-            className="ca-link-btn"
+            className="lp-link-btn"
             onClick={() => navigate("/getstarted")}
           >
             Sign up here
@@ -134,35 +140,36 @@ const LoginPage = () => {
       </div>
 
       {/* ANIMATED POPUP */}
-{popup.show && (
-  <div className="ca-popup-overlay">
-    <div className="ca-popup-card">
-      <div className={`ca-icon-box ${popup.success ? "success" : "error"}`}>
-        <svg viewBox="0 0 100 100" className="ca-icon">
-          <circle cx="50" cy="50" r="45" className="ca-circle" />
-          <path
-            className="ca-path"
-            d={
-              popup.success
-                ? "M30 52 L45 65 L70 38" // Checkmark
-                : "M35 35 L65 65 M65 35 L35 65" // X mark
-            }
-          />
-        </svg>
-      </div>
+      {popup.show && (
+        <div className="lp-popup-overlay">
+          <div className="lp-popup-card">
+            <div className={`lp-icon-box ${popup.success ? "success" : "error"}`}>
+              <svg viewBox="0 0 100 100" className="lp-icon">
+                <circle cx="50" cy="50" r="45" className="lp-circle" />
+                <path
+                  className="lp-path"
+                  d={
+                    popup.success
+                      ? "M30 52 L45 65 L70 38" // Checkmark
+                      : "M35 35 L65 65 M65 35 L35 65" // X mark
+                  }
+                />
+              </svg>
+            </div>
 
-      <p className="ca-popup-text">{popup.message}</p>
+            <p className="lp-popup-text">{popup.message}</p>
+            <h2>{localStorage.getItem("userName")}</h2>
 
-      <button
-        className="ca-ok-btn"
-        onClick={() => setPopup({ ...popup, show: false })}
-      >
-        OK
-      </button>
-    </div>
-  </div>
-)}
 
+            <button
+              className="lp-ok-btn"
+              onClick={() => setPopup({ ...popup, show: false })}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

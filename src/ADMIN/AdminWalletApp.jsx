@@ -58,27 +58,28 @@ export default function AdWalletApp() {
      CONFIRM CREDIT / DEBIT
   ========================= */
   const confirmUpdate = async (index) => {
-    const coin = balances[index];
+  const coin = balances[index];
 
-    try {
-      setLoadingIndex(index);
+  try {
+    setLoadingIndex(index);
 
-      await axios.post(API, {
-        email,
-        asset: coin.key,
-        amount: coin.value, // FINAL BALANCE
-      });
+    await axios.post(API, {
+      email,
+      asset: coin.key,
+      amount: coin.value, // FINAL BALANCE
+      // No need to pass original balance as backend calculates it
+    });
 
-      const updated = [...balances];
-      updated[index].original = coin.value;
-      updated[index].editing = false;
-      setBalances(updated);
-    } catch {
-      alert("Failed to update balance");
-    } finally {
-      setLoadingIndex(null);
-    }
-  };
+    const updated = [...balances];
+    updated[index].original = coin.value;
+    updated[index].editing = false;
+    setBalances(updated);
+  } catch {
+    alert("Failed to update balance");
+  } finally {
+    setLoadingIndex(null);
+  }
+};
 
   const changeValue = (index, enteredAmount) => {
     const updated = [...balances];

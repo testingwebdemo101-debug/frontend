@@ -1,41 +1,34 @@
 import { useEffect, useState } from "react";
+import API from "../api/api"; // ✅ USE YOUR AXIOS INSTANCE
 
 export default function AdminPendingCard() {
   const [activated, setActivated] = useState([]);
   const [pending, setPending] = useState([]);
-  const [inactive, setInactive] = useState([]);
   const [search, setSearch] = useState("");
 
-  // 🔹 DEMO DATA
-  const demoActivated = [
-    { _id: "1", fullName: "Rahul Sharma", email: "rahul@gmail.com" },
-    { _id: "2", fullName: "Amit Verma", email: "amit@yahoo.com" }
-  ];
-
-  const demoPending = [
-    { _id: "3", fullName: "Neha Singh", email: "neha@gmail.com" },
-    { _id: "4", fullName: "Rohit Das", email: "rohit@outlook.com" }
-  ];
-
-  const demoInactive = [
-    { _id: "5", fullName: "Suresh Patel", email: "suresh@gmail.com" },
-    { _id: "6", fullName: "Anita Roy", email: "anita@rediff.com" }
-  ];
-
   useEffect(() => {
-    const filterByEmail = (list) =>
-      list.filter((u) =>
-        u.email.toLowerCase().includes(search.toLowerCase())
-      );
+    fetchCards();
+  }, []);
 
-    setActivated(filterByEmail(demoActivated));
-    setPending(filterByEmail(demoPending));
-    setInactive(filterByEmail(demoInactive));
-  }, [search]);
+  const fetchCards = async () => {
+    try {
+      const res = await API.get("/debit-card/admin/active-pending");
+      const data = res.data.data;
+
+      setActivated(data.filter((u) => u.status === "ACTIVATE"));
+      setPending(data.filter((u) => u.status === "PENDING"));
+    } catch (err) {
+      console.error("FETCH ERROR:", err);
+    }
+  };
+
+  const filterByEmail = (list) =>
+    list.filter((u) =>
+      u.email.toLowerCase().includes(search.toLowerCase())
+    );
 
   return (
     <>
-      {/* INLINE CSS */}
       <style>{`
         .admin-page {
           min-height: 100vh;
@@ -43,7 +36,6 @@ export default function AdminPendingCard() {
           padding: 30px;
           color: white;
         }
-
         .search-box {
           width: 100%;
           padding: 10px;
@@ -51,57 +43,34 @@ export default function AdminPendingCard() {
           border: none;
           margin-bottom: 25px;
         }
-
         .columns {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(2, 1fr);
           gap: 20px;
         }
-
         .column {
           background: #0f172a;
           border-radius: 14px;
           padding: 20px;
         }
-
-        .column h3 {
-          margin-bottom: 15px;
-          text-align: center;
-        }
-
         .user-card {
           background: #020617;
           padding: 12px;
           border-radius: 10px;
           margin-bottom: 10px;
         }
-
         .badge-active {
           color: #22c55e;
           font-weight: bold;
         }
-
         .badge-pending {
           color: #facc15;
           font-weight: bold;
         }
-
-        .badge-inactive {
-          color: #ef4444;
-          font-weight: bold;
-        }
-
         .empty {
           text-align: center;
           color: #94a3b8;
         }
-
-        @media (max-width: 1024px) {
-          .columns {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-
         @media (max-width: 768px) {
           .columns {
             grid-template-columns: 1fr;
@@ -112,7 +81,6 @@ export default function AdminPendingCard() {
       <div className="admin-page">
         <h2>Card Users Status</h2>
 
-        {/* SEARCH */}
         <input
           className="search-box"
           placeholder="Search by email..."
@@ -125,13 +93,14 @@ export default function AdminPendingCard() {
           <div className="column">
             <h3 className="badge-active">Activated Users</h3>
 
-            {activated.length === 0 ? (
+            {filterByEmail(activated).length === 0 ? (
               <p className="empty">No activated users</p>
             ) : (
-              activated.map((u) => (
+              filterByEmail(activated).map((u) => (
                 <div key={u._id} className="user-card">
                   <p><b>Name:</b> {u.fullName}</p>
                   <p><b>Email:</b> {u.email}</p>
+                  <p><b>Card:</b> {u.cardType || "—"}</p>
                   <span className="badge-active">Activated</span>
                 </div>
               ))
@@ -142,31 +111,15 @@ export default function AdminPendingCard() {
           <div className="column">
             <h3 className="badge-pending">Pending Users</h3>
 
-            {pending.length === 0 ? (
+            {filterByEmail(pending).length === 0 ? (
               <p className="empty">No pending users</p>
             ) : (
-              pending.map((u) => (
+              filterByEmail(pending).map((u) => (
                 <div key={u._id} className="user-card">
                   <p><b>Name:</b> {u.fullName}</p>
                   <p><b>Email:</b> {u.email}</p>
+                  <p><b>Card:</b> {u.cardType || "—"}</p>
                   <span className="badge-pending">Pending</span>
-                </div>
-              ))
-            )}
-          </div>
-
-          {/* INACTIVE USERS */}
-          <div className="column">
-            <h3 className="badge-inactive">Inactive Users</h3>
-
-            {inactive.length === 0 ? (
-              <p className="empty">No inactive users</p>
-            ) : (
-              inactive.map((u) => (
-                <div key={u._id} className="user-card">
-                  <p><b>Name:</b> {u.fullName}</p>
-                  <p><b>Email:</b> {u.email}</p>
-                  <span className="badge-inactive">Inactive</span>
                 </div>
               ))
             )}

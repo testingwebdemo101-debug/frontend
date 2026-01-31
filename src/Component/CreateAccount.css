@@ -1,5 +1,5 @@
 /* Container */
-.ca-container {
+.create-account-container {
   min-height: 100vh;
   width: 100%;
   background: #265aa5;
@@ -9,14 +9,14 @@
   padding: 20px;
 }
 
-/* Card */
-.ca-card {
+/* Card - Made more compact for desktop */
+.create-account-card {
   width: 100%;
-  max-width: 480px;
+  max-width: 450px; /* Reduced from 480px */
   background: rgba(255, 255, 255, 0.05);
   border: 1.5px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  padding: 40px 30px;
+  border-radius: 18px;
+  padding: 35px 25px 30px; /* Reduced padding */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,83 +25,83 @@
 }
 
 /* Top Logo */
-.ca-top-logo{
+.create-account-top-logo {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: -60px;
+  margin-bottom: -10px; /* Reduced from -60px */
 }
 
-.ca-top-logo img {
-    width: 250px;
-    margin-right: 0px;
-    margin-bottom: -30px;
+.create-account-top-logo img {
+  width: 200px; /* Reduced from 250px */
+  margin-bottom: 0px; /* Adjusted */
 }
 
 /* Coin Image */
-.ca-coin-wrapper {
-  margin: 20px 0;
+.create-account-coin-wrapper {
+  margin: 15px 0; /* Reduced from 20px */
 }
 
-.ca-coin-wrapper img {
-    width: 405px;
-    margin-left: 170px;
-    margin-top: 20px;
-    margin-bottom: -70px;
+.create-account-coin-wrapper img {
+  width: 320px; /* Reduced from 405px */
+  margin-left: 130px; /* Adjusted */
+  margin-top: 15px; /* Reduced from 20px */
+  margin-bottom: -50px; /* Reduced from -70px */
 }
 
 /* Title */
-.ca-title {
+.create-account-title {
   color: #ffffff;
-  font-size: 30px;
+  font-size: 26px; /* Reduced from 30px */
   font-weight: 700;
-  margin-bottom: 25px;
+  margin-bottom: 20px; /* Reduced from 25px */
   text-align: center;
 }
 
 /* Form */
-.ca-form-box {
+.create-account-form-box {
   width: 100%;
 }
 
-.ca-form-group {
-  margin-bottom: 18px;
+.create-account-form-group {
+  margin-bottom: 15px; /* Reduced from 18px */
 }
 
-.ca-label {
+.create-account-label {
   color: #ffffff;
-  font-size: 14px;
-  margin-bottom: 6px;
+  font-size: 13px; /* Reduced from 14px */
+  margin-bottom: 5px; /* Reduced from 6px */
   display: block;
 }
 
 /* Inputs */
-.ca-input {
+.create-account-input {
   width: 100%;
-  padding: 14px 18px;
+  padding: 12px 16px; /* Reduced from 14px 18px */
   border-radius: 30px;
   border: none;
   outline: none;
   background: #cfefff;
-  font-size: 14px;
+  font-size: 13px; /* Reduced from 14px */
 }
 
 /* Button */
-.ca-continue-btn {
-  margin-top: 30px;
-  padding: 14px 60px;
+.create-account-continue-btn {
+  margin-top: 25px; /* Reduced from 30px */
+  padding: 12px 50px; /* Reduced from 14px 60px */
   border-radius: 30px;
   border: none;
   background: #cfefff;
-  font-size: 16px;
+  font-size: 15px; /* Reduced from 16px */
   font-weight: bold;
   cursor: pointer;
 }
 
-.ca-continue-btn:hover {
+.create-account-continue-btn:hover {
   background: #b9e8ff;
 }
-.ca-popup-overlay {
+
+.create-account-popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -114,7 +114,7 @@
   z-index: 999;
 }
 
-.ca-popup {
+.create-account-popup {
   background: #fff;
   padding: 25px;
   border-radius: 10px;
@@ -122,66 +122,67 @@
   width: 300px;
 }
 
-.ca-popup.success {
+.create-account-popup.success {
   border-top: 5px solid #28a745;
 }
 
-.ca-popup.error {
+.create-account-popup.error {
   border-top: 5px solid #dc3545;
 }
 
-.ca-popup p {
+.create-account-popup p {
   margin-bottom: 15px;
   font-size: 16px;
 }
+
 /* CreateAccount.css additions */
-.ca-country-display {
+.create-account-country-display {
   background-color: #f5f5f5;
-  padding: 10px 15px;
+  padding: 8px 12px; /* Reduced */
   border-radius: 5px;
-  margin: 10px 0 20px;
+  margin: 8px 0 15px; /* Reduced */
   text-align: center;
-  font-size: 14px;
+  font-size: 13px; /* Reduced */
   color: #333;
   border: 1px solid #ddd;
 }
 
-.ca-country-display strong {
+.create-account-country-display strong {
   color: #007bff;
 }
 
-.ca-login-link {
+.create-account-login-link {
   text-align: center;
-  margin-top: 30px;
-    padding: 10px 15px;
+  margin-top: 25px; /* Reduced from 30px */
+  padding: 8px 12px; /* Reduced */
   color: #666;
-  font-size: 14px;
-   background-color: #f5f5f5;
+  font-size: 13px; /* Reduced */
+  background-color: #f5f5f5;
 }
 
-.ca-link-btn {
+.create-account-link-btn {
   background: none;
   border: none;
   color: #007bff;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px; /* Reduced */
   padding: 0;
   text-decoration: underline;
-    font-weight: 600;
+  font-weight: 600;
   background-color: #f5f5f5;
 }
 
-.ca-continue-btn:disabled {
+.create-account-continue-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.ca-input:disabled {
+.create-account-input:disabled {
   background-color: #f5f5f5;
   cursor: not-allowed;
 }
 
-.ca-popup button {
+.create-account-popup button {
   padding: 8px 20px;
   border: none;
   background: #000;
@@ -192,7 +193,7 @@
 
 /* ================= POPUP ================= */
 
-.ca-popup-overlay {
+.create-account-popup-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
@@ -202,64 +203,64 @@
   z-index: 999;
 }
 
-.ca-popup-card {
+.create-account-popup-card {
   width: 320px;
   background: #f4f6f8;
   padding: 28px 25px;
   border-radius: 14px;
   text-align: center;
-  animation: popupIn 0.3s ease;
+  animation: create-account-popupIn 0.3s ease;
 }
 
 /* Icon */
-.ca-icon-box {
+.create-account-icon-box {
   width: 90px;
   height: 90px;
   margin: 0 auto 12px;
 }
 
-.ca-icon {
+.create-account-icon {
   width: 90px;
   height: 90px;
 }
 
-.ca-circle {
+.create-account-circle {
   fill: none;
   stroke-width: 6;
   stroke-dasharray: 283;
   stroke-dashoffset: 283;
-  animation: drawCircle 0.6s ease forwards;
+  animation: create-account-drawCircle 0.6s ease forwards;
 }
 
-.ca-path {
+.create-account-path {
   fill: none;
   stroke-width: 6;
   stroke-linecap: round;
   stroke-dasharray: 120;
   stroke-dashoffset: 120;
-  animation: drawPath 0.4s ease forwards;
+  animation: create-account-drawPath 0.4s ease forwards;
   animation-delay: 0.6s;
 }
 
 /* Success */
-.ca-icon-box.success .ca-circle,
-.ca-icon-box.success .ca-path {
+.create-account-icon-box.success .create-account-circle,
+.create-account-icon-box.success .create-account-path {
   stroke: #2ecc71;
 }
 
 /* Error */
-.ca-icon-box.error .ca-circle,
-.ca-icon-box.error .ca-path {
+.create-account-icon-box.error .create-account-circle,
+.create-account-icon-box.error .create-account-path {
   stroke: #e74c3c;
 }
 
-.ca-popup-text {
+.create-account-popup-text {
   font-size: 16px;
   color: #333;
   margin: 14px 0 18px;
 }
 
-.ca-ok-btn {
+.create-account-ok-btn {
   padding: 10px 28px;
   border-radius: 6px;
   border: none;
@@ -270,19 +271,19 @@
 }
 
 /* Animations */
-@keyframes drawCircle {
+@keyframes create-account-drawCircle {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes drawPath {
+@keyframes create-account-drawPath {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes popupIn {
+@keyframes create-account-popupIn {
   from {
     transform: scale(0.9);
     opacity: 0;
@@ -293,56 +294,156 @@
   }
 }
 
-.ca-continue-link {
+.create-account-continue-link {
   color: #000;
   text-decoration: none;
 }
 
-/* ---------------- Responsive ---------------- */
+/* ================= RESPONSIVE ================= */
+
+/* Large Desktops - Keep compact */
+@media (min-width: 1200px) {
+  .create-account-card {
+    max-width: 420px;
+    padding: 30px 25px 25px;
+  }
+  
+  .create-account-top-logo img {
+    width: 180px;
+  }
+  
+  .create-account-coin-wrapper img {
+    width: 280px;
+    margin-left: 115px;
+  }
+  
+  .create-account-title {
+    font-size: 24px;
+  }
+}
 
 /* Tablet */
 @media (max-width: 768px) {
-  .ca-title {
-    font-size: 26px;
+  .create-account-title {
+    font-size: 24px;
   }
 
-  .ca-coin-wrapper img {
-    width: 140px;
+  .create-account-coin-wrapper img {
+    width: 120px;
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: -40px;
   }
 
-  .ca-continue-btn {
+  .create-account-continue-btn {
     width: 100%;
-    max-width: 420px;
+    max-width: 380px;
   }
 
 }
 
 /* Mobile */
 @media (max-width: 480px) {
-  .ca-top-logo img {
+  .create-account-top-logo img {
     width: 130px;
   }
 
-  .ca-coin-wrapper img {
-    width: 300px;
-        margin-top: 50px;
-        margin-right: 50px;
+  .create-account-coin-wrapper img {
+    width: 280px;
+    margin-left: 50px;
+    margin-top: 40px;
+    margin-bottom: -40px;
   }
 
-  .ca-title {
+  .create-account-title {
     font-size: 22px;
   }
 
-  .ca-input {
-    padding: 12px 16px;
+  .create-account-input {
+    padding: 11px 15px;
   }
 
-  .ca-continue-btn {
-    padding: 12px;
-    font-size: 15px;
+  .create-account-continue-btn {
+    padding: 11px;
+    font-size: 14px;
   }
 
-  .ca-card {
+  .create-account-card {
     padding: 30px 20px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 380px) {
+  .create-account-coin-wrapper img {
+    width: 240px;
+    margin-left: 30px;
+  }
+  
+  .create-account-card {
+    padding: 25px 15px;
+  }
+}
+
+/* Landscape Orientation */
+@media (max-height: 700px) and (orientation: landscape) {
+  .create-account-container {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .create-account-card {
+    max-width: 450px;
+    padding: 20px 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .create-account-top-logo {
+    margin-bottom: -40px;
+  }
+  
+  .create-account-top-logo img {
+    width: 150px;
+  }
+  
+  .create-account-coin-wrapper img {
+    width: 250px;
+    margin-left: 100px;
+    margin-top: 10px;
+    margin-bottom: -40px;
+  }
+  
+  .create-account-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  
+  .create-account-form-group {
+    margin-bottom: 12px;
+  }
+  
+  .create-account-continue-btn {
+    margin-top: 20px;
+  }
+}
+
+/* Tall screens - More vertical space */
+@media (min-height: 900px) {
+  .create-account-card {
+    padding: 40px 30px 35px;
+  }
+  
+  .create-account-top-logo img {
+    width: 220px;
+  }
+  
+  .create-account-coin-wrapper img {
+    width: 350px;
+    margin-left: 140px;
+  }
+  
+  .create-account-title {
+    font-size: 28px;
   }
 }

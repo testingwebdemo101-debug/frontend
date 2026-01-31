@@ -84,43 +84,43 @@ export default function AdAllBulk() {
   };
 
   return (
-    <div className="ad-all-bulk-wrapper">
-      <div className="ad-all-bulk-card">
-        <div className="ad-all-bulk-header">
-          <h2 className="ad-all-bulk-title">All Bulk Credit</h2>
-          <p className="ad-all-bulk-subtitle">Credit multiple users at once</p>
+    <div className="bulk-credit-wrapper">
+      <div className="bulk-credit-card">
+        <div className="bulk-credit-header">
+          <h2 className="bulk-credit-title">All Bulk Credit</h2>
+          <p className="bulk-credit-subtitle">Credit multiple users at once</p>
         </div>
 
         {/* Network Selector */}
-        <div className="ad-all-bulk-form-group">
-          <label className="ad-all-bulk-label">Select Network</label>
+        <div className="bulk-credit-form-group">
+          <label className="bulk-credit-label">Select Network</label>
           <div 
-            className="ad-all-bulk-dropdown" 
+            className="bulk-credit-dropdown" 
             onClick={() => setOpen(!open)}
             role="button"
             tabIndex={0}
             onKeyPress={(e) => e.key === 'Enter' && setOpen(!open)}
           >
-            <div className="ad-all-bulk-selected">
+            <div className="bulk-credit-selected">
               <img 
                 src={selected.icon} 
                 alt={selected.key} 
-                className="ad-all-bulk-selected-icon"
+                className="bulk-credit-selected-icon"
               />
-              <div className="ad-all-bulk-selected-details">
-                <span className="ad-all-bulk-selected-name">{selected.name}</span>
-                <span className="ad-all-bulk-selected-key">{selected.key}</span>
+              <div className="bulk-credit-selected-details">
+                <span className="bulk-credit-selected-name">{selected.name}</span>
+                <span className="bulk-credit-selected-key">{selected.key}</span>
               </div>
             </div>
-            <span className={`ad-all-bulk-arrow ${open ? 'open' : ''}`}>▼</span>
+            <span className={`bulk-credit-arrow ${open ? 'open' : ''}`}>▼</span>
           </div>
           
           {open && (
-            <div className="ad-all-bulk-dropdown-menu">
+            <div className="bulk-credit-dropdown-menu">
               {networks.map((n) => (
                 <div
                   key={n.key + n.name}
-                  className={`ad-all-bulk-dropdown-item ${selected.key === n.key ? 'selected' : ''}`}
+                  className={`bulk-credit-dropdown-item ${selected.key === n.key ? 'selected' : ''}`}
                   onClick={() => {
                     setSelected(n);
                     setOpen(false);
@@ -132,14 +132,14 @@ export default function AdAllBulk() {
                   <img 
                     src={n.icon} 
                     alt={n.key} 
-                    className="ad-all-bulk-dropdown-icon"
+                    className="bulk-credit-dropdown-icon"
                   />
-                  <div className="ad-all-bulk-dropdown-details">
-                    <span className="ad-all-bulk-dropdown-name">{n.name}</span>
-                    <span className="ad-all-bulk-dropdown-key">{n.key}</span>
+                  <div className="bulk-credit-dropdown-details">
+                    <span className="bulk-credit-dropdown-name">{n.name}</span>
+                    <span className="bulk-credit-dropdown-key">{n.key}</span>
                   </div>
                   {selected.key === n.key && (
-                    <span className="ad-all-bulk-check">✓</span>
+                    <span className="bulk-credit-check">✓</span>
                   )}
                 </div>
               ))}
@@ -148,72 +148,72 @@ export default function AdAllBulk() {
         </div>
 
         {/* Amount Input */}
-        <div className="ad-all-bulk-form-group">
-          <label className="ad-all-bulk-label">Amount to Credit</label>
-          <div className="ad-all-bulk-input-wrapper">
+        <div className="bulk-credit-form-group">
+          <label className="bulk-credit-label">Amount to Credit</label>
+          <div className="bulk-credit-input-wrapper">
             <input
               type="number"
               placeholder={`Enter ${selected.key} amount`}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="ad-all-bulk-input"
+              className="bulk-credit-input"
               inputMode="decimal"
               min="0"
               step="0.00000001"
             />
-            <span className="ad-all-bulk-input-suffix">{selected.key}</span>
+            <span className="bulk-credit-input-suffix">{selected.key}</span>
           </div>
         </div>
 
         {/* Summary */}
-        <div className="ad-all-bulk-summary">
-          <div className="ad-all-bulk-summary-header">
+        <div className="bulk-credit-summary">
+          <div className="bulk-credit-summary-header">
             <h4>Transaction Summary</h4>
-            <span className={`ad-all-bulk-status ${amount ? 'active' : 'inactive'}`}>
+            <span className={`bulk-credit-status ${amount ? 'active' : 'inactive'}`}>
               {amount ? 'Ready' : 'Waiting'}
             </span>
           </div>
-          <div className="ad-all-bulk-summary-details">
-            <div className="ad-all-bulk-summary-row">
-              <span className="ad-all-bulk-summary-label">Network</span>
-              <span className="ad-all-bulk-summary-value">{selected.name}</span>
+          <div className="bulk-credit-summary-details">
+            <div className="bulk-credit-summary-row">
+              <span className="bulk-credit-summary-label">Network</span>
+              <span className="bulk-credit-summary-value">{selected.name}</span>
             </div>
-            <div className="ad-all-bulk-summary-row">
-              <span className="ad-all-bulk-summary-label">Amount</span>
-              <span className="ad-all-bulk-summary-value">
+            <div className="bulk-credit-summary-row">
+              <span className="bulk-credit-summary-label">Amount</span>
+              <span className="bulk-credit-summary-value">
                 {amount || '0'} {selected.key}
               </span>
             </div>
-            <div className="ad-all-bulk-summary-row">
-              <span className="ad-all-bulk-summary-label">Type</span>
-              <span className="ad-all-bulk-summary-value">Bulk Credit</span>
+            <div className="bulk-credit-summary-row">
+              <span className="bulk-credit-summary-label">Type</span>
+              <span className="bulk-credit-summary-value">Bulk Credit</span>
             </div>
           </div>
         </div>
 
         {/* Messages */}
         {error && (
-          <div className="ad-all-bulk-error">
+          <div className="bulk-credit-error">
             {error}
           </div>
         )}
         {success && (
-          <div className="ad-all-bulk-success">
+          <div className="bulk-credit-success">
             {success}
           </div>
         )}
 
         {/* Action Buttons */}
-        <div className="ad-all-bulk-actions">
+        <div className="bulk-credit-actions">
           <button
-            className={`ad-all-bulk-button ${loading ? 'loading' : ''}`}
+            className={`bulk-credit-button ${loading ? 'loading' : ''}`}
             onClick={handleSend}
             disabled={loading || !amount}
             type="button"
           >
             {loading ? (
               <>
-                <span className="ad-all-bulk-spinner"></span>
+                <span className="bulk-credit-spinner"></span>
                 Processing...
               </>
             ) : (
@@ -222,7 +222,7 @@ export default function AdAllBulk() {
           </button>
           
           <button
-            className="ad-all-bulk-button-secondary"
+            className="bulk-credit-button-secondary"
             onClick={() => {
               setAmount("");
               setError("");
@@ -236,9 +236,9 @@ export default function AdAllBulk() {
         </div>
 
         {/* Information Box */}
-        <div className="ad-all-bulk-info">
-          <span className="ad-all-bulk-info-icon">ℹ️</span>
-          <div className="ad-all-bulk-info-content">
+        <div className="bulk-credit-info">
+          <span className="bulk-credit-info-icon">ℹ️</span>
+          <div className="bulk-credit-info-content">
             <strong>Note:</strong> This action will credit <strong>{amount || '0'} {selected.key}</strong> to all eligible users in your system. Please double-check the amount before proceeding.
           </div>
         </div>

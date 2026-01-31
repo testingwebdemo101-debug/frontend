@@ -70,46 +70,50 @@ const ReceivePage = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="st-wrapper">
-      <div className="st-card receive-card">
+    <div className="receive-wrapper">
+      <div className="receive-container">
 
-        <div className="st-header receive-header">
-          <span className="st-back-btn" onClick={() => navigate(-1)}>←</span>
+        <div className="receive-header-section">
+          <span className="receive-back-button" onClick={() => navigate(-1)}>←</span>
           <h2>Receive</h2>
         </div>
 
-        <div className="receive-coin">
+        <div className="receive-coin-section">
           <img src={asset.icon} alt={asset.sub} />
           <h3>{asset.sub}</h3>
         </div>
 
-        <div className="receive-info">
+        <div className="receive-warning-message">
           Only send {asset.sub} ({asset.name}) to this address.
         </div>
 
         {address ? (
           <>
-            <div className="qr-box">
+            <div className="receive-qr-container">
               <img
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${address}`}
                 alt="QR Code"
               />
             </div>
 
-            <p className="wallet-address">{address}</p>
+            <p className="receive-address-text">{address}</p>
 
-            <div className="receive-actions">
-              <button onClick={() => navigator.clipboard.writeText(address)}>
-                📋 Copy
+            <div className="receive-actions-section">
+              <button
+                className="receive-copy-button"
+                onClick={() => navigator.clipboard.writeText(address)}
+              >
+                Copy Address
               </button>
             </div>
+
           </>
         ) : (
           <p>No wallet address found</p>
         )}
 
         <button
-          className="st-confirm-btn"
+          className="receive-dashboard-button"
           onClick={() => navigate("/dashboard")}
         >
           Dashboard

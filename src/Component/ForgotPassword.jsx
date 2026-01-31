@@ -60,6 +60,7 @@ const ForgotPassword = () => {
   return (
     <div className="forgot-container">
       <div className="forgot-card">
+        <span className="getstarted-back" onClick={() => navigate(-1)}>←</span>
         <div className="forgot-logo">
           <img src={logo} alt="CoinXpay Logo" />
         </div>

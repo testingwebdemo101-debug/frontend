@@ -68,15 +68,14 @@ const NewPassword = () => {
     setIsLoading(true);
 
     try {
-     const res = await axios.post(
-  "https://backend-instacoinpay-1.onrender.com/api/auth/reset-password",
-  {
-    email,
-    resetCode,
-    newPassword: formData.newPassword,
-  }
-);
-
+      const res = await axios.post(
+        "https://backend-instacoinpay-1.onrender.com/api/auth/reset-password",
+        {
+          email,
+          resetCode,
+          newPassword: formData.newPassword,
+        }
+      );
 
       if (res.data.success) {
         setPopup({
@@ -106,24 +105,24 @@ const NewPassword = () => {
   };
 
   return (
-    <div className="password-container">
-      <div className="password-card">
-        <div className="password-logo">
+    <div className="new-password-container">
+      <div className="new-password-card">
+        <div className="new-password-logo">
           <img src={logo} alt="logo" />
         </div>
 
-        <div className="password-image">
+        <div className="new-password-image">
           <img src={resetImg} alt="reset" />
         </div>
 
-        <h2 className="password-title">SET A NEW PASSWORD</h2>
+        <h2 className="new-password-title">SET A NEW PASSWORD</h2>
 
-        <p className="password-subtitle">
+        <p className="new-password-subtitle">
           Create a new password. Ensure it differs from previous ones.
         </p>
 
-        <label className="input-label">Enter Password</label>
-        <div className="input-box">
+        <label className="new-password-input-label">Enter Password</label>
+        <div className="new-password-input-box">
           <input
             type={showPassword ? "text" : "password"}
             name="newPassword"
@@ -136,11 +135,11 @@ const NewPassword = () => {
           </span>
         </div>
         {errors.newPassword && (
-          <div className="input-error">{errors.newPassword}</div>
+          <div className="new-password-input-error">{errors.newPassword}</div>
         )}
 
-        <label className="input-label">Re-enter Password</label>
-        <div className="input-box">
+        <label className="new-password-input-label">Re-enter Password</label>
+        <div className="new-password-input-box">
           <input
             type={showConfirmPassword ? "text" : "password"}
             name="confirmPassword"
@@ -157,13 +156,13 @@ const NewPassword = () => {
           </span>
         </div>
         {errors.confirmPassword && (
-          <div className="input-error">
+          <div className="new-password-input-error">
             {errors.confirmPassword}
           </div>
         )}
 
         <button
-          className="update-btn"
+          className="new-password-update-btn"
           onClick={handleSubmit}
           disabled={isLoading}
         >
@@ -173,17 +172,17 @@ const NewPassword = () => {
 
       {/* 🔥 SAME GETSTARTED ANIMATED POPUP */}
       {popup.show && (
-        <div className="ca-popup-overlay">
-          <div className="ca-popup-card">
+        <div className="new-password-popup-overlay">
+          <div className="new-password-popup-card">
             <div
-              className={`ca-icon-box ${
-                popup.success ? "success" : "error"
+              className={`new-password-icon-box ${
+                popup.success ? "new-password-success" : "new-password-error"
               }`}
             >
-              <svg viewBox="0 0 100 100" className="ca-icon">
-                <circle cx="50" cy="50" r="45" className="ca-circle" />
+              <svg viewBox="0 0 100 100" className="new-password-icon">
+                <circle cx="50" cy="50" r="45" className="new-password-circle" />
                 <path
-                  className="ca-path"
+                  className="new-password-path"
                   d={
                     popup.success
                       ? "M30 52 L45 65 L70 38"
@@ -193,10 +192,10 @@ const NewPassword = () => {
               </svg>
             </div>
 
-            <p className="ca-popup-text">{popup.message}</p>
+            <p className="new-password-popup-text">{popup.message}</p>
 
             <button
-              className="ca-ok-btn"
+              className="new-password-ok-btn"
               onClick={() =>
                 setPopup({ ...popup, show: false })
               }

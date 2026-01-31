@@ -12,6 +12,7 @@
   padding: 30px;
   border-radius: 14px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  position: relative;
 }
 
 .user-form-logo {
@@ -115,6 +116,12 @@
   stroke-width: 4;
   stroke-miterlimit: 10;
 }
+.checkmark-circle {
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  animation: circleDraw 0.6s ease-out forwards;
+}
+
 
 .success-animation {
   width: 100px;   /* Slightly bigger to avoid clipping */
@@ -186,4 +193,19 @@
   to {
     stroke-dashoffset: 0;
   }
+}
+.userform-back-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.userform-back-arrow:hover {
+  transform: translateX(-4px);
+  color: #000;
 }

@@ -1,3 +1,11 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #255aa8;
+}
+
 /* RESET */
 * {
   margin: 0;
@@ -7,7 +15,7 @@
 }
 
 /* PAGE BACKGROUND - MAIN CONTAINER */
-.ca-container {
+.lp-container {
   min-height: 100vh;
   width: 100%;
   background: #255aa8;
@@ -17,27 +25,27 @@
   padding: 20px;
 }
 
-/* LOGIN CARD */
-.ca-card {
+/* LOGIN CARD - COMPACT FOR DESKTOP */
+.lp-card {
   width: 100%;
-  max-width: 520px;
-  background-color: rgba(255, 255, 255, 0.05); /* subtle glass effect */
-  border: 1.5px solid rgba(255, 255, 255, 0.6); /* white border */
-  border-radius: 20px;
-  padding: 50px 30px 40px;
+  max-width: 420px; /* Reduced from 520px */
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  padding: 40px 30px 35px; /* Reduced padding */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(6px); /* glass effect */
+  backdrop-filter: blur(6px);
 }
 
 /* Back Button */
-.ca-back-btn {
+.lp-back-btn {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 15px;
+  left: 15px;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
@@ -54,176 +62,176 @@
   z-index: 10;
 }
 
-.ca-back-btn:hover {
+.lp-back-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.7);
   transform: translateX(-3px);
 }
 
 /* Top Logo */
-.ca-top-logo-login {
+.lp-top-logo {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: -20px;
+  margin-bottom: -15px; /* Reduced margin */
 }
 
-.ca-top-logo-login img {
-  width: 250px;
+.lp-top-logo img {
+  width: 200px; /* Reduced from 250px */
   max-width: 80%;
   height: auto;
   object-fit: contain;
 }
 
 /* Coin Image */
-.ca-coin-wrapper-login {
-  margin: 20px 0;
+.lp-coin-wrapper {
+  margin: 15px 0; /* Reduced margin */
   display: flex;
   justify-content: center;
 }
 
-.ca-coin-wrapper-login img {
-  width: 250px;
-  max-width: 90%;
+.lp-coin-wrapper img {
+  width: 180px; /* Reduced from 250px */
+  max-width: 85%;
   height: auto;
-  margin-bottom: 10px;
+  margin-top: -20px;
 }
 
 /* TITLE */
-.ca-title {
-  font-size: 26px;
+.lp-title {
+  font-size: 24px; /* Reduced from 26px */
   color: #ffffff;
-  margin-bottom: 25px;
+  margin-bottom: 20px; /* Reduced from 25px */
   text-align: center;
   font-weight: 600;
 }
 
 /* FORM BOX */
-.ca-form-box {
+.lp-form-box {
   width: 100%;
-  max-width: 400px;
+  max-width: 350px; /* Reduced from 400px */
 }
 
 /* FORM GROUP */
-.ca-form-group {
-  margin-bottom: 20px;
+.lp-form-group {
+  margin-bottom: 16px; /* Reduced from 20px */
   width: 100%;
 }
 
 /* LABEL */
-.ca-label {
+.lp-label {
   display: block;
-  margin-bottom: 8px;
-  font-size: 16px;
+  margin-bottom: 6px; /* Reduced from 8px */
+  font-size: 15px; /* Reduced from 16px */
   color: #ffffff;
   font-weight: 500;
 }
 
 /* INPUT */
-.ca-input {
+.lp-input {
   width: 100%;
-  padding: 14px 18px;
+  padding: 12px 16px; /* Reduced padding */
   border-radius: 30px;
   border: none;
   outline: none;
-  font-size: 15px;
+  font-size: 14px; /* Reduced from 15px */
   background: #ccecf7;
   color: #000;
 }
 
-.ca-input::placeholder {
+.lp-input::placeholder {
   color: #666;
 }
 
 /* FORGOT PASSWORD */
-.ca-forgot-password {
+.lp-forgot-password {
   text-align: right;
-  margin-top: 8px;
-  margin-bottom: 25px;
+  margin-top: 6px; /* Reduced from 8px */
+  margin-bottom: 20px; /* Reduced from 25px */
 }
 
-.ca-link-btn-forgot {
+.lp-link-btn-forgot {
   background: none;
   border: none;
   color: #eff0f5;
-  font-size: 14px;
+  font-size: 13px; /* Reduced from 14px */
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
   padding: 0;
 }
 
-.ca-link-btn-forgot:hover {
+.lp-link-btn-forgot:hover {
   text-decoration: underline;
 }
 
 /* LOGIN BUTTON */
-.ca-login-btn {
+.lp-login-btn {
   width: 100%;
-  padding: 16px;
+  padding: 14px; /* Reduced from 16px */
   border-radius: 30px;
   border: none;
   background: #ccecf7;
   color: #000;
-  font-size: 18px;
+  font-size: 16px; /* Reduced from 18px */
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 10px;
+  margin-top: 8px; /* Reduced from 10px */
 }
 
-.ca-login-btn:hover {
+.lp-login-btn:hover {
   background: #b3e2f2;
   transform: translateY(-2px);
 }
 
 /* Signup / Login Link Section */
-.ca-login-link {
-  margin-top: 30px;
+.lp-login-link {
+  margin-top: 25px; /* Reduced from 30px */
   text-align: center;
-  font-size: 14px;
+  font-size: 13px; /* Reduced from 14px */
   color: #ffffff;
-  padding: 12px 16px;
+  padding: 10px 14px; /* Reduced padding */
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 400px;
+  max-width: 350px; /* Reduced from 400px */
 }
 
-.ca-link-btn {
+.lp-link-btn {
   background: none;
   border: none;
   color: #ccecf7;
-  font-size: 14px;
+  font-size: 13px; /* Reduced from 14px */
   cursor: pointer;
   font-weight: 600;
   text-decoration: none;
   padding: 0 5px;
 }
 
-.ca-link-btn:hover {
+.lp-link-btn:hover {
   text-decoration: underline;
 }
 
 /* EYE ICON IN PASSWORD FIELD */
-.ca-form-group div {
+.lp-form-group div {
   position: relative;
   width: 100%;
 }
 
-.ca-form-group span {
+.lp-form-group span {
   position: absolute;
-  right: 18px;
+  right: 16px; /* Adjusted */
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   color: #555;
-  font-size: 18px;
+  font-size: 16px; /* Reduced from 18px */
   z-index: 2;
 }
 
 /* ---------------- ANIMATED POPUP ---------------- */
-.ca-popup-overlay {
+.lp-popup-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
@@ -231,73 +239,73 @@
   justify-content: center;
   align-items: center;
   z-index: 999;
-  animation: overlayFadeIn 0.3s ease forwards;
+  animation: lp-overlayFadeIn 0.3s ease forwards;
 }
 
-@keyframes overlayFadeIn {
+@keyframes lp-overlayFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-.ca-popup-card {
+.lp-popup-card {
   width: 320px;
   max-width: 90%;
   background: #f4f6f8;
   padding: 28px 25px;
   border-radius: 14px;
   text-align: center;
-  animation: popupIn 0.3s ease;
+  animation: lp-popupIn 0.3s ease;
   margin: 20px;
 }
 
-@keyframes popupIn {
+@keyframes lp-popupIn {
   from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
 /* Icon Box */
-.ca-icon-box {
+.lp-icon-box {
   width: 90px;
   height: 90px;
   margin: 0 auto 12px;
 }
 
-.ca-icon {
+.lp-icon {
   width: 90px;
   height: 90px;
 }
 
-.ca-circle {
+.lp-circle {
   fill: none;
   stroke-width: 6;
   stroke-dasharray: 283;
   stroke-dashoffset: 283;
-  animation: drawCircle 0.6s ease forwards;
+  animation: lp-drawCircle 0.6s ease forwards;
 }
 
-.ca-path {
+.lp-path {
   fill: none;
   stroke-width: 6;
   stroke-linecap: round;
   stroke-dasharray: 120;
   stroke-dashoffset: 120;
-  animation: drawPath 0.4s ease forwards;
+  animation: lp-drawPath 0.4s ease forwards;
   animation-delay: 0.6s;
 }
 
 /* Success / Error */
-.ca-icon-box.success .ca-circle,
-.ca-icon-box.success .ca-path {
+.lp-icon-box.success .lp-circle,
+.lp-icon-box.success .lp-path {
   stroke: #2ecc71;
 }
 
-.ca-icon-box.error .ca-circle,
-.ca-icon-box.error .ca-path {
+.lp-icon-box.error .lp-circle,
+.lp-icon-box.error .lp-path {
   stroke: #e74c3c;
 }
 
 /* Popup Text */
-.ca-popup-text {
+.lp-popup-text {
   font-size: 16px;
   color: #333;
   margin: 14px 0 18px;
@@ -305,7 +313,7 @@
 }
 
 /* OK Button */
-.ca-ok-btn {
+.lp-ok-btn {
   padding: 10px 28px;
   border-radius: 6px;
   border: none;
@@ -316,16 +324,16 @@
   transition: 0.3s;
 }
 
-.ca-ok-btn:hover {
+.lp-ok-btn:hover {
   background: #000;
 }
 
 /* Animations */
-@keyframes drawCircle {
+@keyframes lp-drawCircle {
   to { stroke-dashoffset: 0; }
 }
 
-@keyframes drawPath {
+@keyframes lp-drawPath {
   to { stroke-dashoffset: 0; }
 }
 
@@ -333,55 +341,71 @@
    RESPONSIVE DESIGN
 ======================= */
 
+/* Large Desktops - Keep compact */
+@media (min-width: 1200px) {
+  .lp-card {
+    max-width: 400px;
+    padding: 35px 25px 30px;
+  }
+  
+  .lp-top-logo img {
+    width: 180px;
+  }
+  
+  .lp-coin-wrapper img {
+    width: 160px;
+  }
+}
+
 /* Tablets */
 @media (max-width: 768px) {
-  .ca-card {
-    padding: 40px 25px;
+  .lp-card {
+    padding: 35px 25px 30px;
     max-width: 90%;
   }
 
-  .ca-back-btn {
+  .lp-back-btn {
     top: 15px;
     left: 15px;
     padding: 7px 14px;
     font-size: 13px;
   }
 
-  .ca-top-logo-login img {
-    width: 200px;
+  .lp-top-logo img {
+    width: 180px;
   }
 
-  .ca-coin-wrapper-login img {
-    width: 200px;
+  .lp-coin-wrapper img {
+    width: 160px;
   }
 
-  .ca-title {
-    font-size: 24px;
+  .lp-title {
+    font-size: 22px;
   }
 
-  .ca-login-link {
-    font-size: 13px;
-    padding: 10px 12px;
+  .lp-login-link {
+    font-size: 12px;
+    padding: 8px 12px;
   }
 
-  .ca-link-btn {
-    font-size: 13px;
+  .lp-link-btn {
+    font-size: 12px;
   }
 }
 
 /* Mobile Devices */
 @media (max-width: 480px) {
-  .ca-container {
+  .lp-container {
     padding: 15px;
   }
 
-  .ca-card {
+  .lp-card {
     padding: 30px 20px;
     max-width: 95%;
     border-radius: 15px;
   }
 
-  .ca-back-btn {
+  .lp-back-btn {
     top: 12px;
     left: 12px;
     padding: 6px 12px;
@@ -389,207 +413,225 @@
     gap: 6px;
   }
 
-  .ca-top-logo-login {
+  .lp-top-logo {
     margin-bottom: -15px;
   }
 
-  .ca-top-logo-login img {
-    width: 180px;
+  .lp-top-logo img {
+    width: 160px;
   }
 
-  .ca-coin-wrapper-login img {
-    width: 180px;
+  .lp-coin-wrapper img {
+    width: 140px;
     margin-top: 10px;
     margin-bottom: 5px;
   }
 
-  .ca-title {
-    font-size: 22px;
-    margin-bottom: 20px;
+  .lp-title {
+    font-size: 20px;
+    margin-bottom: 18px;
   }
 
-  .ca-input {
+  .lp-input {
     padding: 12px 16px;
     font-size: 14px;
   }
 
-  .ca-label {
+  .lp-label {
+    font-size: 14px;
+  }
+
+  .lp-login-btn {
+    padding: 12px;
     font-size: 15px;
   }
 
-  .ca-login-btn {
-    padding: 14px;
-    font-size: 16px;
+  .lp-forgot-password {
+    margin-bottom: 18px;
   }
 
-  .ca-forgot-password {
-    margin-bottom: 20px;
+  .lp-link-btn-forgot {
+    font-size: 12px;
   }
 
-  .ca-link-btn-forgot {
-    font-size: 13px;
+  .lp-login-link {
+    margin-top: 20px;
+    font-size: 12px;
+    padding: 8px;
   }
 
-  .ca-login-link {
-    margin-top: 25px;
-    font-size: 13px;
-    padding: 10px;
+  .lp-link-btn {
+    font-size: 12px;
   }
 
-  .ca-link-btn {
-    font-size: 13px;
-  }
-
-  .ca-popup-card {
+  .lp-popup-card {
     width: 280px;
     padding: 24px 20px;
   }
 
-  .ca-popup-text {
+  .lp-popup-text {
     font-size: 15px;
   }
 }
 
 /* Small Phones */
 @media (max-width: 360px) {
-  .ca-card {
+  .lp-card {
     padding: 25px 15px;
     border-radius: 12px;
   }
 
-  .ca-back-btn {
+  .lp-back-btn {
     top: 10px;
     left: 10px;
     padding: 5px 10px;
     font-size: 11px;
   }
 
-  .ca-top-logo-login img {
-    width: 160px;
+  .lp-top-logo img {
+    width: 140px;
   }
 
-  .ca-coin-wrapper-login img {
-    width: 160px;
+  .lp-coin-wrapper img {
+    width: 120px;
   }
 
-  .ca-title {
-    font-size: 20px;
+  .lp-title {
+    font-size: 18px;
   }
 
-  .ca-input {
-    padding: 11px 14px;
+  .lp-input {
+    padding: 10px 14px;
     font-size: 13px;
   }
 
-  .ca-login-btn {
-    padding: 12px;
-    font-size: 15px;
+  .lp-login-btn {
+    padding: 10px;
+    font-size: 14px;
   }
 
-  .ca-login-link {
-    font-size: 12px;
+  .lp-login-link {
+    font-size: 11px;
   }
 
-  .ca-link-btn {
-    font-size: 12px;
+  .lp-link-btn {
+    font-size: 11px;
   }
 
-  .ca-icon-box {
+  .lp-icon-box {
     width: 70px;
     height: 70px;
   }
 
-  .ca-icon {
+  .lp-icon {
     width: 70px;
     height: 70px;
   }
 
-  .ca-popup-text {
+  .lp-popup-text {
     font-size: 14px;
   }
 }
 
 /* Extra Small Phones (iPhone 5/SE) */
 @media (max-width: 320px) {
-  .ca-container {
+  .lp-container {
     padding: 10px;
   }
 
-  .ca-card {
+  .lp-card {
     padding: 20px 15px;
   }
 
-  .ca-back-btn {
+  .lp-back-btn {
     top: 8px;
     left: 8px;
     padding: 4px 8px;
     font-size: 10px;
   }
 
-  .ca-top-logo-login img {
-    width: 140px;
+  .lp-top-logo img {
+    width: 120px;
   }
 
-  .ca-coin-wrapper-login img {
-    width: 140px;
+  .lp-coin-wrapper img {
+    width: 100px;
   }
 
-  .ca-title {
-    font-size: 18px;
+  .lp-title {
+    font-size: 16px;
   }
 
-  .ca-form-group {
-    margin-bottom: 15px;
+  .lp-form-group {
+    margin-bottom: 12px;
   }
 }
 
-/* Landscape Orientation */
-@media (max-height: 600px) and (orientation: landscape) {
-  .ca-container {
+/* Landscape Orientation - Make it even more compact */
+@media (max-height: 700px) and (orientation: landscape) {
+  .lp-container {
     padding: 10px;
     min-height: auto;
+    align-items: flex-start;
   }
 
-  .ca-card {
+  .lp-card {
     padding: 20px 25px;
-    max-width: 600px;
+    max-width: 450px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
-  .ca-back-btn {
+  .lp-back-btn {
     top: 10px;
     left: 15px;
     padding: 5px 10px;
     font-size: 12px;
   }
 
-  .ca-top-logo-login {
+  .lp-top-logo {
     margin-bottom: -10px;
   }
 
-  .ca-top-logo-login img {
+  .lp-top-logo img {
     width: 150px;
   }
 
-  .ca-coin-wrapper-login {
+  .lp-coin-wrapper {
     margin: 10px 0;
   }
 
-  .ca-coin-wrapper-login img {
+  .lp-coin-wrapper img {
     width: 120px;
     margin-bottom: 0;
   }
 
-  .ca-title {
+  .lp-title {
     font-size: 20px;
     margin-bottom: 15px;
   }
 
-  .ca-form-group {
-    margin-bottom: 15px;
+  .lp-form-group {
+    margin-bottom: 12px;
   }
 
-  .ca-login-link {
-    margin-top: 20px;
+  .lp-login-link {
+    margin-top: 15px;
     padding: 8px 10px;
+  }
+}
+
+/* Tall screens - More vertical space */
+@media (min-height: 900px) {
+  .lp-card {
+    padding: 45px 30px 40px;
+  }
+  
+  .lp-coin-wrapper {
+    margin: 20px 0;
+  }
+  
+  .lp-coin-wrapper img {
+    width: 200px;
   }
 }

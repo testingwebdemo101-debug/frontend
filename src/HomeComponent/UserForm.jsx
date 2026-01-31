@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./UserForm.css";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+
 import axios from "axios";
+
 import {
   FaUser,
   FaEnvelope,
@@ -14,6 +16,8 @@ import logo from "../assets/logo.png";
 
 const UserForm = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const cardType = location.state?.cardType || "Unknown Card";
 
   const [showPopup, setShowPopup] = useState(false);
@@ -31,7 +35,7 @@ const UserForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    
 
     try {
       await axios.post("https://backend-instacoinpay-1.onrender.com/api/debit-card/apply", {
@@ -48,6 +52,14 @@ const UserForm = () => {
   return (
     <div className="user-form-wrapper">
       <div className="user-form-card">
+        <span
+  className="userform-back-arrow"
+  onClick={() => navigate(-1)}
+>
+  ←
+</span>
+
+        
         <div className="user-form-logo">
           <img src={logo} alt="logo" />
         </div>
@@ -115,9 +127,15 @@ const UserForm = () => {
             </div>
           </div>
 
-          <button className="user-form-submit-btn">
-            Apply Now
-          </button>
+        <button
+  type="button"
+  className="user-form-submit-btn"
+  onClick={handleSubmit}
+>
+  Apply Now
+</button>
+
+
         </form>
       </div>
 

@@ -1,7 +1,7 @@
 /* =========================
-   PAGE WRAPPER
+   PAGE WRAPPER - UNIQUE CLASS
 ========================= */
-.receipt-page {
+.instacoinx-receipt-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -187,7 +187,6 @@
   background: #1f4b8a;
 }
 
-
 .status {
   font-weight: 600;
   margin: 8px 0;
@@ -204,6 +203,7 @@
 .status.pending {
   color: #f59e0b; /* yellow */
 }
+
 .status-wrapper {
   display: flex;
   align-items: center;

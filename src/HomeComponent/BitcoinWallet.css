@@ -172,3 +172,20 @@
     font-size: 26px;
   }
 }
+
+.bw-tx-type.sent {
+  color: #ff4d4d; /* red */
+}
+
+.bw-tx-type.received {
+  color: #38d996; /* green */
+}
+
+.bw-tx-type.pending {
+  color: #ffd24d; /* yellow */
+}
+.bw-coin-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}

@@ -69,91 +69,93 @@ const VerificationCode = () => {
   };
 
   const handleSubmit = async () => {
-  const otpCode = otp.join("");
+    const otpCode = otp.join("");
 
-  if (otpCode.length !== 6) {
-    setPopup({ show: true, message: "Please enter complete 6-digit code", success: false });
-    return;
-  }
+    if (otpCode.length !== 6) {
+      setPopup({ show: true, message: "Please enter complete 6-digit code", success: false });
+      return;
+    }
 
-  setIsLoading(true);
-  try {
-    const res = await axios.post(
-      "https://backend-instacoinpay-1.onrender.com/api/auth/verify-email",
-      { email, verificationCode: otpCode }
-    );
+    setIsLoading(true);
+    try {
+      const res = await axios.post(
+        "https://backend-instacoinpay-1.onrender.com/api/auth/verify-email",
+        { email, verificationCode: otpCode }
+      );
 
-    setPopup({ show: true, message: "Email verified successfully!", success: true });
-    localStorage.removeItem("verificationEmail");
+      setPopup({ show: true, message: "Email verified successfully!", success: true });
+      localStorage.removeItem("verificationEmail");
 
-    setTimeout(() => navigate("/login"), 2000);
-  } catch (error) {
-    setPopup({
-      show: true,
-      message: error.response?.data?.error || "Invalid or expired OTP",
-      success: false,
-    });
-  } finally {
-    setIsLoading(false);
-  }
-};
+      setTimeout(() => navigate("/login"), 2000);
+    } catch (error) {
+      setPopup({
+        show: true,
+        message: error.response?.data?.error || "Invalid or expired OTP",
+        success: false,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
- const handleResendCode = async () => {
-  if (!email) return;
+  const handleResendCode = async () => {
+    if (!email) return;
 
-  setIsLoading(true);
-  try {
-    await axios.post(
-      "https://backend-instacoinpay-1.onrender.com/api/auth/resend-verification",
-      { email }
-    );
+    setIsLoading(true);
+    try {
+      await axios.post(
+        "https://backend-instacoinpay-1.onrender.com/api/auth/resend-verification",
+        { email }
+      );
 
-    setPopup({
-      show: true,
-      message: "New verification code sent to your email",
-      success: true,
-    });
-  } catch (error) {
-    setPopup({
-      show: true,
-      message: "Failed to resend verification code",
-      success: false,
-    });
-  } finally {
-    setIsLoading(false);
-  }
-};
-
+      setPopup({
+        show: true,
+        message: "New verification code sent to your email",
+        success: true,
+      });
+    } catch (error) {
+      setPopup({
+        show: true,
+        message: "Failed to resend verification code",
+        success: false,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <div className="verify-container">
-      <div className="verify-card">
+    <div className="verification-container">
+      <div className="verification-card">
         {/* Logo */}
-        <div className="verify-logo">
+        <div className="verification-logo">
           <img src={logo} alt="logo" />
         </div>
 
         {/* Coin Image */}
-        <div className="coin-wrapper">
+        <div className="verification-coin-wrapper">
           <img src={coin} alt="bitcoin" />
         </div>
 
-        <h2 className="verify-title">Verification Code</h2>
-        <p className="verify-text">
-          We have sent the verification code <br />
-          to your email address
-        </p>
+  <h2 className="verification-title">Verification Code</h2>
+<p className="verification-text">
+  We’ve sent a verification code <br />
+  to your email address. <br />
+  Please check your Spam or Junk folder if it doesn’t appear shortly.
+</p>
+
+
         
         {/* Email display */}
         {email && (
-          <p className="verify-email">
+          <p className="verification-email">
             <strong>Email:</strong> {email}
           </p>
         )}
 
         {/* OTP Inputs */}
         <div 
-          className="otp-boxes" 
+          className="verification-otp-boxes" 
           onPaste={handlePaste}
         >
           {otp.map((digit, index) => (
@@ -174,17 +176,17 @@ const VerificationCode = () => {
         </div>
 
         <button 
-          className="submit-btn" 
+          className="verification-submit-btn" 
           onClick={handleSubmit}
           disabled={isLoading || otp.join("").length !== 6}
         >
           {isLoading ? "Verifying..." : "Submit"}
         </button>
 
-        <p className="resend-text">
+        <p className="verification-resend-text">
           Didn't receive code?{" "}
           <button 
-            className="resend-btn" 
+            className="verification-resend-btn" 
             onClick={handleResendCode}
             disabled={isLoading}
           >
@@ -195,13 +197,13 @@ const VerificationCode = () => {
 
       {/* ANIMATED POPUP */}
       {popup.show && (
-        <div className="verify-popup-overlay">
-          <div className="verify-popup-card">
-            <div className={`verify-icon-box ${popup.success ? "success" : "error"}`}>
-              <svg viewBox="0 0 100 100" className="verify-icon">
-                <circle cx="50" cy="50" r="45" className="verify-circle" />
+        <div className="verification-popup-overlay">
+          <div className="verification-popup-card">
+            <div className={`verification-icon-box ${popup.success ? "success" : "error"}`}>
+              <svg viewBox="0 0 100 100" className="verification-icon">
+                <circle cx="50" cy="50" r="45" className="verification-circle" />
                 <path
-                  className="verify-path"
+                  className="verification-path"
                   d={
                     popup.success
                       ? "M30 52 L45 65 L70 38" // checkmark
@@ -211,10 +213,10 @@ const VerificationCode = () => {
               </svg>
             </div>
 
-            <p className="verify-popup-text">{popup.message}</p>
+            <p className="verification-popup-text">{popup.message}</p>
 
             <button
-              className="verify-ok-btn"
+              className="verification-ok-btn"
               onClick={() => setPopup({ ...popup, show: false })}
               disabled={isLoading}
             >

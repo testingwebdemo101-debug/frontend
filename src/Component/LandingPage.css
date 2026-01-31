@@ -1,6 +1,44 @@
 /* LandingPage.css */
 /* Complete CSS with mobile responsiveness */
 
+/* Add this to the top of your LandingPage.css */
+
+/* Remove any default browser styling */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8fbff;
+}
+/* Force navbar background to match page */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 0;
+  width: 100%;
+  position: relative;
+  background-color: #f8fbff;
+}
+
+/* Adjust hero spacing since we removed negative margin */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px 80px;
+  background: #f8fbff;
+  min-height: 90vh;
+  width: 100%;
+  position: relative;
+}
+/* Lift hero section slightly upward */
+.hero {
+  margin-top: -30px; /* adjust: -20px to -40px if needed */
+}
+
 /* General Reset */
 * {
   margin: 0;
@@ -12,7 +50,6 @@ body {
   font-family: "Inter", sans-serif;
   color: #0f172a;
   line-height: 1.6;
-  overflow-x: hidden;
   background-color: #f8fbff;
 }
 
@@ -24,7 +61,6 @@ body {
   padding: 20px 60px;
   top: 0;
   z-index: 1000;
-  margin-bottom: -150px;
   width: 100%;
   position: relative;
 }
@@ -126,6 +162,7 @@ nav a:hover {
   min-height: 90vh;
   width: 100%;
   position: relative;
+  
 }
 
 .hero-left {
@@ -188,9 +225,13 @@ nav a:hover {
 
 .crypto-container {
   position: relative;
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   height: 500px;
-  margin-left: 40px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .coin {
@@ -368,6 +409,182 @@ nav a:hover {
 .market-table tbody tr {
   border-bottom: 1px solid #e2e8f0;
   transition: background-color 0.3s ease;
+}
+/* Main Section */
+.bitcoin_img {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 900px;
+}
+
+/* Background image */
+.bitcoin_img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Text container */
+.hero-overlay {
+  position: absolute;
+  z-index: 5;
+  max-width: 1100px;
+  padding: 40px;
+  text-align:left;
+  color: #ffffff;
+  animation: fadeUp 1.2s ease;
+  margin-right: 800px;
+  margin-bottom: 900px;
+}
+
+/* Title */
+.hero-overlay h1 {
+  font-size: 64px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+/* Description */
+.hero-overlay p {
+  font-size: 20px;
+  line-height: 1.8;
+  opacity: 0.95;
+  max-width: 850px;
+}
+
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================= */
+/* 📱 MOBILE TEXT OVER IMAGE */
+/* ========================= */
+
+/* For all mobile devices */
+@media (max-width: 768px) {
+  .bitcoin_img {
+    position: relative;
+    min-height: 50vh;
+    overflow: hidden;
+  }
+
+  .bitcoin_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 100% center; /* Show more right side - adjust from center right */
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    margin: 0 !important;
+  }
+
+  .hero-overlay h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .hero-overlay p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+/* Small mobiles */
+@media (max-width: 480px) {
+  .bitcoin_img img {
+    object-position: 83% center; /* Even more right side on small phones */
+  }
+
+  .hero-overlay {
+    width: 92%;
+    padding: 18px;
+  }
+
+  .hero-overlay h1 {
+    font-size: 24px;
+  }
+
+  .hero-overlay p {
+    font-size: 13px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .bitcoin_img img {
+    object-position: 75% center; /* Maximum right side on tiny screens */
+  }
+
+  .hero-overlay {
+    width: 94%;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-overlay h1 {
+    font-size: 22px;
+  }
+
+  .hero-overlay p {
+    font-size: 12px;
+  }
+}
+
+/* If you want to manually adjust the right side padding of the image container */
+@media (max-width: 768px) {
+  .bitcoin_img {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* If the image has its own container or wrapper */
+  .bitcoin_img > img {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    right: 0 !important;
+  }
+}
+
+/* Force image to align right */
+@media (max-width: 768px) {
+  .bitcoin_img img {
+    position: absolute;
+    right: 0;
+    left: auto; /* Override any left positioning */
+    transform: none;
+  }
 }
 
 .market-table tbody tr:hover {
@@ -628,7 +845,7 @@ nav a:hover {
 
 .info-card-1 p, .info-card-2 p {
   font-size: 0.875rem;
-  color: #64748b;
+  color:white;
   margin-bottom: 12px;
 }
 
@@ -660,10 +877,35 @@ nav a:hover {
 
 .trusted-text p {
   margin-top: 12px;
-  color: #64748b;
+  color:white;
   font-size: 1.125rem;
 }
+.trusted-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 80px 60px;
+  gap: 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+}
 
+/* LEFT */
+.trusted-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* RIGHT */
+.trusted-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
 .trusted-middle {
   background: #eaf6ff;
   padding: 80px 60px;
@@ -774,16 +1016,21 @@ nav a:hover {
 .how-wrapper {
   background: #eaf6ff;
   padding: 80px 60px;
-  max-width: 1400px;
-  margin: 0 auto;
-  border-radius: 24px;
+  /* Remove max-width to make it full width */
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-radius: 0 !important; /* Remove border-radius for full width */
   width: 100%;
+  box-sizing: border-box;
 }
 
 .how-header {
   text-align: center;
   margin-bottom: 40px;
   width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .how-header h2 {
@@ -805,6 +1052,9 @@ nav a:hover {
   flex-wrap: wrap;
   gap: 20px;
   width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .how-title h3 {
@@ -822,6 +1072,9 @@ nav a:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .how-card {
@@ -889,6 +1142,83 @@ nav a:hover {
   line-height: 1.6;
 }
 
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .how-wrapper {
+    padding: 60px 40px;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+  
+  .how-cards {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
+  
+  .how-header,
+  .how-title,
+  .how-cards {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .how-wrapper {
+    padding: 40px 20px;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+  
+  .how-header h2 {
+    font-size: 2rem;
+  }
+  
+  .how-title {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    max-width: 100%;
+  }
+  
+  .how-title h3 {
+    font-size: 1.75rem;
+  }
+  
+  .how-cards {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    gap: 25px;
+  }
+  
+  .how-card {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .how-wrapper {
+    padding: 30px 15px;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+  
+  .how-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .how-title h3 {
+    font-size: 1.5rem;
+  }
+  
+  .how-card {
+    padding: 20px;
+  }
+}
+
+
 /* BLOG */
 .blog {
   padding: 80px 40px;
@@ -913,10 +1243,11 @@ nav a:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  border-radius: 30px 30px 0 0;
-  max-width: 1400px;
-  margin: 0 auto;
   width: 100%;
+  /* Remove max-width and margin auto to make it full width */
+  max-width: 100% !important;
+  margin: 0 !important;
+  box-sizing: border-box;
 }
 
 .cta-left h2 {
@@ -925,6 +1256,7 @@ nav a:hover {
   color: #0f172a;
   margin-bottom: 24px;
 }
+
 
 .cta-left span {
   color: #38bdf8;
@@ -941,14 +1273,15 @@ nav a:hover {
   justify-content: flex-end;
   width: 100%;
 }
-
+.btn-telegram{
+  text-decoration: none;
+}
 .cta-right img {
   width: 360px;
   height: auto;
   animation: float 6s ease-in-out infinite;
   max-width: 100%;
 }
-
 /* FOOTER */
 .footer {
   background: #0b2c5d;
@@ -968,7 +1301,7 @@ nav a:hover {
 }
 
 .footer-logo {
-  width: 160px;
+  width: 250px;
   height: auto;
   margin-bottom: 20px;
   max-width: 100%;
@@ -1627,12 +1960,67 @@ nav a:hover {
 
 /* ================= RESPONSIVE DESIGN ================= */
 
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .cta-section {
+    grid-template-columns: 1fr;
+    padding: 60px 40px;
+    text-align: center;
+    gap: 40px;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  .cta-right {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 40px 20px;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  .cta-left h2 {
+    font-size: 2rem;
+  }
+  
+  .cta-buttons {
+    justify-content: center;
+  }
+  
+  .cta-right img {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-section {
+    padding: 30px 15px;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  .cta-left h2 {
+    font-size: 1.75rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-right img {
+    width: 220px;
+  }
+}
 /* Tablet Devices (768px - 1024px) */
 @media (max-width: 1024px) {
   /* Navbar */
   .nav {
     padding: 20px 40px;
-    margin-bottom: -120px;
   }
   
   .logo img {
@@ -1659,7 +2047,7 @@ nav a:hover {
     width: 100%;
     height: 400px;
     margin: 40px 0 0;
-    margin-left: 500px;
+    /* margin-left: 500px; */
   }
   
   .bnb-coin-1 {
@@ -1803,7 +2191,6 @@ nav a:hover {
     padding: 15px 20px;
     flex-wrap: wrap;
     gap: 15px;
-    margin-bottom: -100px;
   }
   
   .logo {
@@ -1855,7 +2242,7 @@ nav a:hover {
   
   .crypto-container {
     height: 300px;
-    margin-left: 450px;
+  /* margin-left: 450px;   */
   }
   
   .bnb-coin-1 {
@@ -2044,7 +2431,6 @@ nav a:hover {
   /* Navbar */
   .nav {
     padding: 12px 15px;
-    margin-bottom: -80px;
   }
   
   .logo img {
@@ -2058,6 +2444,7 @@ nav a:hover {
   .auth {
     order: 2;
     gap: 8px;
+    margin-left: 190px;
   }
   
   .btn-signup,
@@ -2084,7 +2471,7 @@ nav a:hover {
   .crypto-container {
     height: 250px;
     margin: 20px auto 0;   /* center horizontally */
-   margin-left: 90px;
+   /* margin-left: 90px; */
   }
   
   .bnb-coin-1 {
@@ -2378,7 +2765,6 @@ nav a:hover {
   }
   
   .nav {
-    margin-bottom: -80px;
     padding: 15px 20px;
   }
 }
@@ -2470,7 +2856,7 @@ nav a:hover {
     order: 3;
     width: 100%;
     justify-content: center;
-    margin-left: 170px;
+   /* margin-left: 170px;  */
     margin-top: -90px;
   }
 }
@@ -2506,5 +2892,93 @@ nav a:hover {
   
   .footer {
     padding-bottom: max(30px, env(safe-area-inset-bottom));
+  }
+}
+/* Fix hero crypto container */
+@media (max-width: 1024px) {
+  .crypto-container {
+      width: 100%;
+    margin: 40px auto 0 auto !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+}
+
+  @media (max-width: 768px) {
+  .bnb-coin-1 { left: 35%; }
+  .eth-coin-2 { left: 40%; }
+  .btc-coin-3 { left: 30%; }
+}
+
+@media (max-width: 480px) {
+  .bnb-coin-1 { left: 35%; }
+  .eth-coin-2 { left: 40%; }
+  .btc-coin-3 { left: 30%; }
+}
+/* WhatsApp Floating Icon */
+.whatsapp-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 54px;
+  height: 54px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float img {
+  width: 28px;
+  height: 28px;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+/* ============================
+   HERO TEXT LIFT (SAFE FIX)
+   ============================ */
+
+/* Reduce top space ONLY for hero content */
+.hero {
+  padding-top: 40px !important;   /* was effectively ~80px */
+  min-height: 80vh !important;    /* was 90vh */
+}
+
+/* Optional: fine-tune text block */
+.hero-left {
+  margin-top: -20px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero {
+    padding-top: 30px !important;
+    min-height: auto !important;
+  }
+
+  .hero-left {
+    margin-top: -10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 25px !important;
+  }
+
+  .hero-left {
+    margin-top: 0;
   }
 }

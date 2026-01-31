@@ -33,13 +33,11 @@ const Card = ({
 }) => {
   const [flipped, setFlipped] = useState(false);
 
-  // ✅ FLIP FOR ALL STATUS
   const handleFlip = () => {
     if (flipped) return;
 
     setFlipped(true);
 
-    // ⏱ auto flip back after 2 seconds
     setTimeout(() => {
       setFlipped(false);
     }, 2000);
@@ -60,7 +58,7 @@ const Card = ({
             {/* STATUS */}
             <div
               className={`card-status ${
-                status === "Activate"
+                status === "ACTIVATE"
                   ? "card-active"
                   : status === "PENDING"
                   ? "card-pending"
@@ -70,14 +68,20 @@ const Card = ({
               {status}
             </div>
 
-            <div className="card-number">{number}</div>
+            {/* ✅ CARD NUMBER - MASKED WHEN NOT ACTIVATE */}
+            <div className="card-number">
+              {status === "ACTIVATE" ? number : "XXXX XXXX XXXX XXXX"}
+            </div>
 
             <div className="card-holder-name">Card Holder</div>
             <div className="card-holder">{holder}</div>
 
             <div className="card-expiry">
               <div className="expiry-label">Expiry Date</div>
-              <div className="expiry-value">{expiry}</div>
+              {/* ✅ EXPIRY - MASKED WHEN NOT ACTIVATE */}
+              <div className="expiry-value">
+                {status === "ACTIVATE" ? expiry : "XX/XX"}
+              </div>
             </div>
           </div>
 
@@ -90,9 +94,9 @@ const Card = ({
               For customer service, contact WhatsApp Support.
             </div>
 
-            {/* ✅ CVV ONLY WHEN ACTIVE */}
+            {/* ✅ CVV - MASKED WHEN NOT ACTIVATE */}
             <div className="cvv-box">
-              {status === "Activate" ? cvv : "***"}
+              {status === "ACTIVATE" ? cvv : "***"}
             </div>
 
             <div className="card-disclaimer">

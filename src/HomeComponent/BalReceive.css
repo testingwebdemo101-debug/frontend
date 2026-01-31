@@ -1,0 +1,256 @@
+/* ================= PAGE ================= */
+.bal-receive-wrapper {
+  min-height: 100vh;
+  background: #245aa6;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ================= CARD ================= */
+.bal-receive-container {
+  background: #cfeefa;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 18px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ================= HEADER ================= */
+.bal-receive-header-section {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.bal-receive-header-section h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  color: black;
+  font-weight: 700;
+}
+
+.bal-receive-back-button {
+  position: absolute;
+  left: 0;
+  font-size: 26px;
+  cursor: pointer;
+  color: black;
+}
+
+/* ================= COIN DROPDOWN ================= */
+.bal-receive-coin-section {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+/* EXACT SAME DROPDOWN AS SENDBTC */
+.cryptotransfer-network-selector {
+  background: #fff;
+  padding: 14px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s;
+}
+
+.cryptotransfer-network-selector:hover {
+  border-color: #35d1ff;
+}
+
+.cryptotransfer-selected-network {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cryptotransfer-selected-network img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.cryptotransfer-selected-network span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.cryptotransfer-dropdown-arrow {
+  transition: transform 0.3s ease;
+  font-size: 12px;
+  color: #666;
+}
+
+.cryptotransfer-arrow-rotated {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.cryptotransfer-network-options {
+  position: absolute;
+  width: 100%;
+  background: #ffffff;
+  margin-top: 6px;
+  border-radius: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  border: 1px solid #e0e0e0;
+}
+
+/* Dropdown Item */
+.cryptotransfer-network-option {
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cryptotransfer-network-option:hover {
+  background: #eaf6ff;
+}
+
+/* Coin Row */
+.cryptotransfer-coin-preview {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cryptotransfer-coin-preview img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.cryptotransfer-coin-preview strong {
+  font-size: 15px;
+  color: #000;
+}
+
+.cryptotransfer-coin-preview small {
+  font-size: 12px;
+  color: #666;
+}
+
+/* ================= WARNING ================= */
+.bal-receive-warning-message {
+  background: #eaf6ff;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* ================= QR ================= */
+.bal-receive-qr-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.bal-receive-qr-container img {
+  width: 180px;
+  height: 180px;
+  background: white;
+  padding: 10px;
+  border-radius: 14px;
+}
+
+/* ================= ADDRESS ================= */
+.bal-receive-address-text {
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: black;
+  word-break: break-all;
+}
+
+/* ================= ACTIONS ================= */
+.bal-receive-actions-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 22px;
+  
+}
+
+.bal-receive-copy-button {
+  background: linear-gradient(to right, #35d1ff, #1b6cff);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.bal-receive-copy-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 108, 255, 0.4);
+}
+
+/* ================= DASHBOARD ================= */
+.bal-receive-dashboard-button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(to right, #35d1ff, #1b6cff);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bal-receive-dashboard-button:hover {
+  background: #d4d4d4;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 480px) {
+  .bal-receive-container {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .bal-receive-qr-container img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .bal-receive-header-section h2 {
+    font-size: 20px;
+  }
+}
+
+/* ================= DESKTOP ================= */
+@media (min-width: 1024px) {
+  .bal-receive-wrapper {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .bal-receive-container {
+    max-width: 480px;
+  }
+}

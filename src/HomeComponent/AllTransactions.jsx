@@ -1,18 +1,21 @@
-// AllTransactions.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AllTransactions.css";
+import { getCoinIcon } from "../utils/coinIcons";
 
 /* ================= HELPERS ================= */
-const normalizeStatus = (tx, index, groupDate) => {
-  const hasRealId = Boolean(tx.id);
-  const backendStatus = tx.status?.toLowerCase();
+const normalizeStatus = (tx) => {
+  const status = tx.status?.toLowerCase();
 
-  if (hasRealId || backendStatus === "completed") return "Successful";
-  if (backendStatus === "failed") return "Failed";
+  if (status === "completed") return "Successful";
+  if (status === "failed") return "Failed";
+  if (status === "pending" || status === "pending_otp") return "Pending";
+
   return "Pending";
 };
+
+
 
 const formatAmount = (amount) => {
   if (typeof amount === "number") {
@@ -77,63 +80,78 @@ const AllTransactions = () => {
 
   /* ================= UI ================= */
   return (
-    <div className="tx-wrapper">
-      <div className="tx-card">
+    <div className="tx-wrapper-unique">
+      <div className="tx-card-unique">
 
         {/* HEADER */}
-        <div className="tx-header">
-          <span className="tx-back" onClick={() => navigate(-1)}>←</span>
+        <div className="tx-header-unique">
+          <span className="tx-back-unique" onClick={() => navigate(-1)}>←</span>
           <h2>All Transactions</h2>
         </div>
 
         {/* STATES */}
-        {loading && <p className="tx-loading">Loading...</p>}
-        {error && <p className="tx-error">{error}</p>}
+        {loading && <p className="tx-loading-unique">Loading...</p>}
+        {error && <p className="tx-error-unique">{error}</p>}
 
         {!loading && !error && transactions.length === 0 && (
-          <p className="tx-empty">No transactions found</p>
+          <p className="tx-empty-unique">No transactions found</p>
         )}
 
         {/* TRANSACTIONS */}
         {transactions.map((group, i) => (
           <div key={i}>
-            <p className="tx-date">{group.date}</p>
+            <p className="tx-date-unique">{group.date}</p>
 
             {group.items.map((tx) => (
               <div
                 key={tx.id}
-                className="tx-row clickable"
+                className="tx-row-unique clickable"
                 onClick={() =>
                   navigate(`/transaction/${tx.id}`, { state: tx })
                 }
               >
                 {/* LEFT */}
-                <div className="tx-left">
-                  <div className={`tx-icon ${tx.type.toLowerCase()}`}>
-                    {tx.coin?.charAt(0)}
+                <div className="tx-left-unique">
+                  <div className={`tx-icon-unique ${tx.type.toLowerCase()}`}>
+                    <img
+                      src={getCoinIcon(tx.coin, tx.sub)}
+                      alt={tx.coin}
+                      className="tx-coin-img-unique"
+                    />
                   </div>
+
                   <div>
-                    <strong>{tx.type}</strong>
+                    <strong
+                      className={`tx-type-unique ${tx.type.toLowerCase() === "send" || tx.type.toLowerCase() === "sent"
+                          ? "sent"
+                          : tx.type.toLowerCase() === "receive" || tx.type.toLowerCase() === "received"
+                            ? "received"
+                            : "pending"
+                        }`}
+                    >
+                      {tx.type}
+                    </strong>
+
                     <span>To: {tx.to}</span>
                   </div>
                 </div>
 
                 {/* RIGHT */}
-                <div className="tx-right">
+                <div className="tx-right-unique">
                   <span
-                    className={`tx-amount ${
-                      tx.type.toLowerCase() === "send" ||
-                      tx.type.toLowerCase() === "sent"
-                        ? "sent"
-                        : "received"
-                    }`}
+                    className={`tx-amount-unique ${tx.status.toLowerCase() === "pending"
+                        ? "pending"
+                        : tx.status.toLowerCase() === "successful"
+                          ? "received"
+                          : "failed"
+                      }`}
                   >
                     {tx.amount}
                   </span>
 
                   {tx.sub && <small>{tx.sub}</small>}
 
-                  <small className={`tx-status ${tx.status.toLowerCase()}`}>
+                  <small className={`tx-status-unique ${tx.status.toLowerCase()}`}>
                     {tx.status}
                   </small>
                 </div>

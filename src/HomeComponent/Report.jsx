@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Report.css";
 import logo from "../assets/logo.png";
 
+
 const Report = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
@@ -44,20 +45,19 @@ const Report = () => {
   };
 
   return (
-    <div className="report-page">
-      {/* BACK BUTTON */}
-      <button className="report-back-btn" onClick={() => navigate("/dashboard")}>
-        ← Back to Dashboard
-      </button>
+    <div className="report-page-wrapper">
 
       {/* Header */}
-      <div className="report-header">
-        <img src={logo} alt="CoinXPay" className="report-logo" />
-        <h1>REPORT</h1>
+      <div className="report-header-section">
+        <img src={logo} alt="CoinXPay" className="report-logo-image" />
+        
       </div>
 
       {/* Card */}
-      <div className="report-card">
+      
+      <div className="report-form-card">
+        <span className="report-card-back-arrow" onClick={() => navigate(-1)}>←</span> 
+        <h1 classname="report-header">REPORT</h1>
         <label>Your Email</label>
         <input
           type="email"
@@ -80,17 +80,17 @@ const Report = () => {
         />
 
         {/* File optional – NOT sent to backend */}
-        <div className="file-box">
+        <div className="report-file-container">
           <input type="file" />
           <small>Attachment optional (not required)</small>
         </div>
 
-        {message && <p className="report-message">{message}</p>}
+        {message && <p className="report-status-message">{message}</p>}
       </div>
 
       {/* Submit */}
       <button
-        className="report-submit-btn"
+        className="report-submit-button"
         onClick={handleSubmit}
         disabled={loading}
       >

@@ -21,26 +21,52 @@ export default function AdCardActivation() {
      FETCH CARD BY EMAIL
   ========================= */
   const submitEmail = async () => {
-    if (!email) return alert("Enter email");
+  const trimmedEmail = email.trim(); // ← Trim whitespace
+  if (!trimmedEmail) return alert("Enter email");
 
-    try {
-      const res = await axios.get(`${API}/by-email/${email}`);
-      const data = res.data.data;
+  try {
+    console.log("Fetching card for email:", trimmedEmail); // ← Debug log
 
-      setCardId(data._id);
-      setCard({
-        cardType: data.cardType || "",
-        cardNumber: data.cardNumber || "",
-        expiry: data.expiry || "",
-        cvv: data.cvv || "",
-        status: data.status,
-      });
+    const res = await axios.get(
+      `${API}/by-email/${trimmedEmail}`,
+      {
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+        },
+      }
+    );
 
-      setSubmitted(true);
-    } catch (err) {
+    console.log("API Response:", res.data); // ← Debug log
+
+    if (!res.data.success) {
       alert("No card application found");
+      return;
     }
-  };
+
+    const data = res.data.data;
+
+    console.log("Card Data:", data); // ← Debug log
+
+    setCardId(data._id);
+    setCard({
+      cardType: data.cardType || "",
+      cardNumber: data.cardNumber || "",
+      expiry: data.expiry || "",
+      cvv: data.cvv || "",
+      status: data.status || "INACTIVE",
+      fullName: data.fullName || "",
+    });
+
+    setSubmitted(true);
+  } catch (err) {
+    console.error("Error Details:", err); // ← Debug log
+    console.error("Error Response:", err.response?.data); // ← Debug log
+    console.error("Error Status:", err.response?.status); // ← Debug log
+    alert("No card application found");
+  }
+};
+
 
   /* =========================
    INPUT FORMATTERS
@@ -131,8 +157,7 @@ const formatCardNumber = (value) => {
           <div className="card-details-section">
             <h2 className="section-title">Card Details</h2>
 
-            {/* ================= CARD LIVE PREVIEW ================= */}
-         
+
 
             <div className="form-group">
               <label className="label">Select Card Type</label>
@@ -213,25 +238,29 @@ const formatCardNumber = (value) => {
               </div>
 
               <div className="status-controls">
-                <button
-                  className={`status-btn ${card.status === "Activate" ? "active" : ""}`}
-                  onClick={() => setCard({ ...card, status: "Activate" })}
-                >
-                  Activate
-                </button>
-                <button
-                  className={`status-btn ${card.status === "PENDING" ? "active" : ""}`}
-                  onClick={() => setCard({ ...card, status: "PENDING" })}
-                >
-                  Pending
-                </button>
-                <button
-                  className={`status-btn ${card.status === "INACTIVE" ? "active" : ""}`}
-                  onClick={() => setCard({ ...card, status: "INACTIVE" })}
-                >
-                  Inactive
-                </button>
-              </div>
+  <button
+    className={`status-btn ${card.status === "ACTIVATE" ? "active" : ""}`}
+    onClick={() => setCard({ ...card, status: "ACTIVATE" })}
+
+  >
+    Activate
+  </button>
+
+  <button
+    className={`status-btn ${card.status === "PENDING" ? "active" : ""}`}
+    onClick={() => setCard({ ...card, status: "PENDING" })}
+  >
+    Pending
+  </button>
+
+  <button
+    className={`status-btn ${card.status === "INACTIVE" ? "active" : ""}`}
+    onClick={() => setCard({ ...card, status: "INACTIVE" })}
+  >
+    Inactive
+  </button>
+</div>
+
             </div>
 
             <div className="action-buttons">

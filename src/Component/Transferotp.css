@@ -1,0 +1,452 @@
+/* TransferSuccessfulCode.css */
+
+.transfer-successful-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #24559E 0%);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.transfer-successful-card {
+  background: linear-gradient(135deg, #24559E 0%);
+  border-radius: 18px;
+  padding: 30px 25px 25px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+}
+
+.transfer-successful-logo {
+  margin-bottom: 20px;
+}
+
+.transfer-successful-logo img {
+  height: 140px;
+  margin-bottom: -40px;
+  width: auto;
+}
+
+.transfer-successful-coin-wrapper {
+  margin: 15px auto;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: transfer-successful-float 3s ease-in-out infinite;
+}
+.transferotp-back{
+ position: absolute;
+    left: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    color: rgb(254, 254, 254);
+
+}
+.transfer-successful-coin-wrapper img {
+  width: 170%;
+  height: 200%;
+  object-fit: contain;
+}
+
+@keyframes transfer-successful-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.transfer-successful-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.transfer-successful-text {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.transfer-successful-email {
+  background: #f8f9fa;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 13px;
+  border: 1px solid #e9ecef;
+}
+
+.transfer-successful-email strong {
+  color: #333;
+}
+
+.transfer-successful-otp-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+
+.transfer-successful-otp-boxes input {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.transfer-successful-otp-boxes input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+.transfer-successful-otp-boxes input:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.transfer-successful-submit-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.transfer-successful-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.transfer-successful-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.transfer-successful-resend-text {
+  color: black;
+  font-size: 14px;
+  background: white;
+  margin: 0;
+  padding: 7px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.transfer-successful-resend-btn {
+  background: none;
+  border: none;
+  color: #3e0efe;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 5px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.transfer-successful-resend-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* LOGIN STYLE POPUP */
+.transfer-successful-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: transfer-successful-overlayFadeIn 0.3s ease forwards;
+}
+
+.transfer-successful-popup-card {
+  width: 320px;
+  background: #f4f6f8;
+  padding: 28px 25px;
+  border-radius: 14px;
+  text-align: center;
+  animation: transfer-successful-popupIn 0.3s ease;
+}
+
+.transfer-successful-icon-box {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 12px;
+}
+
+.transfer-successful-icon {
+  width: 90px;
+  height: 90px;
+}
+
+.transfer-successful-circle {
+  fill: none;
+  stroke-width: 6;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: transfer-successful-drawCircle 0.6s ease forwards;
+}
+
+.transfer-successful-path {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: transfer-successful-drawPath 0.4s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.transfer-successful-icon-box.success .transfer-successful-circle,
+.transfer-successful-icon-box.success .transfer-successful-path {
+  stroke: #2ecc71;
+}
+
+.transfer-successful-icon-box.error .transfer-successful-circle,
+.transfer-successful-icon-box.error .transfer-successful-path {
+  stroke: #e74c3c;
+}
+
+.transfer-successful-popup-text {
+  font-size: 16px;
+  color: #333;
+  margin: 14px 0 18px;
+}
+
+.transfer-successful-ok-btn {
+  padding: 10px 28px;
+  border-radius: 6px;
+  border: none;
+  background: #2d2f34;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.transfer-successful-ok-btn:hover {
+  background: #000;
+}
+
+@keyframes transfer-successful-overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes transfer-successful-popupIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes transfer-successful-drawCircle {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes transfer-successful-drawPath {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Large Desktops - Keep compact */
+@media (min-width: 1200px) {
+  .transfer-successful-card {
+    max-width: 420px;
+    padding: 25px 20px 20px;
+  }
+  
+  .transfer-successful-logo img {
+    height: 120px;
+    margin-bottom: -35px;
+  }
+  
+  .transfer-successful-coin-wrapper {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .transfer-successful-title {
+    font-size: 22px;
+  }
+  
+  .transfer-successful-otp-boxes input {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .transfer-successful-card {
+    max-width: 90%;
+  }
+  
+  .transfer-successful-logo img {
+    height: 120px;
+  }
+  
+  .transfer-successful-title {
+    font-size: 22px;
+  }
+  
+  .transfer-successful-submit-btn {
+    padding: 12px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .transfer-successful-card {
+    padding: 25px 20px 20px;
+  }
+  
+  .transfer-successful-otp-boxes {
+    gap: 8px;
+  }
+  
+  .transfer-successful-otp-boxes input {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+  
+  .transfer-successful-title {
+    font-size: 22px;
+  }
+  
+  .transfer-successful-text {
+    font-size: 13px;
+  }
+  
+  .transfer-successful-submit-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+  
+  .transfer-successful-coin-wrapper {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .transfer-successful-logo img {
+    height: 100px;
+    margin-bottom: -30px;
+  }
+  
+  .transfer-successful-coin-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .transfer-successful-title {
+    font-size: 20px;
+  }
+  
+  .transfer-successful-otp-boxes input {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .transfer-successful-resend-text {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
+/* Landscape Orientation */
+@media (max-height: 700px) and (orientation: landscape) {
+  .transfer-successful-container {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .transfer-successful-card {
+    max-width: 450px;
+    padding: 20px 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .transfer-successful-logo img {
+    height: 100px;
+    margin-bottom: -30px;
+  }
+  
+  .transfer-successful-coin-wrapper {
+    margin: 10px auto;
+  }
+  
+  .transfer-successful-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .transfer-successful-text {
+    margin-bottom: 20px;
+  }
+  
+  .transfer-successful-email {
+    margin-bottom: 20px;
+  }
+  
+  .transfer-successful-otp-boxes {
+    margin-bottom: 25px;
+  }
+}
+
+/* Tall screens - More vertical space */
+@media (min-height: 900px) {
+  .transfer-successful-card {
+    padding: 35px 30px 30px;
+  }
+  
+  .transfer-successful-logo img {
+    height: 160px;
+    margin-bottom: -50px;
+  }
+  
+  .transfer-successful-coin-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+  }
+  
+  .transfer-successful-title {
+    font-size: 26px;
+  }
+  
+  .transfer-successful-text {
+    font-size: 15px;
+  }
+}

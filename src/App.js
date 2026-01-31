@@ -15,6 +15,7 @@ import VerificationCode from "./Component/VerificationCode";
 import ForgotVerificationCode from "./Component/ForgotVerificationCode";
 import NewPassword from "./Component/NewPassword";
 import PasswordResetSuccess from "./Component/PasswordResetSuccess";
+import Transferotp from "./Component/Transferotp";
 
 // User
 import Dashboard from "./HomeComponent/Dashboard";
@@ -28,6 +29,7 @@ import UserForm from "./HomeComponent/UserForm";
 import SelectCurrency from "./HomeComponent/SelectDepositCurrency";
 import BitcoinPayment from "./HomeComponent/BitcoinPayment";
 import UserDeposit from "./HomeComponent/UserDeposite";
+import BalReceive from "./HomeComponent/BalReceive";
 
 // ✅ Transaction Receipt (USED BY HISTORY)
 import HistoryTransactionReceipt from "./HomeComponent/HistoryTransactionReceipt";
@@ -67,6 +69,8 @@ function App() {
       <Route path="/forgotverificationcode" element={<ForgotVerificationCode />} />
       <Route path="/newpassword" element={<NewPassword />} />
       <Route path="/passwordresetsuccess" element={<PasswordResetSuccess />} />
+      <Route path="/transferotp" element={<Transferotp />} />
+      <Route path="/balreceive" element={<BalReceive/>} />
 
       {/* User */}
       <Route path="/dashboard" element={<Dashboard />} />

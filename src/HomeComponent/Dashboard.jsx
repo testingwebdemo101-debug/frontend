@@ -3,39 +3,17 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./Dashboard.css";
 import logo from "../assets/logo.png";
-import chip from "../assets/silver_qr.png"
-import btc from "../assets/btc.png";
-import bnb from "../assets/bnb.png";
-import usdt from "../assets/usdt.png";
-import trx from "../assets/trx.png";
-import usdttether from "../assets/usdttether.png";
-import eth from "../assets/eth.png";
-import sol from "../assets/sol.png";
-import xrp from "../assets/xrp.png";
-import doge from "../assets/doge.png";
-import ltc from "../assets/ltc.png";
+import chip from "../assets/silver_qr.png";
+import sendarrow from "../assets/send.png";
+import receivearrow from "../assets/recieve-arrow.png";
+import buyarrow from "../assets/buy.png";
+import historyarrow from "../assets/history.png";
 import Card from "../assets/cards-dashboard/Card";
-
-
-
-// Icon mapping
-const ICON_MAP = {
-  btc: btc,
-  eth: eth,
-  bnb: bnb,
-  sol: sol,
-  xrp: xrp,
-  doge: doge,
-  ltc: ltc,
-  trx: trx,
-  usdtTron: usdt,
-  usdtBnb: usdttether
-};
+import { getCryptoIcon } from "../config/cryptoIcons";
 
 // Static fallback data
 const STATIC_ASSETS = [
   {
-    icon: btc,
     name: "BTC",
     symbol: "btc",
     sub: "Bitcoin",
@@ -45,96 +23,23 @@ const STATIC_ASSETS = [
     balanceValue: 5713.45
   },
   {
-    icon: usdt,
     name: "USDT",
     symbol: "usdtBnb",
     sub: "Tether BEP-20",
-    price: 1.00,
+    price: 1.0,
     balance: 8766.42,
-    change: 0.00,
+    change: 0.0,
     balanceValue: 8766.42
-  },
-  {
-    icon: usdttether,
-    name: "USDT",
-    symbol: "usdtTron",
-    sub: "Tether TRON",
-    price: 1.00,
-    balance: 5713.20,
-    change: 0.00,
-    balanceValue: 5713.20
-  },
-  {
-    icon: sol,
-    name: "SOL",
-    symbol: "sol",
-    sub: "Solana",
-    price: 172.45,
-    balance: 12.45,
-    change: 1.38,
-    balanceValue: 2146.90
-  },
-  {
-    icon: doge,
-    name: "DOGE",
-    symbol: "doge",
-    sub: "Dogecoin",
-    price: 0.12,
-    balance: 12500,
-    change: 0.84,
-    balanceValue: 1500.00
-  },
-  {
-    icon: bnb,
-    name: "BNB",
-    symbol: "bnb",
-    sub: "BNB",
-    price: 596.78,
-    balance: 1.25,
-    change: -0.54,
-    balanceValue: 745.98
-  },
-  {
-    icon: trx,
-    name: "TRX",
-    symbol: "trx",
-    sub: "TRON",
-    price: 0.104,
-    balance: 5500,
-    change: 0.97,
-    balanceValue: 572.00
-  },
-  {
-    icon: eth,
-    name: "ETH",
-    symbol: "eth",
-    sub: "Ethereum",
-    price: 2296.54,
-    balance: 0.25,
-    change: 0.54,
-    balanceValue: 574.14
-  },
-  {
-    icon: xrp,
-    name: "XRP",
-    symbol: "xrp",
-    sub: "Ripple",
-    price: 0.52,
-    balance: 1200,
-    change: -1.89,
-    balanceValue: 624.00
-  },
-  {
-    icon: ltc,
-    name: "LTC",
-    symbol: "ltc",
-    sub: "LiteCoin",
-    price: 81.34,
-    balance: 5.5,
-    change: -0.55,
-    balanceValue: 447.37
-  },
+  }
 ];
+
+const getDisplayName = (symbol = "") => {
+  const s = symbol.toLowerCase();
+
+  if (s.startsWith("usdt")) return "USDT";
+
+  return s.toUpperCase();
+};
 
 const mapCardType = (cardType = "") => {
   const t = cardType.toLowerCase();
@@ -145,7 +50,11 @@ const mapCardType = (cardType = "") => {
   if (t.includes("elite")) return "elite";
   return "classic";
 };
+
+
 const ADMIN_EMAIL = "bitabox860@gmail.com";
+
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -160,9 +69,7 @@ const Dashboard = () => {
     portfolio: false,
     balance: false,
   });
-  // Handle card flip with auto-reset after 2 seconds
-  
-
+  const [userProfile, setUserProfile] = useState(null);
   const [userEmail, setUserEmail] = useState(localStorage.getItem("userEmail"));
   const [totalBalance, setTotalBalance] = useState("$0");
   const [userAssets, setUserAssets] = useState([]);
@@ -174,16 +81,27 @@ const Dashboard = () => {
 
   /* ================= FETCH DEBIT CARD ================= */
   const fetchDebitCard = async () => {
-    try {
-      if (!userEmail) return;
-      const res = await axios.get(
-        `https://backend-instacoinpay-1.onrender.com/api/debit-card/by-email/${userEmail}`
-      );
-      if (res.data.success) setCardData(res.data.data);
-    } catch {
+  try {
+    if (!userEmail) return;
+
+    const res = await axios.get(
+      `https://backend-instacoinpay-1.onrender.com/api/debit-card/by-email/${userEmail}`,
+      { withCredentials: true }
+    );
+
+    // ✅ backend returns { success, data }
+    setCardData(res.data.data);
+
+  } catch (err) {
+    // ✅ No debit card applied yet (NORMAL case)
+    if (err.response?.status === 404) {
       setCardData(null);
+    } else {
+      console.error("Error fetching debit card:", err);
     }
-  };
+  }
+};
+
 
   // Format currency
   const formatCurrency = (amount) => {
@@ -194,6 +112,31 @@ const Dashboard = () => {
       maximumFractionDigits: 2
     }).format(amount);
   };
+
+  const fetchUserProfile = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    if (!token || !userId) return;
+
+    const res = await axios.get(
+      `https://backend-instacoinpay-1.onrender.com/api/auth/users/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (res.data.success) {
+      setUserProfile(res.data.data);
+    }
+  } catch (error) {
+    console.error("Error fetching user profile:", error.message);
+  }
+};
+
 
   // Format percentage
   const formatPercentage = (value) => {
@@ -220,30 +163,21 @@ const Dashboard = () => {
 
       const assets = response.data.data.assets || [];
 
-      // ✅ MAP ASSETS (SHOW REAL COIN BALANCE)
-    const mappedAssets = assets.map(asset => ({
-  icon: ICON_MAP[asset.symbol.toLowerCase()] || btc,
-  name: asset.symbol.toUpperCase(),
-  symbol: asset.symbol.toLowerCase(),
-  sub: asset.name,
-
-  // ✅ PRICE: ONLY USD (NO COIN NAME)
-  price: formatCurrency(asset.currentPrice),
-
-  rawChange: asset.priceChangePercentage24h,
-  change: formatPercentage(asset.priceChangePercentage24h),
-
-  // ✅ BALANCE: USD VALUE + COIN (UNCHANGED)
-  balanceText: `${formatCurrency(asset.balance * asset.currentPrice)} ${asset.symbol.toUpperCase()}`,
-
-  usdValue: asset.balanceValue,
-  originalAsset: asset
-}));
-
+      const mappedAssets = assets.map(asset => ({
+        icon: getCryptoIcon(asset.symbol),
+        name: getDisplayName(asset.symbol),
+        symbol: asset.symbol.toLowerCase(),
+        sub: asset.name,
+        price: formatCurrency(asset.currentPrice),
+        rawChange: asset.priceChangePercentage24h,
+        change: formatPercentage(asset.priceChangePercentage24h),
+        balanceText: formatCurrency(asset.balance * asset.currentPrice),
+        usdValue: asset.balanceValue,
+        originalAsset: asset
+      }));
 
       setUserAssets(mappedAssets);
 
-      // ✅ TOTAL BALANCE = SUM OF USD VALUES
       const totalUsd = assets.reduce(
         (sum, a) => sum + (a.balanceValue || 0),
         0
@@ -260,7 +194,6 @@ const Dashboard = () => {
     }
   };
 
-
   // Use static data
   const applyStaticData = () => {
     setDataSource("static");
@@ -268,7 +201,7 @@ const Dashboard = () => {
 
     const assetsWithIcons = STATIC_ASSETS.map(asset => ({
       ...asset,
-      icon: ICON_MAP[asset.symbol] || btc,
+      icon: getCryptoIcon(asset.symbol),
       price: formatCurrency(asset.price),
       balanceValue: asset.balanceValue,
       change: formatPercentage(asset.change)
@@ -284,7 +217,6 @@ const Dashboard = () => {
     setTotalBalance(formatCurrency(total));
   };
 
-
   // Fetch Live Ticker Data
   const fetchTickerData = async () => {
     try {
@@ -292,7 +224,6 @@ const Dashboard = () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        // Use static ticker data
         const staticTicker = STATIC_ASSETS.map(asset => ({
           symbol: asset.name,
           name: asset.sub,
@@ -318,7 +249,6 @@ const Dashboard = () => {
         setTickerData(response.data.data);
         localStorage.setItem('cryptoPrices', JSON.stringify(response.data.data));
       } else {
-        // Use static data
         const staticTicker = STATIC_ASSETS.map(asset => ({
           symbol: asset.name,
           name: asset.sub,
@@ -384,15 +314,15 @@ const Dashboard = () => {
   useEffect(() => {
     refreshAllData();
     fetchDebitCard();
+     fetchUserProfile(); 
 
-    // Set up auto-refresh every 60 seconds
     const intervalId = setInterval(() => {
       fetchDashboardData();
       fetchTickerData();
     }, 60000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [userEmail]);
 
   const openWallet = (asset) => {
     navigate("/bitcoinwallet", {
@@ -412,7 +342,6 @@ const Dashboard = () => {
     setSidebarOpen(false);
   };
 
-  // Handle transfer button
   const handleSend = () => {
     if (userAssets && userAssets.length > 0) {
       navigate("/sendbtc", {
@@ -429,22 +358,18 @@ const Dashboard = () => {
     }
   };
 
-  // Handle receive button
   const handleReceive = () => {
-    navigate("/receive");
+    navigate("/balreceive");
   };
 
-  // Handle buy button
   const handleBuy = () => {
-    navigate("/buy");
+    navigate("/trustwalletconnect");
   };
 
-  // Handle history button
   const handleHistory = () => {
     navigate("/history");
   };
 
-  // Display assets
   const displayAssets = userAssets.length > 0 ? userAssets : STATIC_ASSETS.map(asset => ({
     ...asset,
     price: formatCurrency(asset.price),
@@ -455,19 +380,17 @@ const Dashboard = () => {
   return (
     <>
       <div className={`dashboard ${sidebarOpen ? 'blur-background' : ''}`}>
-        {/* Header */}
         <header className="header">
           <img src={logo} alt="logo" />
           <div className="menu" onClick={toggleSidebar}>☰</div>
         </header>
 
         <div className="top-section">
-          {/* Balance Card */}
           <div className="balance-card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-             <span className="connect">
-  <Link className="Connect-link" to="/trustwalletconnect">Connect Wallet</Link>
-</span>
+              <span className="connect">
+                <Link className="Connect-link" to="/trustwalletconnect">Connect Wallet</Link>
+              </span>
             </div>
             <p>Your Balance</p>
             <h2>{totalBalance}</h2>
@@ -483,44 +406,52 @@ const Dashboard = () => {
             </div>
 
             <div className="actions">
-              <div onClick={handleReceive}>⬇<span>Receive</span></div>
-              <div onClick={handleSend}>⬆<span>Send</span></div>
-              <div onClick={handleBuy}>🛒<span>Buy</span></div>
-              <div onClick={handleHistory}>⏱<span>History</span></div>
+              <div onClick={handleReceive}>
+                <div className="action-box">
+                  <img src={receivearrow} alt="Receive" style={{ width: '48px', height: '40px' }} />
+                </div>
+                <span>Receive</span>
+              </div>
+              <div onClick={handleSend}>
+                <div className="action-box">
+                  <img src={sendarrow} alt="Send" style={{ width: '48px', height: '48px' }} />
+                </div>
+                <span>Send</span>
+              </div>
+              <div onClick={handleBuy}>
+                <div className="action-box">
+                  <img src={buyarrow} alt="Buy" style={{ width: '48px', height: '48px' }} />
+                </div>
+                <span>Buy</span>
+              </div>
+              <div onClick={handleHistory}>
+                <div className="action-box">
+                  <img src={historyarrow} alt="History" style={{ width: '48px', height: '48px' }} />
+                </div>
+                <span>History</span>
+              </div>
             </div>
           </div>
 
-          {/* Visa Card Container */}
-          {/* Visa Card Container */}
           <div className="visa-container">
- <Card
+            {/* ✅ STEP 3: Updated Card component with dynamic + smart fallback */}
+              <Card
   type={mapCardType(cardData?.cardType)}
-  number={
-    cardData?.status === "Activate"
-      ? cardData.cardNumber
-      : "XXXX XXXX XXXX XXXX"
+  number={cardData?.cardNumber || "XXXX XXXX XXXX XXXX"}
+  holder={
+    cardData?.fullName ||
+    userProfile?.fullName ||
+    "CARD HOLDER"
   }
-  holder={cardData?.fullName || "User Name"}
-  expiry={
-    cardData?.status === "Activate"
-      ? cardData.expiry
-      : "xx/xx"
-  }
-  cvv={
-    cardData?.status === "Activate"
-      ? cardData.cvv
-      : "XXX"
-  }
-  status={cardData?.status}
+  expiry={cardData?.expiry || "XX/XX"}
+  cvv={cardData?.cvv || "XXX"}
+  status={cardData?.status?.toUpperCase() || "INACTIVE"}
 />
 
-
-
-</div>
-
+            
+          </div>
         </div>
 
-        {/* Assets */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
           <h3 className="assets-title">Assets</h3>
           {loading.dashboard && (
@@ -552,13 +483,11 @@ const Dashboard = () => {
               <div className="asset-balance">
                 {item.balanceText}
               </div>
-
             </div>
           ))}
         </div>
       </div>
 
-      {/* Sidebar and Overlay */}
       <div className={`sidebar-overlay ${sidebarOpen ? 'active' : ''}`} onClick={closeSidebar}></div>
       <div className={`sidebar ${sidebarOpen ? 'active' : ''}`}>
         <div className="sidebar-header">
@@ -602,9 +531,6 @@ const Dashboard = () => {
             }}>Logout</Link>
           </div>
         </div>
-
-        {/* Live Prices Ticker in Sidebar */}
-
       </div>
     </>
   );

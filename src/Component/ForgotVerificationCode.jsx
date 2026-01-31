@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./VerificationCode.css";
+import "./ForgetVerificationCode.css";
 import coin from "../assets/Cam2.png";
 import logo from "../assets/logo.png";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -173,24 +173,25 @@ const ForgotVerificationCode = () => {
      UI
   ========================= */
   return (
-    <div className="verify-container">
-      <div className="verify-card">
-        <div className="verify-logo">
+    <div className="forgot-verification-container">
+      <div className="forgot-verification-card">
+        <span className="getstarted-back" onClick={() => navigate(-1)}>←</span>
+        <div className="forgot-verification-logo">
           <img src={logo} alt="logo" />
         </div>
 
-        <div className="coin-wrapper">
+        <div className="forgot-verification-coin-wrapper">
           <img src={coin} alt="coin" />
         </div>
 
-        <h2 className="verify-title">Verification Code</h2>
-        <p className="verify-text">
-          We have sent a verification code to your email
+        <h2 className="forgot-verification-title">Verification Code</h2>
+        <p className="forgot-verification-text">
+          We have sent a verification code to your email.Please check your Spam or Junk folder if it doesn’t appear shortly.
         </p>
 
-        {email && <p className="verify-email"><strong>{email}</strong></p>}
+        {email && <p className="forgot-verification-email"><strong>{email}</strong></p>}
 
-        <div className="otp-boxes" onPaste={handlePaste}>
+        <div className="forgot-verification-otp-boxes" onPaste={handlePaste}>
           {otp.map((digit, index) => (
             <input
               key={index}
@@ -207,17 +208,17 @@ const ForgotVerificationCode = () => {
         </div>
 
         <button
-          className="submit-btn"
+          className="forgot-verification-submit-btn"
           onClick={handleSubmit}
           disabled={otp.join("").length !== 6 || isLoading}
         >
           {isLoading ? "Verifying..." : "Submit"}
         </button>
 
-        <p className="resend-text">
+        <p className="forgot-verification-resend-text">
           Didn't receive code?{" "}
           {canResend ? (
-            <button className="resend-btn" onClick={handleResendCode}>
+            <button className="forgot-verification-resend-btn" onClick={handleResendCode}>
               Resend Code
             </button>
           ) : (
@@ -228,15 +229,15 @@ const ForgotVerificationCode = () => {
         </p>
       </div>
 
-      {/* POPUP */}
+      {/* POPUP - Note: Still using ca-popup classes from CreateAccount */}
       {popup.show && (
-        <div className="ca-popup-overlay">
-          <div className="ca-popup-card">
-            <div className={`ca-icon-box ${popup.success ? "success" : "error"}`}>
-              <svg viewBox="0 0 100 100" className="ca-icon">
-                <circle cx="50" cy="50" r="45" className="ca-circle" />
+        <div className="forgot-verification-popup-overlay">
+          <div className="forgot-verification-popup-card">
+            <div className={`forgot-verification-icon-box ${popup.success ? "success" : "error"}`}>
+              <svg viewBox="0 0 100 100" className="forgot-verification-icon">
+                <circle cx="50" cy="50" r="45" className="forgot-verification-circle" />
                 <path
-                  className="ca-path"
+                  className="forgot-verification-path"
                   d={
                     popup.success
                       ? "M30 52 L45 65 L70 38"
@@ -245,9 +246,9 @@ const ForgotVerificationCode = () => {
                 />
               </svg>
             </div>
-            <p className="ca-popup-text">{popup.message}</p>
+            <p className="forgot-verification-popup-text">{popup.message}</p>
             <button
-              className="ca-ok-btn"
+              className="forgot-verification-ok-btn"
               onClick={() => setPopup({ ...popup, show: false })}
             >
               OK

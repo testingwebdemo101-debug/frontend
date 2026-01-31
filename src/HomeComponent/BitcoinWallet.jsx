@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./BitcoinWallet.css";
-
 import btc from "../assets/btc.png";
 import bnb from "../assets/bnb.png";
 import usdt from "../assets/usdt.png";
@@ -13,6 +12,9 @@ import sol from "../assets/sol.png";
 import xrp from "../assets/xrp.png";
 import doge from "../assets/doge.png";
 import ltc from "../assets/ltc.png";
+import { getCoinIcon } from "../utils/coinIcons";
+
+
 
 /* ================= ICON MAP ================= */
 const iconMap = {
@@ -126,12 +128,17 @@ const BitcoinWallet = () => {
   }, [asset.name]);
 
   /* ================= FORMAT TX ================= */
-  const formatTransaction = (tx) => ({
-    type: tx.type,
-    amount: tx.amount,
-    asset: tx.coin || asset.name,
-    sub: `${tx.amount} ${tx.coin || asset.name}`,
-  });
+ const formatTransaction = (tx) => ({
+  id: tx.id,                 // 🔑 critical
+  type: tx.type || "Unknown",
+  coin: tx.coin || asset.name,
+  to: tx.to || "—",
+  amount: tx.amount,
+  sub: tx.sub || `${tx.amount} ${tx.coin || asset.name}`,
+  status: tx.status || "Pending",
+  date: tx.createdAt || tx.date || "",
+});
+
 
   const displayTransactions =
     recentTransactions.length > 0
@@ -237,19 +244,58 @@ const Action = ({ icon, label, onClick }) => (
   </div>
 );
 
-const Transaction = ({ type, amount, asset, sub }) => (
-  <div className="bw-tx">
-    <div className="bw-tx-left">
-      <div className="bw-tx-icon">{asset?.charAt(0)}</div>
-      <div>
-        <strong>{type}</strong>
-        <small className="btc-amount">{sub}</small>
+const Transaction = (tx) => {
+  const navigate = useNavigate();
+
+  return (
+    <div
+      className="bw-tx clickable"
+      onClick={() =>
+        navigate(`/transaction/${tx.id}`, {
+          state: tx, // ✅ SAME as AllTransactions
+        })
+      }
+    >
+      <div className="bw-tx-left">
+        <div className="bw-tx-icon">
+  <img
+    src={getCoinIcon(tx.coin)}
+    alt={tx.coin}
+    className="bw-coin-img"
+  />
+</div>
+
+        <div>
+          <strong
+  className={`bw-tx-type ${
+    tx.type?.toLowerCase() === "send" || tx.type?.toLowerCase() === "sent"
+      ? "sent"
+      : tx.type?.toLowerCase() === "receive" || tx.type?.toLowerCase() === "received"
+      ? "received"
+      : "pending"
+  }`}
+>
+  {tx.type}
+</strong>
+
+          <small className="btc-amount">{tx.sub}</small>
+        </div>
       </div>
+
+      <span
+  className={`bw-tx-amount ${
+    tx.type?.toLowerCase() === "send" || tx.type?.toLowerCase() === "sent"
+      ? "sent"
+      : tx.type?.toLowerCase() === "receive" || tx.type?.toLowerCase() === "received"
+      ? "received"
+      : "pending"
+  }`}
+>
+
+        {tx.amount}
+      </span>
     </div>
-    <span className={`bw-tx-amount ${type?.toLowerCase()}`}>
-      {amount}
-    </span>
-  </div>
-);
+  );
+};
 
 export default BitcoinWallet;

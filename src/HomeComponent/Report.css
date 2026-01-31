@@ -1,5 +1,5 @@
 /* Page */
-.report-page {
+.report-page-wrapper {
   min-height: 100vh;
   background: #275aa8;
   display: flex;
@@ -11,7 +11,7 @@
 }
 
 /* Back Button */
-.report-back-btn {
+.report-back-button {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -30,13 +30,13 @@
   gap: 5px;
 }
 
-.report-back-btn:hover {
+.report-back-button:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateX(-5px);
 }
 
 /* Header */
-.report-header {
+.report-header-section {
   width: 100%;
   max-width: 900px;
   display: flex;
@@ -47,13 +47,13 @@
   margin-top: 40px;
 }
 
-.report-logo {
+.report-logo-image {
   position: absolute;
   left: 0;
   width: 200px;
 }
 
-.report-header h1 {
+.report-header-section h1 {
   color: #fff;
   font-size: 28px;
   letter-spacing: 1px;
@@ -61,7 +61,7 @@
 }
 
 /* Card */
-.report-card {
+.report-form-card {
   width: 100%;
   max-width: 850px;
   background: #cfeef9;
@@ -69,9 +69,20 @@
   padding: 30px;
   box-sizing: border-box;
   margin-top: 10px;
+  position: relative;
 }
 
-.report-card label {
+/* Card Header - Centered */
+.report-form-card h1 {
+  text-align: center;
+  width: 100%;
+  color: #000;
+  font-size: 24px;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.report-form-card label {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 8px;
@@ -79,8 +90,8 @@
   color: #000;
 }
 
-.report-card input,
-.report-card textarea {
+.report-form-card input,
+.report-form-card textarea {
   width: 100%;
   padding: 14px;
   border-radius: 8px;
@@ -92,20 +103,20 @@
   background: #fff;
 }
 
-.report-card input:focus,
-.report-card textarea:focus {
+.report-form-card input:focus,
+.report-form-card textarea:focus {
   border-color: #35c3ff;
   box-shadow: 0 0 0 2px rgba(53, 195, 255, 0.2);
 }
 
-.report-card textarea {
+.report-form-card textarea {
   min-height: 120px;
   resize: vertical;
   font-family: inherit;
 }
 
 /* File */
-.file-box input {
+.report-file-container input {
   background: #fff;
   padding: 10px;
   border-radius: 6px;
@@ -114,7 +125,7 @@
   cursor: pointer;
 }
 
-.file-box small {
+.report-file-container small {
   display: block;
   margin-top: 5px;
   color: #666;
@@ -122,7 +133,7 @@
 }
 
 /* Message */
-.report-message {
+.report-status-message {
   padding: 10px;
   border-radius: 8px;
   text-align: center;
@@ -132,7 +143,7 @@
 }
 
 /* Submit Button */
-.report-submit-btn {
+.report-submit-button {
   width: 100%;
   max-width: 850px;
   margin-top: 35px;
@@ -147,64 +158,85 @@
   transition: all 0.3s;
 }
 
-.report-submit-btn:hover {
+.report-submit-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(29, 93, 255, 0.4);
 }
 
-.report-submit-btn:active {
+.report-submit-button:active {
   transform: translateY(0);
 }
 
-.report-submit-btn:disabled {
+.report-submit-button:disabled {
   background: linear-gradient(to right, #cccccc, #999999);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
+/* Back arrow inside card */
+.report-card-back-arrow {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  font-size: 22px;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  z-index: 1;
+}
+
 /* ========================= */
 /* 📱 Mobile Responsive */
 /* ========================= */
 @media (max-width: 768px) {
-  .report-page {
+  .report-page-wrapper {
     padding: 15px;
     padding-top: 60px;
   }
   
-  .report-back-btn {
+  .report-back-button {
     top: 15px;
     left: 15px;
     padding: 8px 12px;
     font-size: 13px;
   }
   
-  .report-header {
+  .report-header-section {
     margin-top: 30px;
   }
   
-  .report-header h1 {
+  .report-header-section h1 {
     font-size: 22px;
   }
 
-  .report-logo {
+  .report-logo-image {
     width: 120px;
     margin-bottom: -20px;
   }
 
-  .report-card {
+  .report-form-card {
     padding: 20px;
     max-width: 100%;
   }
 
-  .report-submit-btn {
+  .report-form-card h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .report-card-back-arrow {
+    left: 20px;
+    top: 20px;
+  }
+
+  .report-submit-button {
     font-size: 18px;
     padding: 14px;
     max-width: 100%;
   }
   
-  .report-card input,
-  .report-card textarea {
+  .report-form-card input,
+  .report-form-card textarea {
     font-size: 15px;
     padding: 12px;
   }
@@ -214,50 +246,61 @@
 /* 📱 Small Devices (481px - 480px) */
 /* ========================= */
 @media (max-width: 480px) {
-  .report-page {
+  .report-page-wrapper {
     padding: 12px;
     padding-top: 50px;
   }
   
-  .report-back-btn {
+  .report-back-button {
     top: 12px;
     left: 12px;
     padding: 7px 10px;
     font-size: 12px;
   }
   
-  .report-header {
+  .report-header-section {
     flex-direction: column;
     gap: 10px;
     margin-top: 25px;
   }
 
-  .report-logo {
+  .report-logo-image {
     position: static;
     width: 100px;
   }
 
-  .report-header h1 {
+  .report-header-section h1 {
     font-size: 20px;
   }
 
-  .report-card {
+  .report-form-card {
     border-radius: 16px;
     padding: 18px;
   }
 
-  .report-submit-btn {
+  .report-form-card h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .report-card-back-arrow {
+    left: 18px;
+    top: 18px;
+    font-size: 20px;
+  }
+
+  .report-submit-button {
     border-radius: 8px;
     font-size: 16px;
     padding: 12px;
   }
   
-  .report-card label {
+  .report-form-card label {
     font-size: 13px;
   }
   
-  .report-card input,
-  .report-card textarea {
+  .report-form-card input,
+  .report-form-card textarea {
     font-size: 14px;
     padding: 10px;
   }
@@ -265,31 +308,41 @@
 
 /* Extra Small Mobile (up to 360px) */
 @media (max-width: 360px) {
-  .report-page {
+  .report-page-wrapper {
     padding: 10px;
     padding-top: 45px;
   }
   
-  .report-back-btn {
+  .report-back-button {
     top: 10px;
     left: 10px;
     padding: 6px 8px;
     font-size: 11px;
   }
   
-  .report-header h1 {
+  .report-header-section h1 {
     font-size: 18px;
   }
   
-  .report-logo {
+  .report-logo-image {
     width: 90px;
   }
   
-  .report-card {
+  .report-form-card {
     padding: 15px;
   }
+
+  .report-form-card h1 {
+    font-size: 18px;
+  }
+
+  .report-card-back-arrow {
+    left: 15px;
+    top: 15px;
+    font-size: 18px;
+  }
   
-  .report-submit-btn {
+  .report-submit-button {
     font-size: 15px;
     padding: 10px;
   }
@@ -297,28 +350,32 @@
 
 /* Tablet Devices (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .report-page {
+  .report-page-wrapper {
     padding: 30px;
     padding-top: 80px;
   }
   
-  .report-back-btn {
+  .report-back-button {
     top: 30px;
     left: 30px;
     font-size: 16px;
     padding: 12px 18px;
   }
   
-  .report-back-btn:hover {
+  .report-back-button:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateX(-5px);
   }
   
-  .report-card {
+  .report-form-card {
     max-width: 700px;
   }
+
+  .report-form-card h1 {
+    font-size: 26px;
+  }
   
-  .report-submit-btn {
+  .report-submit-button {
     max-width: 700px;
     font-size: 20px;
     padding: 18px;
@@ -327,29 +384,33 @@
 
 /* Desktop (1025px and above) */
 @media (min-width: 1025px) {
-  .report-page {
+  .report-page-wrapper {
     padding: 40px;
     padding-top: 100px;
   }
   
-  .report-back-btn {
+  .report-back-button {
     top: 40px;
     left: 40px;
     font-size: 16px;
     padding: 12px 24px;
   }
   
-  .report-back-btn:hover {
+  .report-back-button:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateX(-5px);
   }
   
-  .report-card {
+  .report-form-card {
     max-width: 850px;
     padding: 35px;
   }
+
+  .report-form-card h1 {
+    font-size: 28px;
+  }
   
-  .report-submit-btn {
+  .report-submit-button {
     max-width: 850px;
     font-size: 24px;
     padding: 20px;
@@ -358,36 +419,46 @@
 
 /* Landscape Mode for Mobile */
 @media (max-height: 600px) and (orientation: landscape) {
-  .report-page {
+  .report-page-wrapper {
     padding: 10px;
     padding-top: 50px;
     min-height: auto;
   }
   
-  .report-back-btn {
+  .report-back-button {
     top: 10px;
     left: 10px;
     padding: 8px 12px;
   }
   
-  .report-header {
+  .report-header-section {
     margin-top: 20px;
   }
   
-  .report-logo {
+  .report-logo-image {
     width: 80px;
   }
   
-  .report-header h1 {
+  .report-header-section h1 {
     font-size: 18px;
   }
   
-  .report-card {
+  .report-form-card {
     padding: 15px;
     margin-top: 5px;
   }
+
+  .report-form-card h1 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .report-card-back-arrow {
+    left: 15px;
+    top: 15px;
+  }
   
-  .report-submit-btn {
+  .report-submit-button {
     margin-top: 20px;
     padding: 12px;
   }
@@ -395,19 +466,19 @@
 
 /* Prevent iOS zoom */
 @media (max-width: 768px) {
-  .report-card input[type="email"],
-  .report-card textarea {
+  .report-form-card input[type="email"],
+  .report-form-card textarea {
     font-size: 16px !important;
   }
 }
 
 /* Touch-friendly button sizes */
 @media (max-width: 768px) {
-  .report-submit-btn {
+  .report-submit-button {
     min-height: 50px;
   }
   
-  .report-back-btn {
+  .report-back-button {
     min-height: 40px;
     display: flex;
     align-items: center;
@@ -417,14 +488,14 @@
 
 /* Safe area insets for modern mobile devices */
 @supports (padding: max(0px)) {
-  .report-page {
+  .report-page-wrapper {
     padding-left: max(15px, env(safe-area-inset-left));
     padding-right: max(15px, env(safe-area-inset-right));
     padding-top: max(20px, env(safe-area-inset-top));
     padding-bottom: max(20px, env(safe-area-inset-bottom));
   }
   
-  .report-back-btn {
+  .report-back-button {
     left: max(15px, env(safe-area-inset-left));
     top: max(15px, env(safe-area-inset-top));
   }
@@ -432,34 +503,38 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-  .report-page {
+  .report-page-wrapper {
     background: #1a4a8a;
   }
   
-  .report-card {
+  .report-form-card {
     background: #b8e2f5;
   }
+
+  .report-form-card h1 {
+    color: #000;
+  }
   
-  .report-card label {
+  .report-form-card label {
     color: #1a1a1a;
   }
   
-  .report-card input,
-  .report-card textarea {
+  .report-form-card input,
+  .report-form-card textarea {
     background: #fff;
     color: #000;
   }
   
-  .report-submit-btn {
+  .report-submit-button {
     color: #000;
   }
   
-  .report-back-btn {
+  .report-back-button {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
   }
   
-  .report-back-btn:hover {
+  .report-back-button:hover {
     background: rgba(255, 255, 255, 0.2);
   }
 }

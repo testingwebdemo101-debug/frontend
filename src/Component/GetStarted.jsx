@@ -64,27 +64,27 @@ const GetStarted = () => {
   };
 
   return (
-    <div className="gs-container">
-      <div className="gs-card">
-
+    <div className="get-started-container">
+      <div className="get-started-card">
+<span className="getstarted-back" onClick={() => navigate(-1)}>←</span>
         {/* Logo */}
-        <div className="gs-logo-wrapper">
+        <div className="get-started-logo-wrapper">
           <img src={logo} alt="InstaCoinXPay Logo" />
         </div>
 
         {/* Image */}
-        <div className="getstarted-cam2">
+        <div className="get-started-cam2">
           <img src={cam2} alt="cam2" />
         </div>
 
         {/* Heading */}
-        <h1 className="gs-title">LET'S GET STARTED</h1>
+        <h1 className="get-started-title">LET'S GET STARTED</h1>
 
         {/* Country */}
-        <div className="gs-form-group">
-          <label className="gs-label">Country of residence</label>
+        <div className="get-started-form-group">
+          <label className="get-started-label">Country of residence</label>
           <select
-            className="gs-input"
+            className="get-started-input"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             disabled={isLoading}
@@ -104,13 +104,13 @@ const GetStarted = () => {
         </div>
 
         {/* Referral */}
-        <div className="gs-form-group">
-          <label className="gs-label">
+        <div className="get-started-form-group">
+          <label className="get-started-label">
             Have a referral code? (optional)
           </label>
           <input
             type="text"
-            className="gs-input"
+            className="get-started-input"
             placeholder="Enter referral code"
             value={referralCode}
             onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
@@ -120,7 +120,7 @@ const GetStarted = () => {
 
         {/* Button */}
         <button
-          className="gs-continue-btn"
+          className="get-started-continue-btn"
           onClick={handleSubmit}
           disabled={isLoading || !country}
         >
@@ -130,13 +130,13 @@ const GetStarted = () => {
 
       {/* ANIMATED POPUP */}
       {popup.show && (
-        <div className="gs-popup-overlay">
-          <div className="gs-popup-card">
-            <div className={`gs-icon-box ${popup.success ? "success" : "error"}`}>
-              <svg viewBox="0 0 100 100" className="gs-icon">
-                <circle cx="50" cy="50" r="45" className="gs-circle" />
+        <div className="get-started-popup-overlay">
+          <div className="get-started-popup-card">
+            <div className={`get-started-icon-box ${popup.success ? "success" : "error"}`}>
+              <svg viewBox="0 0 100 100" className="get-started-icon">
+                <circle cx="50" cy="50" r="45" className="get-started-circle" />
                 <path
-                  className="gs-path"
+                  className="get-started-path"
                   d={
                     popup.success
                       ? "M30 52 L45 65 L70 38"
@@ -146,10 +146,10 @@ const GetStarted = () => {
               </svg>
             </div>
 
-            <p className="gs-popup-text">{popup.message}</p>
+            <p className="get-started-popup-text">{popup.message}</p>
 
             <button
-              className="gs-ok-btn"
+              className="get-started-ok-btn"
               onClick={() => setPopup({ ...popup, show: false })}
               disabled={isLoading}
             >

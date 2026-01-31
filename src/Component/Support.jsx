@@ -47,22 +47,19 @@ const Support = () => {
   };
 
   return (
-    <div className="help-page">
-      {/* BACK BUTTON */}
-      <button className="help-back-btn" onClick={() => navigate("/dashboard")}>
-        ← Back to Dashboard
-      </button>
-
-      <header className="help-header">
-        <div className="help-logo">
+    <div className="support-page-wrapper">
+      <header className="support-header-section">
+        <div className="support-logo-container">
           <img src={logo} alt="help-logo" />
         </div>
-        <h1>SUPPORT</h1>
       </header>
 
-      <div className="help-card">
+
+      <div className="support-form-card">
+        <span className="supportpage-back" onClick={() => navigate(-1)}>←</span> 
+         <h1 className="support-title">SUPPORT</h1>
         <form onSubmit={handleSubmit}>
-          <div className="help-form-group">
+          <div className="support-form-group">
             <label>Your Email</label>
             <input
               type="email"
@@ -73,7 +70,7 @@ const Support = () => {
             />
           </div>
 
-          <div className="help-form-group">
+          <div className="support-form-group">
             <label>Subject</label>
             <input
               type="text"
@@ -84,7 +81,7 @@ const Support = () => {
             />
           </div>
 
-          <div className="help-form-group">
+          <div className="support-form-group">
             <label>Description</label>
             <textarea
               name="description"
@@ -95,16 +92,16 @@ const Support = () => {
           </div>
 
           {/* OPTIONAL IMAGE PREVIEW */}
-          <div className="help-form-group">
+          <div className="support-form-group">
             <input type="file" accept="image/*" onChange={handleFileChange} />
-            {preview && <img src={preview} alt="preview" className="preview-img" />}
+            {preview && <img src={preview} alt="preview" className="support-preview-image" />}
           </div>
 
-          <button className="help-submit-btn" disabled={loading}>
+          <button className="support-submit-button" disabled={loading}>
             {loading ? "Submitting..." : "Submit"}
           </button>
 
-          {message && <p className="help-message">{message}</p>}
+          {message && <p className="support-message-text">{message}</p>}
         </form>
       </div>
     </div>

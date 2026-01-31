@@ -1,5 +1,5 @@
 /* Page */
-.btc-send-page {
+.cryptotransfer-container {
   min-height: 100vh;
   background: #245aa6;
   padding: 15px;
@@ -13,7 +13,7 @@
 }
 
 /* Back Button */
-.btc-back-btn {
+.cryptotransfer-back-btn {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -32,13 +32,13 @@
   gap: 5px;
 }
 
-.btc-back-btn:hover {
+.cryptotransfer-back-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateX(-5px);
 }
 
 /* Logo */
-.btc-send-logo {
+.cryptotransfer-logo-box {
   max-width: 180px;
   margin-bottom: 15px;
   width: 100%;
@@ -46,14 +46,14 @@
   justify-content: center;
 }
 
-.btc-send-logo img {
+.cryptotransfer-logo-box img {
   width: 180px;
   height: auto;
   object-fit: contain;
 }
 
 /* Card */
-.btc-send-card {
+.cryptotransfer-card {
   background: #cfeefa;
   width: 100%;
   max-width: 500px;
@@ -63,9 +63,13 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
 }
+.sendbtc-back{
+  color: black;
+   font-size: 27px;
+}
 
 /* Title */
-.btc-title {
+.cryptotransfer-title {
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
@@ -74,13 +78,13 @@
 }
 
 /* Form */
-.btc-form-group {
+.cryptotransfer-input-group {
   margin-bottom: 18px;
   position: relative;
   width: 100%;
 }
 
-.btc-form-group label {
+.cryptotransfer-input-group label {
   font-size: 14px;
   margin-bottom: 6px;
   display: block;
@@ -88,7 +92,7 @@
   font-weight: 600;
 }
 
-.btc-form-group input {
+.cryptotransfer-input-group input {
   width: 100%;
   padding: 14px;
   border-radius: 6px;
@@ -99,14 +103,14 @@
   border: 1px solid #ddd;
 }
 
-.btc-form-group input:focus {
+.cryptotransfer-input-group input:focus {
   outline: none;
   border-color: #35d1ff;
   box-shadow: 0 0 0 2px rgba(53, 209, 255, 0.2);
 }
 
 /* Dropdown */
-.btc-dropdown {
+.cryptotransfer-network-selector {
   background: #fff;
   padding: 14px;
   border-radius: 6px;
@@ -118,30 +122,30 @@
   transition: border-color 0.3s;
 }
 
-.btc-dropdown:hover {
+.cryptotransfer-network-selector:hover {
   border-color: #35d1ff;
 }
 
-.btc-selected {
+.cryptotransfer-selected-network {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.btc-selected img {
+.cryptotransfer-selected-network img {
   width: 28px;
   height: 28px;
   object-fit: contain;
 }
 
-.btc-selected span {
+.cryptotransfer-selected-network span {
   font-size: 16px;
   font-weight: 600;
   color: #333;
 }
 
 /* Dropdown Menu */
-.btc-dropdown-menu {
+.cryptotransfer-network-options {
   position: absolute;
   width: 100%;
   background: #ffffff;
@@ -155,64 +159,64 @@
 }
 
 /* Dropdown Item */
-.btc-dropdown-item {
+.cryptotransfer-network-option {
   padding: 12px 14px;
   cursor: pointer;
   transition: background 0.2s ease;
   border-bottom: 1px solid #f0f0f0;
 }
 
-.btc-dropdown-item:last-child {
+.cryptotransfer-network-option:last-child {
   border-bottom: none;
 }
 
-.btc-dropdown-item:hover {
+.cryptotransfer-network-option:hover {
   background: #eaf6ff;
 }
 
 /* Coin Row */
-.btc-coin-left {
+.cryptotransfer-coin-preview {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
 /* Coin Icon */
-.btc-coin-left img {
+.cryptotransfer-coin-preview img {
   width: 32px;
   height: 32px;
   object-fit: contain;
 }
 
 /* Coin Text */
-.btc-coin-text {
+.cryptotransfer-coin-details {
   display: flex;
   flex-direction: column;
 }
 
-.btc-coin-text strong {
+.cryptotransfer-coin-details strong {
   font-size: 15px;
   color: #000;
   font-weight: 600;
 }
 
-.btc-coin-text small {
+.cryptotransfer-coin-details small {
   font-size: 12px;
   color: #666;
 }
 
-.arrow {
+.cryptotransfer-dropdown-arrow {
   transition: transform 0.3s ease;
   font-size: 12px;
   color: #666;
 }
 
-.arrow.rotate {
+.cryptotransfer-arrow-rotated {
   transform: rotate(180deg);
 }
 
 /* Amount */
-.btc-amount-box {
+.cryptotransfer-amount-wrapper {
   display: flex;
   background: #fff;
   border-radius: 6px;
@@ -220,7 +224,7 @@
   overflow: hidden;
 }
 
-.btc-amount-box input {
+.cryptotransfer-amount-wrapper input {
   flex: 1;
   border: none;
   padding: 14px;
@@ -228,11 +232,11 @@
   min-width: 0;
 }
 
-.btc-amount-box input:focus {
+.cryptotransfer-amount-wrapper input:focus {
   outline: none;
 }
 
-.btc-amount-right {
+.cryptotransfer-amount-buttons {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -241,14 +245,14 @@
   border-left: 1px solid #ddd;
 }
 
-.btc-amount-right span:first-child {
+.cryptotransfer-amount-buttons span:first-child {
   font-size: 14px;
   font-weight: 600;
   color: #333;
   white-space: nowrap;
 }
 
-.btc-max {
+.cryptotransfer-max-amount {
   color: #f5a623;
   font-weight: 600;
   cursor: pointer;
@@ -258,12 +262,12 @@
   transition: background 0.2s;
 }
 
-.btc-max:hover {
+.cryptotransfer-max-amount:hover {
   background: rgba(245, 166, 35, 0.2);
 }
 
 /* Available */
-.btc-available {
+.cryptotransfer-balance-info {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -273,17 +277,17 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
-.btc-available span:first-child {
+.cryptotransfer-balance-info span:first-child {
   color: #666;
 }
 
-.btc-available span:last-child {
+.cryptotransfer-balance-info span:last-child {
   font-weight: 600;
   color: #333;
 }
 
 /* Info */
-.btc-info {
+.cryptotransfer-note {
   font-size: 12px;
   padding-top: 10px;
   margin-bottom: 12px;
@@ -293,7 +297,7 @@
 }
 
 /* Bottom */
-.btc-bottom {
+.cryptotransfer-btn-container {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -301,7 +305,7 @@
   border-top: 1px solid #9cc6e6;
 }
 
-.btc-withdraw-btn {
+.cryptotransfer-proceed-btn {
   width: 100%;
   padding: 16px;
   border-radius: 8px;
@@ -315,560 +319,741 @@
   box-shadow: 0 4px 15px rgba(27, 108, 255, 0.3);
 }
 
-.btc-withdraw-btn:hover {
+.cryptotransfer-proceed-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(27, 108, 255, 0.4);
 }
 
-.btc-withdraw-btn:active {
+.cryptotransfer-proceed-btn:active {
   transform: translateY(0);
 }
 
-.btc-withdraw-btn:disabled {
+.cryptotransfer-proceed-btn:disabled {
   background: linear-gradient(to right, #cccccc, #999999);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
+/* ================= POPUP STYLES ================= */
+.cryptotransfer-popup-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.cryptotransfer-popup {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cryptotransfer-popup-success {
+  border-top: 5px solid #4CAF50;
+}
+
+.cryptotransfer-popup-fail {
+  border-top: 5px solid #f44336;
+  animation: shake 0.35s ease;
+}
+
+/* ICON CONTAINER */
+.cryptotransfer-popup-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cryptotransfer-popup-icon-wrapper.cryptotransfer-popup-success {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.cryptotransfer-popup-icon-wrapper.cryptotransfer-popup-fail {
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.cryptotransfer-popup-icon-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* CIRCLE */
+.cryptotransfer-popup-icon-circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: drawCircle 0.6s ease forwards;
+}
+
+.cryptotransfer-popup-icon-circle.success {
+  stroke: #4caf50;
+}
+
+.cryptotransfer-popup-icon-circle.fail {
+  stroke: #f44336;
+}
+
+/* PATH BASE */
+.cryptotransfer-popup-icon-path {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+/* ✅ SUCCESS CHECK */
+.cryptotransfer-popup-icon-path.success {
+  stroke: #4caf50;
+  animation: drawCheck 0.5s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* ❌ FAIL CROSS */
+.cryptotransfer-popup-icon-path.fail {
+  stroke: #f44336;
+  animation: drawCross 0.35s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.cryptotransfer-popup-icon-path.fail:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.cryptotransfer-popup-header {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.cryptotransfer-popup-content {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.cryptotransfer-popup-action-btn {
+  background: linear-gradient(to right, #35d1ff, #1b6cff);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cryptotransfer-popup-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(27, 108, 255, 0.3);
+}
+
+/* ANIMATIONS */
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCross {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
 /* ================= MOBILE RESPONSIVE STYLES ================= */
 
 /* Small Mobile Devices (up to 360px) */
 @media (max-width: 360px) {
-  .btc-send-page {
+  .cryptotransfer-container {
     padding: 10px;
     min-height: 100vh;
     justify-content: flex-start;
     padding-top: 60px;
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     top: 15px;
     left: 15px;
     padding: 8px 12px;
     font-size: 12px;
   }
   
-  .btc-send-logo {
+  .cryptotransfer-logo-box {
     max-width: 150px;
     margin-bottom: 10px;
   }
   
-  .btc-send-logo img {
+  .cryptotransfer-logo-box img {
     width: 150px;
   }
   
-  .btc-send-card {
+  .cryptotransfer-card {
     padding: 15px;
     border-radius: 12px;
     margin-top: 10px;
   }
   
-  .btc-title {
+  .cryptotransfer-title {
     font-size: 20px;
     margin-bottom: 15px;
   }
   
-  .btc-form-group {
+  .cryptotransfer-input-group {
     margin-bottom: 15px;
   }
   
-  .btc-form-group label {
+  .cryptotransfer-input-group label {
     font-size: 13px;
   }
   
-  .btc-form-group input {
+  .cryptotransfer-input-group input {
     padding: 12px;
     font-size: 15px;
   }
   
-  .btc-dropdown {
+  .cryptotransfer-network-selector {
     padding: 12px;
   }
   
-  .btc-selected img {
+  .cryptotransfer-selected-network img {
     width: 24px;
     height: 24px;
   }
   
-  .btc-selected span {
+  .cryptotransfer-selected-network span {
     font-size: 15px;
   }
   
-  .btc-amount-box input {
+  .cryptotransfer-amount-wrapper input {
     padding: 12px;
     font-size: 15px;
   }
   
-  .btc-amount-right {
+  .cryptotransfer-amount-buttons {
     padding: 0 10px;
     gap: 8px;
   }
   
-  .btc-amount-right span:first-child {
+  .cryptotransfer-amount-buttons span:first-child {
     font-size: 13px;
   }
   
-  .btc-max {
+  .cryptotransfer-max-amount {
     padding: 3px 6px;
     font-size: 12px;
   }
   
-  .btc-available {
+  .cryptotransfer-balance-info {
     font-size: 13px;
   }
   
-  .btc-withdraw-btn {
+  .cryptotransfer-proceed-btn {
     padding: 14px;
     font-size: 15px;
   }
   
-  .btc-dropdown-menu {
+  .cryptotransfer-network-options {
     max-height: 250px;
   }
   
-  .btc-coin-left img {
+  .cryptotransfer-coin-preview img {
     width: 28px;
     height: 28px;
   }
   
-  .btc-coin-text strong {
+  .cryptotransfer-coin-details strong {
     font-size: 14px;
   }
   
-  .btc-coin-text small {
+  .cryptotransfer-coin-details small {
     font-size: 11px;
   }
 }
 
 /* Mobile Devices (361px to 480px) */
 @media (min-width: 361px) and (max-width: 480px) {
-  .btc-send-page {
+  .cryptotransfer-container {
     padding: 15px;
     padding-top: 70px;
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     top: 20px;
     left: 20px;
   }
   
-  .btc-send-logo {
+  .cryptotransfer-logo-box {
     max-width: 170px;
     margin-bottom: 15px;
   }
   
-  .btc-send-logo img {
+  .cryptotransfer-logo-box img {
     width: 170px;
   }
   
-  .btc-send-card {
+  .cryptotransfer-card {
     padding: 20px;
     border-radius: 14px;
     margin-top: 15px;
   }
   
-  .btc-title {
+  .cryptotransfer-title {
     font-size: 22px;
   }
   
-  .btc-form-group input {
+  .cryptotransfer-input-group input {
     padding: 13px;
   }
   
-  .btc-dropdown {
+  .cryptotransfer-network-selector {
     padding: 13px;
   }
   
-  .btc-amount-box input {
+  .cryptotransfer-amount-wrapper input {
     padding: 13px;
   }
   
-  .btc-withdraw-btn {
+  .cryptotransfer-proceed-btn {
     padding: 15px;
   }
 }
 
 /* Tablet Devices (481px to 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
-  .btc-send-page {
+  .cryptotransfer-container {
     padding: 20px;
     padding-top: 80px;
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     top: 25px;
     left: 25px;
     font-size: 16px;
     padding: 12px 18px;
   }
   
-  .btc-send-logo {
+  .cryptotransfer-logo-box {
     max-width: 190px;
     margin-bottom: 20px;
   }
   
-  .btc-send-logo img {
+  .cryptotransfer-logo-box img {
     width: 190px;
   }
   
-  .btc-send-card {
+  .cryptotransfer-card {
     max-width: 450px;
     padding: 25px;
     margin-top: 20px;
   }
   
-  .btc-title {
+  .cryptotransfer-title {
     font-size: 26px;
   }
   
-  .btc-dropdown-menu {
+  .cryptotransfer-network-options {
     max-height: 350px;
   }
 }
 
 /* Landscape Mode for Mobile */
 @media (max-height: 600px) and (orientation: landscape) {
-  .btc-send-page {
+  .cryptotransfer-container {
     padding: 10px;
     min-height: auto;
     justify-content: flex-start;
     padding-top: 60px;
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     top: 15px;
     left: 15px;
     padding: 8px 12px;
   }
   
-  .btc-send-logo {
+  .cryptotransfer-logo-box {
     max-width: 140px;
     margin-bottom: 10px;
   }
   
-  .btc-send-logo img {
+  .cryptotransfer-logo-box img {
     width: 140px;
   }
   
-  .btc-send-card {
+  .cryptotransfer-card {
     padding: 15px;
     margin-bottom: 20px;
     margin-top: 10px;
   }
   
-  .btc-form-group {
+  .cryptotransfer-input-group {
     margin-bottom: 12px;
   }
   
-  .btc-dropdown-menu {
+  .cryptotransfer-network-options {
     max-height: 200px;
   }
 }
 
 /* Large Mobile Devices (Tablet Portrait 769px to 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .btc-send-page {
+  .cryptotransfer-container {
     padding: 30px;
     padding-top: 100px;
+    justify-content: center;
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     top: 35px;
     left: 35px;
     font-size: 16px;
     padding: 12px 20px;
   }
   
-  .btc-back-btn:hover {
+  .cryptotransfer-back-btn:hover {
     transform: translateX(-5px);
   }
   
-  .btc-send-logo {
+  .cryptotransfer-logo-box {
     max-width: 220px;
     margin-bottom: 25px;
   }
   
-  .btc-send-logo img {
+  .cryptotransfer-logo-box img {
     width: 220px;
   }
   
-  .btc-send-card {
+  .cryptotransfer-card {
     max-width: 600px;
     padding: 30px;
     margin-top: 25px;
   }
   
-  .btc-title {
+  .cryptotransfer-title {
     font-size: 28px;
     margin-bottom: 25px;
   }
   
-  .btc-form-group {
+  .cryptotransfer-input-group {
     margin-bottom: 20px;
   }
   
-  .btc-form-group label {
+  .cryptotransfer-input-group label {
     font-size: 15px;
   }
   
-  .btc-form-group input {
+  .cryptotransfer-input-group input {
     padding: 16px;
     font-size: 17px;
   }
   
-  .btc-dropdown {
+  .cryptotransfer-network-selector {
     padding: 16px;
   }
   
-  .btc-selected img {
+  .cryptotransfer-selected-network img {
     width: 32px;
     height: 32px;
   }
   
-  .btc-selected span {
+  .cryptotransfer-selected-network span {
     font-size: 17px;
   }
   
-  .btc-amount-box input {
+  .cryptotransfer-amount-wrapper input {
     padding: 16px;
     font-size: 17px;
   }
   
-  .btc-amount-right {
+  .cryptotransfer-amount-buttons {
     padding: 0 20px;
   }
   
-  .btc-available {
+  .cryptotransfer-balance-info {
     font-size: 15px;
   }
   
-  .btc-info {
+  .cryptotransfer-note {
     font-size: 13px;
   }
   
-  .btc-withdraw-btn {
+  .cryptotransfer-proceed-btn {
     padding: 18px;
     font-size: 17px;
   }
   
-  .btc-dropdown-menu {
+  .cryptotransfer-network-options {
     max-height: 400px;
   }
   
-  .btc-coin-left img {
+  .cryptotransfer-coin-preview img {
     width: 36px;
     height: 36px;
   }
   
-  .btc-coin-text strong {
+  .cryptotransfer-coin-details strong {
     font-size: 16px;
   }
   
-  .btc-coin-text small {
+  .cryptotransfer-coin-details small {
     font-size: 13px;
   }
 }
 
-/* Desktop (1025px and above) */
+/* Desktop (1025px and above) - MODIFIED FOR SINGLE WINDOW FIT WITHOUT SCROLLING */
 @media (min-width: 1025px) {
-  .btc-send-page {
-    padding: 40px;
-    padding-top: 120px;
+  .cryptotransfer-container {
+    padding: 0; /* Remove padding */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    min-height: 100vh;
+    overflow: hidden; /* Prevent any scrolling */
   }
   
-  .btc-back-btn {
-    top: 40px;
-    left: 40px;
+  .cryptotransfer-back-btn {
+    top: 30px;
+    left: 30px;
     font-size: 16px;
     padding: 12px 24px;
+    position: fixed; /* Fixed position so it stays in place */
+    z-index: 1000;
   }
   
-  .btc-back-btn:hover {
+  .cryptotransfer-back-btn:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateX(-5px);
   }
   
-  .btc-send-logo {
-    max-width: 250px;
-    margin-bottom: 30px;
+  .cryptotransfer-logo-box {
+    max-width: 180px;
+    margin-bottom: 20px;
   }
   
-  .btc-send-logo img {
-    width: 250px;
+  .cryptotransfer-logo-box img {
+    width: 180px;
   }
   
-  .btc-send-card {
-    max-width: 650px;
-    padding: 40px;
-    margin-top: 30px;
+  .cryptotransfer-card {
+    max-width: 480px; /* Compact width */
+    padding: 25px;
+    margin: 0; /* Remove margin */
+    /* Calculate max height to fit within viewport */
+    max-height: 90vh; /* Use 90% of viewport height */
   }
   
-  .btc-title {
-    font-size: 32px;
-    margin-bottom: 30px;
+  .cryptotransfer-title {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
   
-  .btc-form-group {
-    margin-bottom: 25px;
+  .cryptotransfer-input-group {
+    margin-bottom: 15px; /* Reduced spacing */
   }
   
-  .btc-form-group label {
-    font-size: 16px;
-  }
-  
-  .btc-form-group input {
-    padding: 18px;
-    font-size: 18px;
-  }
-  
-  .btc-dropdown {
-    padding: 18px;
-  }
-  
-  .btc-selected img {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .btc-selected span {
-    font-size: 18px;
-  }
-  
-  .btc-amount-box input {
-    padding: 18px;
-    font-size: 18px;
-  }
-  
-  .btc-amount-right {
-    padding: 0 25px;
-  }
-  
-  .btc-available {
-    font-size: 16px;
-  }
-  
-  .btc-info {
+  .cryptotransfer-input-group label {
     font-size: 14px;
   }
   
-  .btc-withdraw-btn {
-    padding: 20px;
-    font-size: 18px;
+  .cryptotransfer-input-group input {
+    padding: 12px;
+    font-size: 16px;
   }
   
-  .btc-dropdown-menu {
-    max-height: 450px;
+  .cryptotransfer-network-selector {
+    padding: 12px;
+  }
+  
+  .cryptotransfer-selected-network img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .cryptotransfer-selected-network span {
+    font-size: 16px;
+  }
+  
+  .cryptotransfer-amount-wrapper input {
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .cryptotransfer-amount-buttons {
+    padding: 0 12px;
+  }
+  
+  .cryptotransfer-balance-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .cryptotransfer-note {
+    font-size: 12px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  
+  .cryptotransfer-btn-container {
+    padding-top: 10px;
+    gap: 12px;
+  }
+  
+  .cryptotransfer-proceed-btn {
+    padding: 14px;
+    font-size: 16px;
+  }
+  
+  .cryptotransfer-network-options {
+    max-height: 300px; /* Reduced height */
+  }
+  
+  /* Adjust spacing for all elements to fit in one screen */
+  .cryptotransfer-input-group small {
+    font-size: 11px;
+    margin-top: 4px;
+    display: block;
   }
 }
 
 /* Fix for very small screens (iPhone 5/SE) */
 @media (max-width: 320px) {
-  .btc-send-page {
+  .cryptotransfer-container {
     padding: 8px;
     padding-top: 50px;
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     top: 12px;
     left: 12px;
     padding: 6px 10px;
     font-size: 11px;
   }
   
-  .btc-send-logo {
+  .cryptotransfer-logo-box {
     max-width: 130px;
   }
   
-  .btc-send-logo img {
+  .cryptotransfer-logo-box img {
     width: 130px;
   }
   
-  .btc-send-card {
+  .cryptotransfer-card {
     padding: 12px;
     border-radius: 10px;
     margin-top: 8px;
   }
   
-  .btc-title {
+  .cryptotransfer-title {
     font-size: 18px;
     margin-bottom: 12px;
   }
   
-  .btc-form-group {
+  .cryptotransfer-input-group {
     margin-bottom: 12px;
   }
   
-  .btc-form-group input {
+  .cryptotransfer-input-group input {
     padding: 10px;
     font-size: 14px;
   }
   
-  .btc-dropdown {
+  .cryptotransfer-network-selector {
     padding: 10px;
   }
   
-  .btc-selected img {
+  .cryptotransfer-selected-network img {
     width: 22px;
     height: 22px;
   }
   
-  .btc-selected span {
+  .cryptotransfer-selected-network span {
     font-size: 14px;
   }
   
-  .btc-amount-box input {
+  .cryptotransfer-amount-wrapper input {
     padding: 10px;
     font-size: 14px;
   }
   
-  .btc-amount-right {
+  .cryptotransfer-amount-buttons {
     padding: 0 8px;
   }
   
-  .btc-amount-right span:first-child {
+  .cryptotransfer-amount-buttons span:first-child {
     font-size: 12px;
   }
   
-  .btc-max {
+  .cryptotransfer-max-amount {
     font-size: 11px;
     padding: 2px 5px;
   }
   
-  .btc-available {
+  .cryptotransfer-balance-info {
     font-size: 12px;
   }
   
-  .btc-withdraw-btn {
+  .cryptotransfer-proceed-btn {
     padding: 12px;
     font-size: 14px;
   }
   
-  .btc-info {
+  .cryptotransfer-note {
     font-size: 11px;
   }
 }
 
 /* Fix for dropdown on very small screens */
 @media (max-width: 375px) {
-  .btc-dropdown-item {
+  .cryptotransfer-network-option {
     padding: 10px 12px;
   }
   
-  .btc-coin-left {
+  .cryptotransfer-coin-preview {
     gap: 10px;
   }
   
-  .btc-coin-left img {
+  .cryptotransfer-coin-preview img {
     width: 26px;
     height: 26px;
   }
   
-  .btc-coin-text strong {
+  .cryptotransfer-coin-details strong {
     font-size: 13px;
   }
   
-  .btc-coin-text small {
+  .cryptotransfer-coin-details small {
     font-size: 10px;
   }
 }
@@ -879,7 +1064,7 @@
     overflow-x: hidden;
   }
   
-  .btc-send-page {
+  .cryptotransfer-container {
     min-height: 100vh;
     overflow-y: auto;
   }
@@ -891,25 +1076,25 @@
     font-size: 16px !important;
   }
   
-  .btc-form-group input:focus {
+  .cryptotransfer-input-group input:focus {
     font-size: 16px !important;
   }
 }
 
 /* Touch-friendly button sizes */
 @media (max-width: 768px) {
-  .btc-withdraw-btn {
+  .cryptotransfer-proceed-btn {
     min-height: 50px;
   }
   
-  .btc-max {
+  .cryptotransfer-max-amount {
     min-height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     min-height: 40px;
     display: flex;
     align-items: center;
@@ -919,14 +1104,14 @@
 
 /* Safe area insets for modern mobile devices */
 @supports (padding: max(0px)) {
-  .btc-send-page {
+  .cryptotransfer-container {
     padding-left: max(15px, env(safe-area-inset-left));
     padding-right: max(15px, env(safe-area-inset-right));
     padding-top: max(20px, env(safe-area-inset-top));
     padding-bottom: max(20px, env(safe-area-inset-bottom));
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     left: max(20px, env(safe-area-inset-left));
     top: max(20px, env(safe-area-inset-top));
   }
@@ -934,27 +1119,131 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-  .btc-send-page {
+  .cryptotransfer-container {
     background: #1a4a8a;
   }
   
-  .btc-send-card {
+  .cryptotransfer-card {
     background: #b8e2f5;
   }
   
-  .btc-title,
-  .btc-form-group label,
-  .btc-available,
-  .btc-info {
+  .cryptotransfer-title,
+  .cryptotransfer-input-group label,
+  .cryptotransfer-balance-info,
+  .cryptotransfer-note {
     color: #1a1a1a;
   }
   
-  .btc-back-btn {
+  .cryptotransfer-back-btn {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
   }
   
-  .btc-back-btn:hover {
+  .cryptotransfer-back-btn:hover {
     background: rgba(255, 255, 255, 0.2);
   }
+}
+/* ===== POPUP OVERLAY ===== */
+.cryptotransfer-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== POPUP CARD ===== */
+.cryptotransfer-popup-card {
+  width: 320px;
+  max-width: 90%;
+  background: #f4f6f8;
+  padding: 28px 25px;
+  border-radius: 14px;
+  text-align: center;
+  animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ===== ICON ===== */
+.cryptotransfer-icon-box {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 12px;
+}
+
+.cryptotransfer-icon {
+  width: 90px;
+  height: 90px;
+}
+
+.cryptotransfer-circle {
+  fill: none;
+  stroke-width: 6;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: drawCircle 0.6s ease forwards;
+}
+
+.cryptotransfer-path {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: drawPath 0.4s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* COLORS */
+.cryptotransfer-icon-box.success .cryptotransfer-circle,
+.cryptotransfer-icon-box.success .cryptotransfer-path {
+  stroke: #2ecc71;
+}
+
+.cryptotransfer-icon-box.error .cryptotransfer-circle,
+.cryptotransfer-icon-box.error .cryptotransfer-path {
+  stroke: #e74c3c;
+}
+
+/* TEXT */
+.cryptotransfer-popup-text {
+  font-size: 16px;
+  color: #333;
+  margin: 14px 0 18px;
+}
+
+/* BUTTON */
+.cryptotransfer-ok-btn {
+  padding: 10px 28px;
+  border-radius: 6px;
+  border: none;
+  background: #2d2f34;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cryptotransfer-ok-btn:hover {
+  background: #000;
+}
+
+/* ANIMATIONS */
+@keyframes drawCircle {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
 }

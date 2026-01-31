@@ -32,34 +32,33 @@ const HistoryTransactionReceipt = () => {
       ltc: "LTC",
     }[asset.toLowerCase()] || "Unknown");
 
-useEffect(() => {
-  const fetchTx = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) return navigate("/login");
+  useEffect(() => {
+    const fetchTx = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return navigate("/login");
 
-      const res = await axios.get(
-        `https://backend-instacoinpay-1.onrender.com/api/transfer/${id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+        const res = await axios.get(
+          `https://backend-instacoinpay-1.onrender.com/api/transfer/${id}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
 
-      const data = res.data.data;
-      data.status = (data.status || "pending").toLowerCase(); // 🔥 FIX
+        const data = res.data.data;
+        data.status = (data.status || "pending").toLowerCase(); // 🔥 FIX
 
-      setTx(data);
-    } catch (e) {
-      setTx(null);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setTx(data);
+      } catch (e) {
+        setTx(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchTx();
-}, [id, navigate]);
+    fetchTx();
+  }, [id, navigate]);
 
-
-  if (loading) return <p style={{ textAlign: "center" }}>Loading...</p>;
-  if (!tx) return <p style={{ textAlign: "center" }}>Transaction not found</p>;
+  if (loading) return <div className="history-transaction-receipt-page"><p style={{ textAlign: "center" }}>Loading...</p></div>;
+  if (!tx) return <div className="history-transaction-receipt-page"><p style={{ textAlign: "center" }}>Transaction not found</p></div>;
 
   const amount = Number(tx.amount ?? 0);
   const coin = tx.asset?.toUpperCase() || "";
@@ -75,7 +74,7 @@ useEffect(() => {
       : "--";
 
   return (
-    <div className="receipt-page">
+    <div className="history-transaction-receipt-page">
       <div className="receipt-card">
         <h2 className="receipt-title">Transaction Receipt</h2>
 
@@ -85,37 +84,32 @@ useEffect(() => {
 
         <div className={`status-wrapper ${tx.status}`}>
 
-  {tx.status === "pending" && (
-    <div className="loader" />
-  )}
+          {tx.status === "pending" && (
+            <div className="loader" />
+          )}
 
-  {tx.status === "completed" && (
-    <div className="status-icon success">✔</div>
-  )}
+          {tx.status === "completed" && (
+            <div className="status-icon success">✔</div>
+          )}
 
-  {tx.status === "failed" && (
-    <div className="status-icon failed">✖</div>
-  )}
+          {tx.status === "failed" && (
+            <div className="status-icon failed">✖</div>
+          )}
 
-  <div className="status-text">
-    {tx.status === "completed"
-      ? "Successful"
-      : tx.status === "failed"
-      ? "Failed"
-      : "Pending"}
-  </div>
+          <div className="status-text">
+            {tx.status === "completed"
+              ? "Successful"
+              : tx.status === "failed"
+              ? "Failed"
+              : "Pending"}
+          </div>
 
-</div>
-
+        </div>
 
         {/* ✅ FIXED MESSAGE */}
         <div className="receipt-info">
           Your crypto transfer from InstaCoinXPay has been processed successfully.
         </div>
-
-        {/* <div className="receipt-info-warning">
-          Haven’t received your transaction? Chat with WhatsApp support.
-        </div> */}
 
         <div className="receipt-divider" />
 

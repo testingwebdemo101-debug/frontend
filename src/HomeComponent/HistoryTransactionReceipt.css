@@ -1,7 +1,7 @@
 /* =====================================================
-   PAGE
+   PAGE - UNIQUE CLASS NAME
 ===================================================== */
-.receipt-page {
+.history-transaction-receipt-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -180,7 +180,6 @@
     transform: rotate(360deg);
   }
 }
-
 
 /* =====================================================
    FORCE STATUS = PENDING (REMOVE COMPLETED COMPLETELY)

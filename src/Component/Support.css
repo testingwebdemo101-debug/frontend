@@ -1,5 +1,5 @@
 /* Page Background */
-.help-page {
+.support-page-wrapper {
   min-height: 100vh;
   background: #245aa6;
   display: flex;
@@ -11,7 +11,7 @@
 }
 
 /* Header */
-.help-header {
+.support-header-section {
   width: 100%;
   text-align: center;
   padding: 20px;
@@ -22,26 +22,33 @@
   margin-bottom: 20px;
 }
 
-.help-logo {
-  /* margin-bottom: 15px; */
+.support-title {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 20px auto;
 }
 
-.help-logo img {
+.support-logo-container img {
   max-height: 150px;
   width: auto;
   margin-bottom: -20px;
   margin-top: -30px;
 }
 
-/* Title */
-.help-header h1 {
-  font-size: 32px;
-  margin: 0;
-  margin-bottom: -30px;
+/* Back Button */
+.support-back-button {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px 0;
+  margin-bottom: 10px;
 }
 
 /* Card */
-.help-card {
+.support-form-card {
   background: #cfeefa;
   width: 100%;
   max-width: 600px;
@@ -51,21 +58,21 @@
 }
 
 /* Form */
-.help-form-group {
+.support-form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
 }
 
-.help-form-group label {
+.support-form-group label {
   font-size: 15px;
   margin-bottom: 8px;
   font-weight: 500;
   color: black;
 }
 
-.help-form-group input,
-.help-form-group textarea {
+.support-form-group input,
+.support-form-group textarea {
   padding: 14px;
   border-radius: 6px;
   border: none;
@@ -74,21 +81,35 @@
 }
 
 /* Textarea */
-.help-form-group textarea {
+.support-form-group textarea {
   resize: vertical;
   min-height: 120px;
   max-height: 300px;
 }
 
 /* File Input */
-.help-file-group input {
+.support-file-input input {
   background: #fff;
   padding: 12px;
   cursor: pointer;
 }
 
+/* Preview Image */
+.support-preview-image {
+  max-width: 200px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+/* Message */
+.support-message-text {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
 /* Submit Button */
-.help-submit-btn {
+.support-submit-button {
   margin-top: 30px;
   width: 100%;
   max-width: 600px;
@@ -102,7 +123,7 @@
   cursor: pointer;
 }
 
-.help-submit-btn:active {
+.support-submit-button:active {
   transform: scale(0.98);
 }
 
@@ -110,27 +131,23 @@
 
 /* Tablets */
 @media (max-width: 1024px) {
-  .help-card {
+  .support-form-card {
     padding: 25px;
   }
 }
 
 /* Medium Mobile */
 @media (max-width: 768px) {
-  .help-logo img {
+  .support-logo-container img {
     max-height: 40px;
   }
 
-  .help-header h1 {
-    font-size: 28px;
-  }
-
-  .help-card {
+  .support-form-card {
     padding: 20px;
     border-radius: 15px;
   }
 
-  .help-submit-btn {
+  .support-submit-button {
     font-size: 20px;
     padding: 14px;
   }
@@ -138,26 +155,22 @@
 
 /* Small Mobile */
 @media (max-width: 480px) {
-  .help-header h1 {
-    font-size: 24px;
-  }
-
-  .help-card {
+  .support-form-card {
     padding: 18px;
     border-radius: 12px;
   }
 
-  .help-form-group label {
+  .support-form-group label {
     font-size: 13px;
   }
 
-  .help-form-group input,
-  .help-form-group textarea {
+  .support-form-group input,
+  .support-form-group textarea {
     font-size: 14px;
     padding: 10px;
   }
 
-  .help-submit-btn {
+  .support-submit-button {
     font-size: 18px;
     padding: 12px;
   }
@@ -165,11 +178,7 @@
 
 /* Extra Small */
 @media (max-width: 360px) {
-  .help-header h1 {
-    font-size: 22px;
-  }
-
-  .help-submit-btn {
+  .support-submit-button {
     font-size: 16px;
     padding: 10px;
   }
@@ -177,27 +186,35 @@
 
 /* Large Desktop */
 @media (min-width: 1440px) {
-  .help-card {
+  .support-form-card {
     max-width: 700px;
     padding: 35px;
   }
 
-  .help-submit-btn {
+  .support-submit-button {
     max-width: 700px;
     font-size: 24px;
   }
 }
 
 /* Focus UX */
-.help-form-group input:focus,
-.help-form-group textarea:focus {
+.support-form-group input:focus,
+.support-form-group textarea:focus {
   box-shadow: 0 0 0 2px rgba(57, 210, 255, 0.3);
 }
 
 /* Prevent iOS zoom */
 @media (max-width: 768px) {
-  .help-form-group input,
-  .help-form-group textarea {
+  .support-form-group input,
+  .support-form-group textarea {
     font-size: 16px;
   }
+}
+
+.supportpage-back{
+    left: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+
 }
