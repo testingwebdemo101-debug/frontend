@@ -93,7 +93,7 @@ const LoginPage = () => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/auth/login",
+      "https://backend-instacoinpay-1.onrender.com/api/auth/login",
       { email, password }
     );
 

@@ -144,7 +144,7 @@ const CreateAccount = () => {
       };
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://backend-instacoinpay-1.onrender.com/api/auth/register",
         registrationData
       );
 
