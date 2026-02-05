@@ -33,11 +33,19 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  /* Add these lines to ensure logo stays centered on mobile */
+  width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .logo img {
   height: 100px;     /* increased size */
   width: auto;
+  /* Ensure image doesn't overflow on mobile */
+  max-width: 100%;
+  object-fit: contain;
 }
 
 /* TITLE */
@@ -88,10 +96,24 @@
   .withdrawal-card {
     padding: 25px 20px 40px;
     border-radius: 26px;
+    /* Ensure card stays centered */
+    margin: 0 auto;
+  }
+
+  /* Fix logo placement on mobile */
+  .logo {
+    margin-bottom: 15px;
+    /* Reset any positioning to ensure center alignment */
+    position: static;
+    transform: none;
+    justify-content: center;
   }
 
   .logo img {
-    height: 60px;
+    height: 80px; /* Adjusted from 60px to 80px for better visibility */
+    width: auto;
+    /* Ensure proper containment */
+    max-height: 80px;
   }
 
   .title {
@@ -108,5 +130,51 @@
     width: 36px;
     height: 36px;
     padding: 4px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .withdrawal-card {
+    padding: 20px 15px 35px;
+    border-radius: 22px;
+  }
+
+  .logo img {
+    height: 70px;
+    max-height: 70px;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .withdraw-btn {
+    font-size: 15px;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .withdraw-btn img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Ensure logo doesn't get affected by any parent transforms */
+.withdrawal-card > .logo {
+  transform: none !important;
+}
+
+/* Prevent any horizontal scrolling issues */
+@media (max-width: 480px) {
+  .withdrawal-page {
+    padding: 15px;
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
   }
 }
