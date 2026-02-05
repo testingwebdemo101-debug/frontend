@@ -28,8 +28,8 @@ const coins = [
   { key: "doge", label: "Dogecoin", symbol: "DOGE", icon: doge },
   { key: "ltc", label: "Litecoin", symbol: "LTC", icon: ltc },
   { key: "trx", label: "TRX", symbol: "TRX", icon: trx },
-  { key: "usdtTron", label: "USDT (TRON)", symbol: "USDT-TRC20", icon: usdt },
-  { key: "usdtBnb", label: "USDT (BNB)", symbol: "USDT-BEP20", icon: usdttether },
+  { key: "usdtTron", label: "USDT (TRON)", symbol: "USDT-TRC20", icon:  usdttether },
+  { key: "usdtBnb", label: "USDT (BNB)", symbol: "USDT-BEP20", icon: usdt },
 ];
 
 /* ================= FORMAT ================= */
