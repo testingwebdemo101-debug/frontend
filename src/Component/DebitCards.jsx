@@ -173,6 +173,14 @@ const DebitCards = () => {
       <div className={`sidebar ${sidebarOpen ? 'active' : ''}`}>
         <div className="sidebar-header">
           <img src={logo} alt="logo" className="sidebar-logo" />
+
+           <Link
+                to="/userprofile"
+                className="user-profile-btn"
+                onClick={closeSidebar}
+              >
+                User Profile
+              </Link>
           <button className="close-sidebar" onClick={closeSidebar}>×</button>
         </div>
         <div className="sidebar-menu">

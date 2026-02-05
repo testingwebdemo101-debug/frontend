@@ -1,0 +1,239 @@
+/* =========================
+   BankWithdrawalOtp.css
+========================= */
+
+.bank-withdrawal-otp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #24559E 0%);
+  padding: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.bank-withdrawal-otp-card {
+  background: linear-gradient(135deg, #24559E 0%);
+  border-radius: 20px;
+  padding: 40px 30px 35px;
+  width: 100%;
+  max-width: 460px;
+  min-height: 620px;              /* 🔥 Increased height */
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.18);
+  text-align: center;
+  position: relative;
+  border: 2px solid #ffffff;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.bank-withdrawal-otp-back {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.bank-withdrawal-otp-logo img {
+  height: 130px;
+  margin-bottom: -30px;
+}
+
+/* =========================
+   COIN ANIMATION
+========================= */
+
+.bank-withdrawal-otp-coin-wrapper {
+  margin: 20px auto;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bank-withdrawal-otp-float 3s ease-in-out infinite;
+}
+
+.bank-withdrawal-otp-coin-wrapper img {
+  width: 170%;
+  height: 180%;
+  object-fit: contain;
+}
+
+@keyframes bank-withdrawal-otp-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.bank-withdrawal-otp-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.bank-withdrawal-otp-text {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+/* =========================
+   EMAIL BOX
+========================= */
+
+.bank-withdrawal-otp-email {
+  background: #f8f9fa;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* =========================
+   OTP INPUTS
+========================= */
+
+.bank-withdrawal-otp-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+
+.bank-withdrawal-otp-boxes input {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  outline: none;
+}
+
+.bank-withdrawal-otp-boxes input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.bank-withdrawal-otp-submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.bank-withdrawal-otp-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* =========================
+   RESEND
+========================= */
+
+.bank-withdrawal-otp-resend-text {
+  background: #fff;
+  padding: 7px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.bank-withdrawal-otp-resend-btn {
+  background: none;
+  border: none;
+  color: #3e0efe;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================
+   POPUP
+========================= */
+
+.bank-withdrawal-otp-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.bank-withdrawal-otp-popup-card {
+  width: 320px;
+  background: #f4f6f8;
+  padding: 26px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .bank-withdrawal-otp-card {
+    min-height: auto;
+    padding: 30px 20px 25px;
+  }
+
+  .bank-withdrawal-otp-logo img {
+    height: 110px;
+  }
+
+  .bank-withdrawal-otp-coin-wrapper {
+    width: 90px;
+    height: 90px;
+  }
+
+  .bank-withdrawal-otp-title {
+    font-size: 21px;
+  }
+
+  .bank-withdrawal-otp-boxes input {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+}
+
+/* =========================
+   LANDSCAPE (SHORT HEIGHT)
+========================= */
+
+@media (max-height: 700px) {
+  .bank-withdrawal-otp-card {
+    min-height: auto;
+    padding: 25px 25px;
+  }
+}

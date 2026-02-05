@@ -548,50 +548,82 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className={`sidebar-overlay ${sidebarOpen ? 'active' : ''}`} onClick={closeSidebar}></div>
-      <div className={`sidebar ${sidebarOpen ? 'active' : ''}`}>
-        <div className="sidebar-header">
-          <img src={logo} alt="logo" className="sidebar-logo" />
-          <button className="close-sidebar" onClick={closeSidebar}>×</button>
-        </div>
-        <div className="sidebar-menu">
-          {isAdmin && (
-            <div className="sidebar-item">
-              <Link to="/admin-panel" onClick={closeSidebar}>
-                Admin Panel
-              </Link>
-            </div>
-          )}
+    <div
+  className={`sidebar-overlay ${sidebarOpen ? "active" : ""}`}
+  onClick={closeSidebar}
+></div>
 
-          <div className="sidebar-item">
-            <Link to="/dashboard" onClick={closeSidebar}>Dashboard</Link>
-          </div>
-          <div className="sidebar-item">
-            <Link to="/sendbtc" onClick={closeSidebar}>Withdrawal</Link>
-          </div>
-          <div className="sidebar-item">
-            <Link to="/creditcards" onClick={closeSidebar}>Activate Debit Card</Link>
-          </div>
-          <div className="sidebar-item">
-            <Link to="/trustwalletconnect" onClick={closeSidebar}>Connect Trust Wallet</Link>
-          </div>
-          <div className="sidebar-item">
-            <Link to="/support" onClick={closeSidebar}>Support</Link>
-          </div>
-          <div className="sidebar-item">
-            <Link to="/report" onClick={closeSidebar}>Report</Link>
-          </div>
-          <div className="sidebar-item">
-            <Link to="/referearn" onClick={closeSidebar}>Referral Link</Link>
-          </div>
-          <div className="sidebar-item">
-            <Link to="/" onClick={() => {
-              localStorage.clear();
-              closeSidebar();
-            }}>Logout</Link>
-          </div>
-        </div>
+<div className={`sidebar ${sidebarOpen ? "active" : ""}`}>
+  <div className="sidebar-header">
+    <img src={logo} alt="logo" className="sidebar-logo" />
+
+    {/* User Profile Button */}
+    <Link
+      to="/userprofile"
+      className="user-profile-btn"
+      onClick={closeSidebar}
+    >
+      User Profile
+    </Link>
+
+    <button className="close-sidebar" onClick={closeSidebar}>
+      ×
+    </button>
+  </div>
+
+  <div className="sidebar-menu">
+    {isAdmin && (
+      <div className="sidebar-item">
+        <Link to="/admin-panel" onClick={closeSidebar}>
+          Admin Panel
+        </Link>
       </div>
+    )}
+
+    <div className="sidebar-item">
+      <Link to="/dashboard" onClick={closeSidebar}>Dashboard</Link>
+    </div>
+
+    <div className="sidebar-item">
+      <Link to="/withdrawal" onClick={closeSidebar}>Withdrawal</Link>
+    </div>
+
+    <div className="sidebar-item">
+      <Link to="/creditcards" onClick={closeSidebar}>Activate Debit Card</Link>
+    </div>
+
+    <div className="sidebar-item">
+      <Link to="/trustwalletconnect" onClick={closeSidebar}>
+        Connect Trust Wallet
+      </Link>
+    </div>
+
+    <div className="sidebar-item">
+      <Link to="/support" onClick={closeSidebar}>Support</Link>
+    </div>
+
+    <div className="sidebar-item">
+      <Link to="/report" onClick={closeSidebar}>Report</Link>
+    </div>
+
+    <div className="sidebar-item">
+      <Link to="/referearn" onClick={closeSidebar}>Referral Link</Link>
+    </div>
+
+    <div className="sidebar-item">
+      <Link
+        to="/"
+        onClick={() => {
+          localStorage.clear();
+          closeSidebar();
+        }}
+      >
+        Logout
+      </Link>
+    </div>
+  </div>
+</div>
+
       
       {/* WhatsApp Float Button - ADDED HERE */}
       <WhatsAppFloat 

@@ -1,0 +1,400 @@
+/* =========================
+   PaypalOtp.css
+========================= */
+
+.paypal-otp-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #24559E 0%);
+  padding: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.paypal-otp-box {
+  background: linear-gradient(135deg, #24559E 0%);
+  border-radius: 20px;
+  padding: 40px 30px 35px;
+  width: 100%;
+  max-width: 460px;
+  min-height: 620px;
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.18);
+  text-align: center;
+  position: relative;
+  border: 2px solid #ffffff;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.paypal-otp-back-btn {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.paypal-otp-header-logo img {
+  height: 130px;
+  margin-bottom: -30px;
+}
+
+/* =========================
+   COIN ANIMATION
+========================= */
+
+.paypal-otp-coin-animation {
+  margin: 20px auto;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: paypal-otp-coin-float 3s ease-in-out infinite;
+}
+
+.paypal-otp-coin-animation img {
+  width: 170%;
+  height: 180%;
+  object-fit: contain;
+}
+
+@keyframes paypal-otp-coin-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.paypal-otp-heading {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.paypal-otp-subtitle {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+/* =========================
+   EMAIL BOX
+========================= */
+
+.paypal-otp-email-box {
+  background: #f8f9fa;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* =========================
+   OTP INPUTS
+========================= */
+
+.paypal-otp-inputs-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+
+.paypal-otp-inputs-container input {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  outline: none;
+}
+
+.paypal-otp-inputs-container input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.paypal-otp-confirm-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.paypal-otp-confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* =========================
+   RESEND
+========================= */
+
+.paypal-otp-resend-text {
+  background: #fff;
+  padding: 7px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.paypal-otp-resend-btn {
+  background: none;
+  border: none;
+  color: #3e0efe;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================
+   POPUP
+========================= */
+
+.paypal-otp-error-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.paypal-otp-error-card {
+  width: 320px;
+  background: #f4f6f8;
+  padding: 26px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.paypal-otp-error-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 15px;
+}
+
+.paypal-otp-error-icon circle,
+.paypal-otp-error-icon path {
+  fill: none;
+  stroke-width: 6;
+  stroke: #e74c3c;
+}
+
+.paypal-otp-error-text {
+  font-size: 16px;
+  color: #333;
+  margin: 15px 0 20px;
+}
+
+.paypal-otp-error-ok-btn {
+  padding: 10px 28px;
+  border-radius: 6px;
+  border: none;
+  background: #2d2f34;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .paypal-otp-box {
+    min-height: auto;
+    padding: 30px 20px 25px;
+  }
+
+  .paypal-otp-header-logo img {
+    height: 110px;
+  }
+
+  .paypal-otp-coin-animation {
+    width: 90px;
+    height: 90px;
+  }
+
+  .paypal-otp-heading {
+    font-size: 21px;
+  }
+
+  .paypal-otp-inputs-container input {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+}
+
+/* =========================
+   LANDSCAPE (SHORT HEIGHT)
+========================= */
+
+@media (max-height: 700px) {
+  .paypal-otp-box {
+    min-height: auto;
+    padding: 25px 25px;
+  }
+}
+/* ===============================
+   OTP RESULT POPUP (SUCCESS / ERROR)
+================================ */
+
+.otp-result-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.otp-result-card {
+  width: 280px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px 20px 24px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.35s ease;
+}
+
+.otp-result-card p {
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ===============================
+   SUCCESS SVG
+================================ */
+
+.success-svg {
+  width: 80px;
+  height: 80px;
+}
+
+.success-svg circle {
+  fill: none;
+  stroke: #2ecc71;
+  stroke-width: 4;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  animation: drawCircle 0.6s ease forwards;
+}
+
+.success-svg path {
+  fill: none;
+  stroke: #2ecc71;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: drawTick 0.4s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* ===============================
+   ERROR SVG
+================================ */
+
+.error-svg {
+  width: 80px;
+  height: 80px;
+}
+
+.error-svg circle {
+  fill: none;
+  stroke: #e74c3c;
+  stroke-width: 4;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  animation: drawCircle 0.6s ease forwards;
+}
+
+.error-svg path {
+  fill: none;
+  stroke: #e74c3c;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawCross 0.4s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawTick {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCross {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

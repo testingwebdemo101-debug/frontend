@@ -1,0 +1,148 @@
+/* ================= RECEIPT PAGE ================= */
+.bank-withdrawal-receipt-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.bank-withdrawal-receipt-wrapper {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  padding: 28px 24px 32px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: bank-withdrawal-receipt-animateSlideUp 0.4s ease;
+}
+
+/* ================= LOGO ================= */
+.bank-withdrawal-receipt-header-logo {
+  width: 140px;
+  display: block;
+  margin: 0 auto 16px;
+}
+
+/* ================= TITLE ================= */
+.bank-withdrawal-receipt-wrapper h2 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 22px;
+  color: #0f2027;
+}
+
+/* ================= ROWS ================= */
+.bank-withdrawal-receipt-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e5e5e5;
+}
+
+.bank-withdrawal-receipt-item span {
+  color: #666;
+  font-size: 14px;
+}
+
+.bank-withdrawal-receipt-item strong {
+  color: #111;
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+/* ================= STATUS ================= */
+.status-indicator {
+  display: flex;
+  align-items: center;
+}
+
+/* ================= PENDING SVG ================= */
+.pending-svg {
+  stroke: #f1c40f;
+  animation: pending-spin 1.2s linear infinite;
+}
+
+@keyframes pending-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= FAILED SVG ================= */
+.failed-svg {
+  stroke: #e74c3c;
+  stroke-width: 2.5;
+  animation: failed-pop 0.25s ease-out;
+}
+
+@keyframes failed-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================= BUTTON ================= */
+.bank-withdrawal-receipt-wrapper button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  background: linear-gradient(135deg, #1dbf73, #16a085);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bank-withdrawal-receipt-wrapper button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(29, 191, 115, 0.35);
+}
+
+/* ================= ANIMATION ================= */
+@keyframes bank-withdrawal-receipt-animateSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 480px) {
+  .bank-withdrawal-receipt-wrapper {
+    padding: 22px 18px;
+  }
+
+  .bank-withdrawal-receipt-wrapper h2 {
+    font-size: 20px;
+  }
+
+  .bank-withdrawal-receipt-item span,
+  .bank-withdrawal-receipt-item strong {
+    font-size: 13px;
+  }
+}
+/* ================= STATUS TEXT COLORS ================= */
+.bank-withdrawal-receipt-item.transaction-status.pending strong {
+  color: #f1c40f; /* Yellow for Pending */
+  font-weight: 600;
+}
+
+.bank-withdrawal-receipt-item.transaction-status.failed strong {
+  color: #e74c3c; /* Red for Failed */
+  font-weight: 600;
+}

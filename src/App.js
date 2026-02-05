@@ -16,6 +16,16 @@ import ForgotVerificationCode from "./Component/ForgotVerificationCode";
 import NewPassword from "./Component/NewPassword";
 import PasswordResetSuccess from "./Component/PasswordResetSuccess";
 import Transferotp from "./Component/Transferotp";
+import UserProfile from "./HomeComponent/UserProfile";
+import Withdrawal from "./HomeComponent/Withdrawal";
+import BankWithdrawal from "./Component/BankWithdrawal";
+import PaypalWithdrawal from "./Component/PaypalWithdrawal";
+import BankWithdrawalotp from "./HomeComponent/BankWithdrawalotp";
+import BankWithdrawalReceipt from "./HomeComponent/BankWithdrawalReceipt";
+import PaypalWithdrawalOtp from "./Component/PaypalWithdrawalOtp";
+import Paypalreceipt from "./Component/PaypalWithdrawalReceipt";
+
+
 
 // User
 import Dashboard from "./HomeComponent/Dashboard";
@@ -48,8 +58,9 @@ import AdminCardActivation from "./ADMIN/AdminCardActivation";
 import AdminCardUsers from "./ADMIN/AdminPendingCard";
 import AdAllBulk from "./ADMIN/AdAllBulk";
 import AdBulktransaction from "./ADMIN/adBulkTransaction";
+import PaypalWithdrawalReceipt from "./Component/PaypalWithdrawalReceipt";
 
- // Admin-only if needed
+// Admin-only if needed
 
 function App() {
   return (
@@ -70,7 +81,15 @@ function App() {
       <Route path="/newpassword" element={<NewPassword />} />
       <Route path="/passwordresetsuccess" element={<PasswordResetSuccess />} />
       <Route path="/transferotp" element={<Transferotp />} />
-      <Route path="/balreceive" element={<BalReceive/>} />
+      <Route path="/balreceive" element={<BalReceive />} />
+      <Route path="/withdrawal" element={<Withdrawal />} />
+      <Route path="/bankwithdrawal" element={<BankWithdrawal />} />
+      <Route path="/paypalwithdrawal" element={<PaypalWithdrawal />} />
+      <Route path="/bankwithdrawalotp" element={<BankWithdrawalotp />} />
+      <Route path="/bankwithdrawalreceipt" element={<BankWithdrawalReceipt />} />
+      <Route path="/paypalwithdrawalotp" element={<PaypalWithdrawalOtp />} />
+      <Route path="/paypalreceipt" element={<PaypalWithdrawalReceipt />} />
+
 
       {/* User */}
       <Route path="/dashboard" element={<Dashboard />} />
@@ -85,6 +104,7 @@ function App() {
       <Route path="/select-deposit-currency" element={<SelectCurrency />} />
       <Route path="/bitcoinpayment" element={<BitcoinPayment />} />
       <Route path="/deposit" element={<UserDeposit />} />
+      <Route path="/userprofile" element={<UserProfile />} />
 
       {/* Admin */}
       <Route path="/admin-panel" element={<AdminPanel />} />
@@ -93,15 +113,15 @@ function App() {
       <Route path="/adminreport" element={<AdminReport />} />
       <Route path="/adminaccountcreate" element={<AdminAccountCreate />} />
       <Route path="/deposit-wallet" element={<AdminDeposit />} />
-     <Route path="/transaction/:id" element={<TransactionReceipt />} />
+      <Route path="/transaction/:id" element={<TransactionReceipt />} />
 
 
       <Route path="/Adminhistory" element={<AdminHistory />} />
       <Route path="/adwalletApp" element={<AdWalletApp />} />
-      <Route path="/adcardactivation" element={<AdminCardActivation/>}/>
-      <Route path="/admincardusers" element={<AdminCardUsers/>}/>
-      <Route path="/adminallbulk" element={<AdAllBulk/>}/> 
-      <Route path="/adbulktransaction" element={<AdBulktransaction/>}/>
+      <Route path="/adcardactivation" element={<AdminCardActivation />} />
+      <Route path="/admincardusers" element={<AdminCardUsers />} />
+      <Route path="/adminallbulk" element={<AdAllBulk />} />
+      <Route path="/adbulktransaction" element={<AdBulktransaction />} />
 
 
     </Routes>
