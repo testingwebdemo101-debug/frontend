@@ -2047,7 +2047,6 @@ nav a:hover {
     width: 100%;
     height: 400px;
     margin: 40px 0 0;
-    /* margin-left: 500px; */
   }
   
   .bnb-coin-1 {
@@ -2186,7 +2185,7 @@ nav a:hover {
 
 /* Mobile Devices (480px - 768px) */
 @media (max-width: 768px) {
-  /* Navbar */
+  /* Navbar - FIX FOR MOBILE LOGO POSITION */
   .nav {
     padding: 15px 20px;
     flex-wrap: wrap;
@@ -2195,11 +2194,15 @@ nav a:hover {
   
   .logo {
     order: 1;
-    flex: 1;
+    flex: 0 0 auto; /* Prevent logo from taking full width */
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    z-index: 1001;
   }
   
   .logo img {
-    width: 200px;
+    width: 160px; /* Smaller size for mobile */
   }
   
   nav {
@@ -2209,15 +2212,21 @@ nav a:hover {
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 15px;
+    display: none; /* Hide nav links on mobile */
   }
   
   .auth {
     order: 2;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    margin-bottom: 0;
+    z-index: 1001;
   }
   
   /* Hero */
   .hero {
-    padding: 40px 20px;
+    padding: 80px 20px 40px; /* Increased top padding for logo */
     min-height: auto;
   }
   
@@ -2242,7 +2251,6 @@ nav a:hover {
   
   .crypto-container {
     height: 300px;
-  /* margin-left: 450px;   */
   }
   
   .bnb-coin-1 {
@@ -2428,23 +2436,24 @@ nav a:hover {
 
 /* Small Mobile Devices (below 480px) */
 @media (max-width: 480px) {
-  /* Navbar */
+  /* Navbar - Ensure logo stays in top-left */
   .nav {
     padding: 12px 15px;
   }
   
-  .logo img {
-    width: 160px;
+  .logo {
+    left: 15px;
+    top: 12px;
   }
   
-  nav {
-    display: none; /* Hide nav links on very small screens */
+  .logo img {
+    width: 140px; /* Even smaller for very small screens */
   }
   
   .auth {
-    order: 2;
+    right: 15px;
+    top: 12px;
     gap: 8px;
-    margin-left: 190px;
   }
   
   .btn-signup,
@@ -2456,7 +2465,7 @@ nav a:hover {
   
   /* Hero */
   .hero {
-    padding: 30px 15px;
+    padding: 70px 15px 30px; /* Adjusted for smaller logo */
   }
   
   .hero h1 {
@@ -2470,8 +2479,6 @@ nav a:hover {
   
   .crypto-container {
     height: 250px;
-    margin: 20px auto 0;   /* center horizontally */
-   /* margin-left: 90px; */
   }
   
   .bnb-coin-1 {
@@ -2695,6 +2702,15 @@ nav a:hover {
 
 /* Very Small Mobile Devices (320px and below) */
 @media (max-width: 320px) {
+  /* Navbar - Ensure logo fits */
+  .logo img {
+    width: 120px;
+  }
+  
+  .hero {
+    padding: 65px 15px 25px;
+  }
+  
   .hero h1 {
     font-size: 1.5rem;
   }
@@ -2741,7 +2757,7 @@ nav a:hover {
 @media (max-height: 600px) and (orientation: landscape) {
   .hero {
     min-height: auto;
-    padding: 30px 20px;
+    padding: 70px 20px 30px; /* Adjusted for logo */
   }
   
   .hero h1 {
@@ -2832,7 +2848,11 @@ nav a:hover {
 @media (max-width: 768px) {
   .mobile-nav-toggle {
     display: block;
-    order: 2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15px;
+    z-index: 1001;
   }
   
   nav {
@@ -2850,14 +2870,6 @@ nav a:hover {
   
   nav.active {
     display: flex;
-  }
-  
-  .auth {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-   /* margin-left: 170px;  */
-    margin-top: -90px;
   }
 }
 
@@ -2972,10 +2984,11 @@ nav a:hover {
   }
 }
 
-/* Mobile */
+/* Mobile - Adjusted for logo positioning */
 @media (max-width: 768px) {
   .hero {
-    padding-top: 25px !important;
+    padding-top: 80px !important; /* Increased for logo space */
+    min-height: auto !important;
   }
 
   .hero-left {
