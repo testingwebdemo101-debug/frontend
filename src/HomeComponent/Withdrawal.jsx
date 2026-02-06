@@ -10,34 +10,33 @@ const Withdrawal = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="withdrawal-page">
-      <div className="withdrawal-card">
-        <span className="withdrawal-page-back" onClick={() => navigate(-1)}>←</span> 
+    <div className="withdrawal-page-container">
+      <div className="withdrawal-content-card">
+        <span className="withdrawal-back-arrow" onClick={() => navigate(-1)}>←</span> 
 
-
-        <div className="logo">
+        <div className="withdrawal-logo-wrapper">
           <img src={logo} alt="InstaCoinXPay" />
         </div>
 
-        <h2 className="title">Withdrawal</h2>
+        <h2 className="withdrawal-heading">Withdrawal</h2>
 
         {/* CRYPTO → /sendbtc */}
         <button
-          className="withdraw-btn"
+          className="withdrawal-method-btn"
           onClick={() => navigate("/sendbtc")}
         >
           <img src={crypto} alt="Crypto" />
           <span>Crypto Withdrawal</span>
         </button>
 
-        <button className="withdraw-btn" 
+        <button className="withdrawal-method-btn" 
         onClick={() => navigate("/bankwithdrawal")}
         >
           <img src={bank} alt="Bank" />
           <span>Bank Withdrawal</span>
         </button>
 
-        <button className="withdraw-btn"
+        <button className="withdrawal-method-btn"
         onClick={() => navigate("/paypalwithdrawal")}>
           <img src={paypal} alt="Paypal" />
           <span>Paypal Withdrawal</span>
