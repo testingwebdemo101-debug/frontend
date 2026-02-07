@@ -144,7 +144,7 @@ const CreateAccount = () => {
       };
 
       const res = await axios.post(
-        "https://backend-srtt.onrender.com/api/auth/register",
+        "http://localhost:5000/api/auth/register",
         registrationData
       );
 

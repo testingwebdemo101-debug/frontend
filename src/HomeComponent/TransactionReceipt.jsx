@@ -108,7 +108,7 @@ export default function TransactionReceipt() {
         if (!token) return navigate("/login");
 
         const res = await axios.get(
-          `https://backend-srtt.onrender.com/api/transfer/${id}`,
+          `http://localhost:5000/api/transfer/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

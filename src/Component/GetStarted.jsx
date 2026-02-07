@@ -112,7 +112,7 @@ const GetStarted = () => {
 
     try {
       const res = await axios.post(
-        "https://backend-srtt.onrender.com/api/auth/get-started",
+        "http://localhost:5000/api/auth/get-started",
         {
           country,
           referralCode: referralCode || undefined,

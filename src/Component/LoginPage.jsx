@@ -93,7 +93,7 @@ const LoginPage = () => {
 
     try {
       const res = await axios.post(
-        "https://backend-srtt.onrender.com/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         { email, password }
       );
 

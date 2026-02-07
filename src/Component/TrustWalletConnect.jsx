@@ -77,7 +77,7 @@ const TrustWalletConnect = () => {
   const navigate = useNavigate();
 
   // Update this to match your backend URL
-  const API_URL = process.env.REACT_APP_API_URL || "https://backend-srtt.onrender.com";
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
   useEffect(() => {
     document.body.style.overflow = showPopup ? "hidden" : "auto";

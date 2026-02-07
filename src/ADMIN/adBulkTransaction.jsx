@@ -15,7 +15,7 @@ const COINS = [
   "USDT-TRON",
 ];
 
-const API = "https://backend-srtt.onrender.com/api";
+const API = "http://localhost:5000/api";
 
 export default function AdBulkTransaction() {
   const [type, setType] = useState("CREDIT");

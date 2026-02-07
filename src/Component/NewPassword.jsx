@@ -131,7 +131,7 @@ const NewPassword = () => {
 
     try {
       const res = await axios.post(
-        "https://backend-srtt.onrender.com/api/auth/reset-password",
+        "http://localhost:5000/api/auth/reset-password",
         {
           email,
           resetCode,

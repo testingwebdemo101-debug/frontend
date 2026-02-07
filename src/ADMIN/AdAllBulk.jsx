@@ -32,7 +32,7 @@ const networks = [
 /* =========================
    LOCALHOST API
 ========================= */
-const API = "https://backend-srtt.onrender.com/api/bulk-transaction";
+const API = "http://localhost:5000/api/bulk-transaction";
 
 /* =========================
    COMPONENT

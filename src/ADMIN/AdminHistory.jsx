@@ -6,7 +6,7 @@ export default function AdminHistory() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://backend-srtt.onrender.com/api/transfer/all")
+    fetch("http://localhost:5000/api/transfer/all")
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

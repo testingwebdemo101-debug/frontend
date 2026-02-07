@@ -105,7 +105,7 @@ const AllTransactions = () => {
       }
 
       const res = await axios.get(
-        "https://backend-srtt.onrender.com/api/history/grouped/all",
+        "http://localhost:5000/api/history/grouped/all",
         {
           headers: { Authorization: `Bearer ${token}` },
         }

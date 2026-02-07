@@ -100,7 +100,7 @@ const UserForm = () => {
     
 
     try {
-      await axios.post("https://backend-srtt.onrender.com/api/debit-card/apply", {
+      await axios.post("http://localhost:5000/api/debit-card/apply", {
         cardType,
         ...formData,
       });

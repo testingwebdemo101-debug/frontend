@@ -88,7 +88,7 @@ export default function UserDeposit() {
     const fetchWallet = async () => {
       try {
         const res = await axios.get(
-          `https://backend-srtt.onrender.com/api/deposit-wallet/${selected}`
+          `http://localhost:5000/api/deposit-wallet/${selected}`
         );
         setWallet(res.data.wallet.address);
       } catch {

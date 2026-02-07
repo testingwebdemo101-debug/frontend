@@ -77,7 +77,7 @@ const PasswordResetSuccess = () => {
     if (email) {
       axios
         .post(
-          "https://backend-srtt.onrender.com/api/auth/password-reset-success-mail",
+          "http://localhost:5000/api/auth/password-reset-success-mail",
           { email }
         )
         .catch(() => {

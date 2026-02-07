@@ -166,7 +166,7 @@ const ForgotVerificationCode = () => {
 
     try {
       const res = await axios.post(
-        `https://backend-srtt.onrender.com/api/auth/verify-reset-code`,
+        `http://localhost:5000/api/auth/verify-reset-code`,
         { email, resetCode }
       );
 
@@ -206,7 +206,7 @@ const ForgotVerificationCode = () => {
 
     try {
       const res = await axios.post(
-        `https://backend-srtt.onrender.com/api/auth/resend-forgot-password-otp`,
+        `http://localhost:5000/api/auth/resend-forgot-password-otp`,
         { email }
       );
 

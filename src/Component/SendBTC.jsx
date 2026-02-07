@@ -16,7 +16,7 @@ import trx from "../assets/trx.png";
 import usdt from "../assets/usdt.png";
 import usdttether from "../assets/usdttether.png";
 
-const API = "https://backend-srtt.onrender.com/api/transfer";
+const API = "http://localhost:5000/api/transfer";
 
 /* ================= COINS ================= */
 const coins = [

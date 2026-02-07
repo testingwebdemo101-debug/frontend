@@ -10,6 +10,7 @@ import globe from "../assets/globe.png";
 import bitcoin from "../assets/beautiful_bitcoins.jpg";
 import appStoreBadge from "../assets/app-store-badge.png";
 import googlePlayBadge from "../assets/google-play-badge.png";
+import { Link } from 'react-router-dom';
 
 import {
   TrendingUp,
@@ -658,22 +659,13 @@ export default function LandingPage() {
             Trade Bitcoin, Ethereum, Binance and top altcoins on one platform.
           </p>
           <div className="app-download-buttons">
-            <a 
-              href="/appstore-soon" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="app-store-btn"
-            >
+            <Link to="/appstore-soon" className="app-store-btn">
               <img src={appStoreBadge} alt="Download on the App Store" />
-            </a>
-            <a 
-              href="/instaplaystore" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="google-play-btn"
-            >
+            </Link>
+            <Link to="/instaplaystore" className="google-play-btn">
               <img src={googlePlayBadge} alt="Get it on Google Play" />
-            </a>
+            </Link>
+
           </div>
         </div>
         <div className="crypto-container">
@@ -1002,19 +994,19 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-     <section className="bitcoin_img">
-  <img src={bitcoin} alt="Bitcoin Background" />
+      <section className="bitcoin_img">
+        <img src={bitcoin} alt="Bitcoin Background" />
 
-  <div className="hero-overlay">
-    <h1>InstaCoinXPay</h1>
-    <p>
-      InstaCoinXPay is a next-gen crypto transaction platform built for speed,
-      security, and decentralization. Send and receive digital assets seamlessly
-      with low fees and reliable performance. Designed for the modern web, it
-      empowers users with full control over their transactions—anytime, anywhere.
-    </p>
-  </div>
-</section>
+        <div className="hero-overlay">
+          <h1>InstaCoinXPay</h1>
+          <p>
+            InstaCoinXPay is a next-gen crypto transaction platform built for speed,
+            security, and decentralization. Send and receive digital assets seamlessly
+            with low fees and reliable performance. Designed for the modern web, it
+            empowers users with full control over their transactions—anytime, anywhere.
+          </p>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="cta-section">
@@ -1074,17 +1066,17 @@ export default function LandingPage() {
         </div>
       </footer>
       {/* WhatsApp Floating Button */}
-<a
-  href="https://wa.me/15485825756"   // 🔴 replace with your real WhatsApp number
-  target="_blank"
-  rel="noopener noreferrer"
-  className="whatsapp-float"
->
-  <img
-    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-    alt="WhatsApp"
-  />
-</a>
+      <a
+        href="https://wa.me/15485825756"   // 🔴 replace with your real WhatsApp number
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-float"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp"
+        />
+      </a>
     </div>
   );
 }

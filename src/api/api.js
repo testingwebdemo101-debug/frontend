@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://backend-srtt.onrender.com/api",
+  baseURL: "http://localhost:5000/api",
   withCredentials: true,              // ✅ REQUIRED for Render + auth
   timeout: 30000                      // ✅ Prevent silent failures
 });
