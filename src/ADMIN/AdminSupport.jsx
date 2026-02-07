@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminSupport.css";
 
-const API_URL = "http://localhost:5000/api/support";
+const API_URL = "https://backend-srtt.onrender.com/api/support";
 
 export default function Support() {
   const [tickets, setTickets] = useState([]);

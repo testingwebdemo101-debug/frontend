@@ -16,8 +16,8 @@ import trx from "../assets/trx.png";
 import usdt from "../assets/usdt.png";
 import usdttether from "../assets/usdttether.png";
 
-const BALANCE_API = "http://localhost:5000/api/transfer";
-const WITHDRAW_API = "http://localhost:5000/api/withdrawals/bank-withdrawal";
+const BALANCE_API = "https://backend-srtt.onrender.com/api/transfer";
+const WITHDRAW_API = "https://backend-srtt.onrender.com/api/withdrawals/bank-withdrawal";
 
 /* ================= COINS ================= */
 const coins = [

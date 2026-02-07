@@ -16,7 +16,7 @@ import trx from "../assets/trx.png";
 import usdt from "../assets/usdt.png";
 import usdttether from "../assets/usdttether.png";
 
-const API = "http://localhost:5000/api/transfer";
+const API = "https://backend-srtt.onrender.com/api/transfer";
 
 /* ================= COINS ================= */
 const coins = [
@@ -184,7 +184,7 @@ const PaypalWithdrawal = () => {
             const token = localStorage.getItem("token");
 
             await axios.post(
-              "http://localhost:5000/api/paypal/initiate",
+              "https://backend-srtt.onrender.com/api/paypal/initiate",
               {
                 asset: selectedCoin.key,
                 amount: coinAmount,

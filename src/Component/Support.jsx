@@ -96,7 +96,7 @@ const Support = () => {
     setMessage("");
 
     try {
-      await axios.post("http://localhost:5000/api/support", formData);
+      await axios.post("https://backend-srtt.onrender.com/api/support", formData);
 
       setMessage("✅ Support ticket submitted successfully");
       setFormData({ email: "", subject: "", description: "" });

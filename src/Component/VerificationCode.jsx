@@ -141,7 +141,7 @@ const VerificationCode = () => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/verify-email",
+        "https://backend-srtt.onrender.com/api/auth/verify-email",
         { email, verificationCode: otpCode }
       );
 
@@ -166,7 +166,7 @@ const VerificationCode = () => {
     setIsLoading(true);
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/resend-verification",
+        "https://backend-srtt.onrender.com/api/auth/resend-verification",
         { email }
       );
 

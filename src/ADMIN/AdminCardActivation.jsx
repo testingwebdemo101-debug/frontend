@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Card from "../assets/cards-dashboard/Card.jsx";
 
-const API = "http://localhost:5000/api/debit-card";
+const API = "https://backend-srtt.onrender.com/api/debit-card";
 
 export default function AdCardActivation() {
   const [email, setEmail] = useState("");

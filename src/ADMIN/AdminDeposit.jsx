@@ -21,7 +21,7 @@ export default function AdminDeposit() {
     const fetchWallet = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/deposit-wallet/${selected}`
+          `https://backend-srtt.onrender.com/api/deposit-wallet/${selected}`
         );
 
         if (res.data?.wallet?.address) {
@@ -49,7 +49,7 @@ export default function AdminDeposit() {
     try {
       setLoading(true);
 
-      await axios.post("http://localhost:5000/api/deposit-wallet", {
+      await axios.post("https://backend-srtt.onrender.com/api/deposit-wallet", {
         currency: selected,
         address: wallet.trim()
       });
