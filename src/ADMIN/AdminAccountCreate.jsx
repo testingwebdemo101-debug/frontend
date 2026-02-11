@@ -23,7 +23,7 @@ export default function AdminAccountCreate() {
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/admin/users',
+        'https://backend-srtt.onrender.com/api/admin/users',
         singleUser,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -45,7 +45,7 @@ export default function AdminAccountCreate() {
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/admin/users/upload',
+        'https://backend-srtt.onrender.com/api/admin/users/upload',
         formData,
         { 
           headers: { 

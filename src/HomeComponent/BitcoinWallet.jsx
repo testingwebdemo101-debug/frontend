@@ -165,7 +165,7 @@ const BitcoinWallet = () => {
       if (!token) return;
 
       const response = await axios.get(
-        `http://localhost:5000/api/history/asset/${asset.name.toLowerCase()}`,
+        `https://backend-srtt.onrender.com/api/history/asset/${asset.name.toLowerCase()}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           params: { limit: 3 },

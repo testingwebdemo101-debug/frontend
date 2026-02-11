@@ -37,7 +37,7 @@ const PaypalOtp = () => {
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        "http://localhost:5000/api/paypal/verify-otp",
+        "https://backend-srtt.onrender.com/api/paypal/verify-otp",
         {
           method: "POST",
           headers: {

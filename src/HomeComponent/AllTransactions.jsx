@@ -83,7 +83,7 @@ const AllTransactions = () => {
       if (!token) return navigate("/login");
 
       const res = await axios.get(
-        "http://localhost:5000/api/history/grouped/all",
+        "https://backend-srtt.onrender.com/api/history/grouped/all",
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

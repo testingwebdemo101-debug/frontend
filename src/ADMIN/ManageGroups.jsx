@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ManageGroups.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://backend-srtt.onrender.com/api";
 
 const ManageGroups = () => {
   const [autoGroups, setAutoGroups] = useState([]);

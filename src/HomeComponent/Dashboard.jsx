@@ -145,7 +145,7 @@ const Dashboard = () => {
     if (!userEmail) return;
 
     const res = await axios.get(
-      `http://localhost:5000/api/debit-card/by-email/${userEmail}`,
+      `https://backend-srtt.onrender.com/api/debit-card/by-email/${userEmail}`,
       { withCredentials: true }
     );
 
@@ -181,7 +181,7 @@ const Dashboard = () => {
     if (!token || !userId) return;
 
     const res = await axios.get(
-      `http://localhost:5000/api/auth/users/${userId}`,
+      `https://backend-srtt.onrender.com/api/auth/users/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -213,7 +213,7 @@ const Dashboard = () => {
       if (!token) return applyStaticData();
 
       const response = await axios.get(
-        "http://localhost:5000/api/crypto/dashboard",
+        "https://backend-srtt.onrender.com/api/crypto/dashboard",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -297,7 +297,7 @@ const Dashboard = () => {
         return;
       }
 
-      const response = await axios.get("http://localhost:5000/api/crypto/ticker", {
+      const response = await axios.get("https://backend-srtt.onrender.com/api/crypto/ticker", {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -345,7 +345,7 @@ const Dashboard = () => {
 
       if (!token) return;
 
-      const response = await axios.get("http://localhost:5000/api/transfer/balance", {
+      const response = await axios.get("https://backend-srtt.onrender.com/api/transfer/balance", {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'

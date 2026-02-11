@@ -94,7 +94,7 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password",
+        "https://backend-srtt.onrender.com/api/auth/forgot-password",
         { email }
       );
 
