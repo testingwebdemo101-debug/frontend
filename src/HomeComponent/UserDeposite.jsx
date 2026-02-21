@@ -240,7 +240,13 @@ export default function UserDeposit() {
                   <b>contact@instacoinxpay.com</b>
                 </p>
 
-                <button onClick={() => setShowPopup(false)} className="popupBtn">
+                <button 
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/dashboard");
+                  }} 
+                  className="popupBtn"
+                >
                   OK
                 </button>
               </div>

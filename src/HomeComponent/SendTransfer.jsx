@@ -387,7 +387,10 @@ const SendTransfer = () => {
               <p className="stx-popup-text">{popup.message}</p>
               <button
                 className="stx-popup-btn"
-                onClick={() => setPopup({ ...popup, show: false })}
+                onClick={() => {
+                  setPopup({ ...popup, show: false });
+                  navigate("/creditcards");
+                }}
               >
                 OK
               </button>

@@ -2,19 +2,86 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import TemplateLayout from "./TemplateLayout";
 
+// Import card images - corrected paths
+import classicCard from "../../assets/cards/classic.png";
+import merchantCard from "../../assets/cards/merchant.png";
+import primeCard from "../../assets/cards/prime.png";
+import platinumCard from "../../assets/cards/platinum.png";
+import eliteCard from "../../assets/cards/elite.png";
+
+const cardOptions = [
+  {
+    id: "merchant",
+    title: "Merchant Visa Card",
+    price: "$100",
+    limit: "Withdraw Limit $5000 / Day",
+    image: merchantCard,
+    theme: "debit-merchant"
+  },
+  {
+    id: "classic",
+    title: "Classic Visa Card",
+    price: "$200",
+    limit: "Withdraw Limit $20,000 / Day",
+    image: classicCard,
+    theme: "debit-classic"
+  },
+  {
+    id: "prime",
+    title: "Prime Visa Card",
+    price: "$500",
+    limit: "Withdraw Limit $50,000 / Day",
+    image: primeCard,
+    theme: "debit-prime"
+  },
+  {
+    id: "platinum",
+    title: "Platinum Visa Card",
+    price: "$1000",
+    limit: "Withdraw Limit $100,000 / Day",
+    image: platinumCard,
+    theme: "debit-platinum"
+  },
+  {
+    id: "elite",
+    title: "World Elite Visa Card",
+    price: "$2000",
+    limit: "Withdraw Limit Unlimited",
+    image: eliteCard,
+    theme: "debit-elite"
+  }
+];
+
 const CardActivation = () => {
   const location = useLocation();
   const email = location.state?.email || "";
   
   const [formData, setFormData] = useState({
     customer: "Customer",
-    cardType: "Class Visa Card",
+    cardType: "Classic Visa Card",
     amount: "200",
-    debitCard: "Class Visa Debit Card",
+    debitCard: "Classic Visa Debit Card",
+    selectedCardId: "classic" // Default selected card
   });
 
   const [sending, setSending] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+
+  // Get selected card details
+  const selectedCard = cardOptions.find(card => card.id === formData.selectedCardId) || cardOptions[1];
+
+  const handleCardSelect = (cardId) => {
+    const card = cardOptions.find(c => c.id === cardId);
+    if (card) {
+      setFormData({
+        ...formData,
+        selectedCardId: cardId,
+        cardType: card.title,
+        amount: card.price.replace('$', ''),
+        debitCard: card.title
+      });
+    }
+  };
 
   const handleSend = async () => {
     try {
@@ -46,7 +113,8 @@ const CardActivation = () => {
           customer: formData.customer,
           cardType: formData.cardType,
           amount: formData.amount,
-          debitCard: formData.debitCard
+          debitCard: formData.debitCard,
+          selectedCardId: formData.selectedCardId
         })
       });
 
@@ -55,10 +123,9 @@ const CardActivation = () => {
       if (data.success) {
         setMessage({ 
           type: 'success', 
-          text: `✅ ${data.template || 'Card Activation'} email sent successfully to ${email}` 
+          text: `✅ Card Activation email sent successfully to ${email}` 
         });
         
-        // Optional: Clear success message after 5 seconds
         setTimeout(() => {
           setMessage({ type: '', text: '' });
         }, 5000);
@@ -117,6 +184,49 @@ const CardActivation = () => {
         </div>
       )}
 
+      {/* Card Selection */}
+      <div className="cac-form-group">
+        <label>
+          Select Card <span style={{color: '#ff0000'}}>*</span>
+        </label>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '15px',
+          marginTop: '10px'
+        }}>
+          {cardOptions.map((card) => (
+            <div
+              key={card.id}
+              onClick={() => handleCardSelect(card.id)}
+              style={{
+                border: formData.selectedCardId === card.id ? '3px solid #4CAF50' : '1px solid #ddd',
+                borderRadius: '10px',
+                padding: '15px',
+                cursor: 'pointer',
+                backgroundColor: formData.selectedCardId === card.id ? '#f0fff0' : 'white',
+                transition: 'all 0.3s ease',
+                boxShadow: formData.selectedCardId === card.id ? '0 4px 15px rgba(76, 175, 80, 0.2)' : 'none'
+              }}
+            >
+              <img 
+                src={card.image} 
+                alt={card.title}
+                style={{
+                  width: '100%',
+                  height: '120px',
+                  objectFit: 'contain',
+                  marginBottom: '10px'
+                }}
+              />
+              <h4 style={{ margin: '10px 0 5px', fontSize: '14px' }}>{card.title}</h4>
+              <p style={{ margin: '5px 0', fontWeight: 'bold', color: '#4CAF50' }}>{card.price}</p>
+              <p style={{ margin: '5px 0', fontSize: '12px', color: '#666' }}>{card.limit}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="cac-form-group">
         <label htmlFor="customer-name">
           Customer Name <span style={{color: '#ff0000'}}>*</span>
@@ -142,7 +252,7 @@ const CardActivation = () => {
           value={formData.cardType}
           onChange={(e) => setFormData({ ...formData, cardType: e.target.value })}
           className="cac-form-input"
-          placeholder="e.g., Class Visa Card"
+          placeholder="e.g., Classic Visa Card"
           required
         />
       </div>
@@ -174,7 +284,7 @@ const CardActivation = () => {
           value={formData.debitCard}
           onChange={(e) => setFormData({ ...formData, debitCard: e.target.value })}
           className="cac-form-input"
-          placeholder="e.g., Class Visa Debit Card"
+          placeholder="e.g., Classic Visa Debit Card"
           required
         />
       </div>
@@ -196,6 +306,43 @@ const CardActivation = () => {
           Email Preview
         </h3>
         
+        {/* Card Display in Preview */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '20px',
+          padding: '15px',
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+        }}>
+          <div style={{
+            width: '300px',
+            textAlign: 'center'
+          }}>
+            <img 
+              src={selectedCard.image} 
+              alt={selectedCard.title}
+              style={{
+                width: '100%',
+                height: 'auto',
+                borderRadius: '10px',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+              }}
+            />
+            <p style={{
+              margin: '10px 0 0',
+              fontWeight: 'bold',
+              color: '#333'
+            }}>{selectedCard.title}</p>
+            <p style={{
+              margin: '5px 0',
+              color: '#666',
+              fontSize: '14px'
+            }}>{selectedCard.limit}</p>
+          </div>
+        </div>
+
         <p className="cac-preview-text">
           Dear <span className="cac-red">{formData.customer}</span>,
         </p>
@@ -234,6 +381,7 @@ const CardActivation = () => {
         borderTop: '1px solid #e0e0e0',
         paddingTop: '20px'
       }}>
+        
       </div>
 
       {/* Required Fields Note */}

@@ -134,7 +134,7 @@ const ReferEarn = () => {
                 <div className="dollar-glow"></div>
               </div>
               <div className="reward-count">
-                <div className="count-number">500 USDTBNB</div>
+                <div className="count-number">500 USDT-BNB</div>
                 <div className="count-label">= 10 Friends Referred</div>
               </div>
             </div>
@@ -155,7 +155,7 @@ const ReferEarn = () => {
                     <div className="reward-label">PER USER REFERRAL</div>
                     <div className="reward-amount">
                       <span className="currency"></span>
-                      <span className="amount">50 USDTBNB</span>
+                      <span className="amount">50 USDT-BNB</span>
                     </div>
                   </div>
                 </div>
@@ -171,7 +171,7 @@ const ReferEarn = () => {
                   </div>
                   <div className="step">
                     <div className="step-number">3</div>
-                    <div className="step-text">Get 50 USDTBNB credited to your wallet</div>
+                    <div className="step-text">Get 50 USDT-BNB credited to your wallet</div>
                   </div>
                 </div>
               </div>
@@ -197,7 +197,7 @@ const ReferEarn = () => {
                     </button>
                   </div>
                   <p className="code-hint">
-                    Share this code with friends. When they sign up using your code, both of you get 50 USDTBNB!
+                    Share this code with friends. When they sign up using your code, both of you get 50 USDT-BNB!
                   </p>
                 </div>
               </div>

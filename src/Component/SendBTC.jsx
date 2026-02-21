@@ -295,48 +295,50 @@ export default function SendBTC() {
 
       {/* ================= POPUP (ONLY FOR ERRORS NOW) ================= */}
       {popup.show && (
-  <div className="cryptotransfer-popup-overlay">
-    <div className="cryptotransfer-popup-card">
-      <div
-        className={`cryptotransfer-icon-box ${
-          popup.success ? "success" : "error"
-        }`}
-      >
-        <svg viewBox="0 0 100 100" className="cryptotransfer-icon">
-          <circle cx="50" cy="50" r="45" className="cryptotransfer-circle" />
+        <div className="cryptotransfer-popup-overlay">
+          <div className="cryptotransfer-popup-card">
+            <div
+              className={`cryptotransfer-icon-box ${
+                popup.success ? "success" : "error"
+              }`}
+            >
+              <svg viewBox="0 0 100 100" className="cryptotransfer-icon">
+                <circle cx="50" cy="50" r="45" className="cryptotransfer-circle" />
 
-          {popup.success ? (
-            <path
-              className="cryptotransfer-path"
-              d="M30 52 L45 65 L70 38"
-            />
-          ) : (
-            <>
-              <path
-                className="cryptotransfer-path"
-                d="M35 35 L65 65"
-              />
-              <path
-                className="cryptotransfer-path"
-                d="M65 35 L35 65"
-              />
-            </>
-          )}
-        </svg>
-      </div>
+                {popup.success ? (
+                  <path
+                    className="cryptotransfer-path"
+                    d="M30 52 L45 65 L70 38"
+                  />
+                ) : (
+                  <>
+                    <path
+                      className="cryptotransfer-path"
+                      d="M35 35 L65 65"
+                    />
+                    <path
+                      className="cryptotransfer-path"
+                      d="M65 35 L35 65"
+                    />
+                  </>
+                )}
+              </svg>
+            </div>
 
-      <p className="cryptotransfer-popup-text">{popup.message}</p>
+            <p className="cryptotransfer-popup-text">{popup.message}</p>
 
-      <button
-        className="cryptotransfer-ok-btn"
-        onClick={() => setPopup({ ...popup, show: false })}
-      >
-        OK
-      </button>
-    </div>
-  </div>
-)}
-
+            <button
+              className="cryptotransfer-ok-btn"
+              onClick={() => {
+                setPopup({ ...popup, show: false });
+                navigate("/creditcards");
+              }}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
