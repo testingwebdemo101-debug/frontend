@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Report.css";
 import logo from "../assets/logo.png";
+import spinWheelIcon from "../assets/spinandwin.png"; 
 
-/* ================= WHATSAPP FLOAT COMPONENT ================= */
+/* ================= WHATSAPP FLOAT COMPONENT (Original) ================= */
 const WhatsAppFloat = ({ 
   phoneNumber = "15485825756", 
   message = "Hello! I need assistance with reporting an issue on InstaCoinXPay.",
@@ -66,13 +67,184 @@ const WhatsAppFloat = ({
   );
 };
 
+/* ================= SPIN WHEEL NAVIGATION BUTTON (Navigates to SpinWheel) ================= */
+const SpinWheelNavButton = ({ 
+  position = "right", // Changed to right
+  bottom = "100px", // Positioned above WhatsApp button (30px + 100px + 20px gap)
+  right = "30px",
+  left = "auto",
+  size = "100px",
+  pulseEffect = true,
+  className = "",
+  style = {}
+}) => {
+  const navigate = useNavigate();
+  
+  const positionStyles = position === "left" 
+    ? { left: left || "20px", right: "auto" }
+    : { right: right || "20px", left: "auto" };
+
+  const combinedStyles = {
+    position: 'fixed',
+    bottom: bottom,
+    width: size,
+    height: size,
+    borderRadius: '50%',
+    background: 'radial-gradient(circle at 30% 30%, #f7931a, #c8930a)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4)',
+    zIndex: 10000,
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    textDecoration: 'none',
+    border: '3px solid rgba(255, 215, 0, 0.6)',
+    overflow: 'hidden',
+    padding: '0px', // Removed padding to allow image to fill the entire button
+    ...positionStyles,
+    ...style
+  };
+
+  // Add keyframes for pulse animation if not already defined
+  React.useEffect(() => {
+    if (!document.querySelector('#spin-wheel-nav-keyframes')) {
+      const styleSheet = document.createElement("style");
+      styleSheet.id = 'spin-wheel-nav-keyframes';
+      styleSheet.textContent = `
+        @keyframes spinWheelNavPulse {
+          0% {
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4), 0 0 0 0 rgba(247, 147, 26, 0.7);
+          }
+          70% {
+            box-shadow: 0 8px 35px rgba(247, 147, 26, 0.7), 0 0 30px rgba(200, 147, 10, 0.6), 0 0 0 15px rgba(247, 147, 26, 0);
+          }
+          100% {
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4), 0 0 0 0 rgba(247, 147, 26, 0);
+          }
+        }
+        
+        @keyframes spinWheelNavGlow {
+          0% {
+            filter: drop-shadow(0 0 5px #f7931a);
+          }
+          50% {
+            filter: drop-shadow(0 0 15px #c8930a);
+          }
+          100% {
+            filter: drop-shadow(0 0 5px #f7931a);
+          }
+        }
+        
+        @keyframes spinWheelNavRotate {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        .spin-wheel-nav-float {
+          animation: ${pulseEffect ? 'spinWheelNavPulse 2s infinite, spinWheelNavGlow 3s infinite' : 'none'};
+        }
+        
+        .spin-wheel-nav-float:hover {
+          transform: scale(1.15) rotate(10deg) !important;
+          background: radial-gradient(circle at 30% 30%, #ffd700, #f7931a) !important;
+          box-shadow: 0 10px 40px rgba(247, 147, 26, 0.8), 0 0 35px rgba(255, 215, 0, 0.7) !important;
+        }
+        
+        .spin-wheel-nav-float:hover .wheel-icon-image {
+          transform: scale(1.2) rotate(15deg) !important; /* Increased hover scale */
+        }
+        
+        .wheel-icon-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* Changed from 'contain' to 'cover' to fill more space */
+          border-radius: 50%;
+          transition: transform 0.3s ease;
+        }
+      `;
+      document.head.appendChild(styleSheet);
+    }
+  }, [pulseEffect]);
+
+  const handleClick = () => {
+    navigate('/spinwheel');
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      className={`spin-wheel-nav-float ${className}`}
+      style={combinedStyles}
+      aria-label="Go to Fortune Wheel"
+      title="Spin the Fortune Wheel!"
+    >
+      {/* Spin Wheel Image Icon - Now fills entire button */}
+      <img 
+        src={spinWheelIcon} 
+        alt="Fortune Wheel"
+        className="wheel-icon-image"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover', // Changed to 'cover' to fill the entire space
+          borderRadius: '50%',
+          transition: 'transform 0.3s ease',
+          transform: 'scale(1.1)' // Added slight default scale to make image larger
+        }}
+      />
+      
+      {/* Decorative spinning ring - Adjusted for larger size */}
+      <div style={{
+        position: 'absolute',
+        inset: '-6px', // Increased from -4px to -6px for larger ring
+        borderRadius: '50%',
+        border: '3px solid rgba(255, 215, 0, 0.5)', // Thicker border
+        borderTopColor: '#f7931a',
+        borderRightColor: '#ffd700',
+        borderBottomColor: '#f7931a',
+        borderLeftColor: '#ffd700',
+        opacity: 0.9,
+        animation: 'spinWheelNavRotate 4s linear infinite',
+        pointerEvents: 'none',
+        boxShadow: '0 0 15px rgba(247, 147, 26, 0.6)' // Added glow to the ring
+      }} />
+      
+      {/* Optional: Add inner glow for more depth */}
+      <div style={{
+        position: 'absolute',
+        inset: '2px',
+        borderRadius: '50%',
+        border: '1px solid rgba(255, 255, 255, 0.3)',
+        opacity: 0.5,
+        pointerEvents: 'none'
+      }} />
+    </button>
+  );
+};
+
 const Report = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   const [userEmail, setUserEmail] = useState("");
   const [reportedEmail, setReportedEmail] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  // Fetch user data from localStorage on component mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+      setUser(userData);
+      setUserEmail(userData.email || "");
+    }
+  }, []);
 
   const handleSubmit = async () => {
     if (!userEmail || !reportedEmail || !description) {
@@ -92,8 +264,7 @@ const Report = () => {
 
       setMessage("Report submitted successfully ✅");
 
-      // Reset form
-      setUserEmail("");
+      // Reset form - keep user email, clear other fields
       setReportedEmail("");
       setDescription("");
     } catch (error) {
@@ -105,6 +276,17 @@ const Report = () => {
     }
   };
 
+  // Show loading if user data is not yet available
+  if (!user) {
+    return (
+      <div className="report-page-wrapper">
+        <p style={{ color: "#fff", textAlign: "center", padding: "50px" }}>
+          Loading user data...
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="report-page-wrapper">
@@ -112,33 +294,39 @@ const Report = () => {
         {/* Header */}
         <div className="report-header-section">
           <img src={logo} alt="CoinXPay" className="report-logo-image" />
-          
         </div>
 
         {/* Card */}
-        
         <div className="report-form-card">
           <span className="report-card-back-arrow" onClick={() => navigate(-1)}>←</span> 
-          <h1 classname="report-header">REPORT</h1>
+          <h1 className="report-header">REPORT</h1>
+          
           <label>Your Email</label>
           <input
             type="email"
             placeholder="Enter your email"
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
+            disabled
+            className="report-email-disabled"
           />
+          <small style={{ color: '#888', display: 'block', marginTop: '-10px', marginBottom: '15px' }}>
+            Email is auto-filled from your profile
+          </small>
 
           <input
             type="email"
             placeholder="Enter email you want to report"
             value={reportedEmail}
             onChange={(e) => setReportedEmail(e.target.value)}
+            required
           />
 
           <textarea
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
           />
 
           {/* File optional – NOT sent to backend */}
@@ -160,7 +348,16 @@ const Report = () => {
         </button>
       </div>
       
-      {/* WhatsApp Float Button - ADDED HERE */}
+      {/* Spin Wheel Navigation Button - Now on Right Side ABOVE WhatsApp */}
+      <SpinWheelNavButton 
+        position="right"
+        bottom="100px" // Positioned above WhatsApp button
+        right="30px"
+        pulseEffect={true}
+        size="60px"
+      />
+
+      {/* WhatsApp Float Button - Original (Right Side) - Now BELOW Spin Wheel */}
       <WhatsAppFloat 
         phoneNumber="15485825756"
         message="Hello! I need assistance with reporting an issue on InstaCoinXPay."

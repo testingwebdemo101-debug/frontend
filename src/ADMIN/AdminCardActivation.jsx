@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../assets/cards-dashboard/Card.jsx";
 
@@ -8,6 +8,8 @@ export default function AdCardActivation() {
   const [email, setEmail] = useState("");
   const [cardId, setCardId] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const [card, setCard] = useState({
     cardType: "",
@@ -15,75 +17,84 @@ export default function AdCardActivation() {
     expiry: "",
     cvv: "",
     status: "PENDING",
+    fullName: "",
   });
 
   /* =========================
      FETCH CARD BY EMAIL
   ========================= */
   const submitEmail = async () => {
-  const trimmedEmail = email.trim(); // ← Trim whitespace
-  if (!trimmedEmail) return alert("Enter email");
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) return alert("Enter email");
 
-  try {
-    console.log("Fetching card for email:", trimmedEmail); // ← Debug log
+    setLoading(true);
+    setError("");
+    
+    try {
+      console.log("Fetching card for email:", trimmedEmail);
 
-    const res = await axios.get(
-      `${API}/by-email/${trimmedEmail}`,
-      {
-        headers: {
-          "Cache-Control": "no-cache",
-          Pragma: "no-cache",
-        },
+      const res = await axios.get(
+        `${API}/by-email/${trimmedEmail}`,
+        {
+          headers: {
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+          },
+        }
+      );
+
+      console.log("API Response:", res.data);
+
+      if (!res.data.success) {
+        setError("No card application found");
+        setSubmitted(false);
+        return;
       }
-    );
 
-    console.log("API Response:", res.data); // ← Debug log
+      const data = res.data.data;
 
-    if (!res.data.success) {
-      alert("No card application found");
-      return;
+      console.log("Card Data:", data);
+
+      setCardId(data._id);
+      setCard({
+        cardType: data.cardType || "",
+        cardNumber: data.cardNumber || "",
+        expiry: data.expiry || "",
+        cvv: data.cvv || "",
+        status: data.status || "INACTIVE",
+        fullName: data.fullName || "",
+      });
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Error Details:", err);
+      console.error("Error Response:", err.response?.data);
+      console.error("Error Status:", err.response?.status);
+      setError("No card application found for this email");
+      setSubmitted(false);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    const data = res.data.data;
-
-    console.log("Card Data:", data); // ← Debug log
-
-    setCardId(data._id);
-    setCard({
-      cardType: data.cardType || "",
-      cardNumber: data.cardNumber || "",
-      expiry: data.expiry || "",
-      cvv: data.cvv || "",
-      status: data.status || "INACTIVE",
-      fullName: data.fullName || "",
-    });
-
-    setSubmitted(true);
-  } catch (err) {
-    console.error("Error Details:", err); // ← Debug log
-    console.error("Error Response:", err.response?.data); // ← Debug log
-    console.error("Error Status:", err.response?.status); // ← Debug log
-    alert("No card application found");
-  }
-};
-
+  // Auto-fetch when email is entered and user presses Enter
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      submitEmail();
+    }
+  };
 
   /* =========================
    INPUT FORMATTERS
 ========================= */
-
-  
- // Card Number: 1234123412341234 -> 1234 1234 1234 1234
-const formatCardNumber = (value) => {
-  return value
-    .replace(/\D/g, "")        // remove non-digits
-    .slice(0, 16)              // ✅ allow 16 digits
-    .replace(/(.{4})/g, "$1 ")
-    .trim();
-};
-
-
-
+  // Card Number: 1234123412341234 -> 1234 1234 1234 1234
+  const formatCardNumber = (value) => {
+    return value
+      .replace(/\D/g, "")        // remove non-digits
+      .slice(0, 16)              // ✅ allow 16 digits
+      .replace(/(.{4})/g, "$1 ")
+      .trim();
+  };
 
   // CVV: only 3 digits
   const formatCVV = (value) => {
@@ -118,7 +129,6 @@ const formatCardNumber = (value) => {
     return "classic";
   };
 
-
   /* =========================
      UPDATE CARD
   ========================= */
@@ -145,19 +155,44 @@ const formatCardNumber = (value) => {
               placeholder="customer@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onKeyPress={handleKeyPress}
+              disabled={loading}
             />
-            <button className="fetch-btn" onClick={submitEmail}>
-              <span className="btn-text">Submit Application</span>
+            <button 
+              className="fetch-btn" 
+              onClick={submitEmail}
+              disabled={loading}
+            >
+              <span className="btn-text">
+                {loading ? "Loading..." : "Submit Application"}
+              </span>
               <span className="btn-icon">→</span>
             </button>
           </div>
+          {error && <p style={{ color: '#ef4444', marginTop: '8px', fontSize: '14px' }}>{error}</p>}
         </div>
 
         {submitted && (
           <div className="card-details-section">
             <h2 className="section-title">Card Details</h2>
 
-
+            {/* Display User Info */}
+            {card.fullName && (
+              <div style={{ 
+                background: '#f0f9ff', 
+                padding: '12px', 
+                borderRadius: '8px', 
+                marginBottom: '20px',
+                border: '1px solid #bae6fd'
+              }}>
+                <p style={{ margin: '0 0 5px 0', fontWeight: 'bold', color: '#0369a1' }}>
+                  👤 Applicant: {card.fullName}
+                </p>
+                <p style={{ margin: '0', color: '#0369a1' }}>
+                  📧 Email: {email}
+                </p>
+              </div>
+            )}
 
             <div className="form-group">
               <label className="label">Select Card Type</label>
@@ -169,11 +204,11 @@ const formatCardNumber = (value) => {
                 }
               >
                 <option value="">Select Card Type</option>
-                <option value="Merchant Visa Card">Merchant Visa Card</option>
-                <option value="Classic Visa Card">Classic Visa Card</option>
-                <option value="Prime Visa Card">Prime Visa Card</option>
-                <option value="Platinum Visa Card">Platinum Visa Card</option>
-                <option value="World Elite Visa Card">World Elite Visa Card</option>
+                <option value="Merchant VisaCard">Merchant VisaCard</option>
+                <option value="Classic VisaCard">Classic VisaCard</option>
+                <option value="Prime VisaCard">Prime VisaCard</option>
+                <option value="Platinum VisaCard">Platinum VisaCard</option>
+                <option value="World Elite VisaCard">World Elite VisaCard</option>
               </select>
             </div>
 
@@ -182,7 +217,7 @@ const formatCardNumber = (value) => {
                 <label className="label">Card Number</label>
                 <input
                   className="card-input"
-                  placeholder="1234 1234 1234"
+                  placeholder="1234 1234 1234 1234"
                   value={card.cardNumber}
                   onChange={(e) =>
                     setCard({
@@ -191,7 +226,6 @@ const formatCardNumber = (value) => {
                     })
                   }
                 />
-
               </div>
 
               <div className="form-group">
@@ -207,7 +241,6 @@ const formatCardNumber = (value) => {
                     })
                   }
                 />
-
               </div>
 
               <div className="form-group">
@@ -238,29 +271,27 @@ const formatCardNumber = (value) => {
               </div>
 
               <div className="status-controls">
-  <button
-    className={`status-btn ${card.status === "ACTIVATE" ? "active" : ""}`}
-    onClick={() => setCard({ ...card, status: "ACTIVATE" })}
+                <button
+                  className={`status-btn ${card.status === "ACTIVATE" ? "active" : ""}`}
+                  onClick={() => setCard({ ...card, status: "ACTIVATE" })}
+                >
+                  Activate
+                </button>
 
-  >
-    Activate
-  </button>
+                <button
+                  className={`status-btn ${card.status === "PENDING" ? "active" : ""}`}
+                  onClick={() => setCard({ ...card, status: "PENDING" })}
+                >
+                  Pending
+                </button>
 
-  <button
-    className={`status-btn ${card.status === "PENDING" ? "active" : ""}`}
-    onClick={() => setCard({ ...card, status: "PENDING" })}
-  >
-    Pending
-  </button>
-
-  <button
-    className={`status-btn ${card.status === "INACTIVE" ? "active" : ""}`}
-    onClick={() => setCard({ ...card, status: "INACTIVE" })}
-  >
-    Inactive
-  </button>
-</div>
-
+                <button
+                  className={`status-btn ${card.status === "INACTIVE" ? "active" : ""}`}
+                  onClick={() => setCard({ ...card, status: "INACTIVE" })}
+                >
+                  Inactive
+                </button>
+              </div>
             </div>
 
             <div className="action-buttons">
@@ -369,13 +400,18 @@ const formatCardNumber = (value) => {
           width: 100%;
         }
 
-        .fetch-btn:hover {
+        .fetch-btn:hover:not(:disabled) {
           transform: translateY(-2px);
           box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
 
-        .fetch-btn:active {
+        .fetch-btn:active:not(:disabled) {
           transform: translateY(0);
+        }
+
+        .fetch-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
         }
 
         .btn-icon {
@@ -383,7 +419,7 @@ const formatCardNumber = (value) => {
           transition: transform 0.3s ease;
         }
 
-        .fetch-btn:hover .btn-icon {
+        .fetch-btn:hover:not(:disabled) .btn-icon {
           transform: translateX(4px);
         }
 
@@ -548,7 +584,7 @@ const formatCardNumber = (value) => {
           width: 100%;
         }
 
-        .status-btn:hover {
+        .status-btn:hover:not(:disabled) {
           border-color: #667eea;
           transform: translateY(-2px);
         }
@@ -580,12 +616,12 @@ const formatCardNumber = (value) => {
           letter-spacing: 0.5px;
         }
 
-        .save-btn:hover {
+        .save-btn:hover:not(:disabled) {
           transform: translateY(-4px);
           box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
         }
 
-        .save-btn:active {
+        .save-btn:active:not(:disabled) {
           transform: translateY(-2px);
         }
 

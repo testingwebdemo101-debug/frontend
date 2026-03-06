@@ -4,6 +4,7 @@ import logo from "../assets/logo.png";
 import coin from "../assets/Cam1.png";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 /* ================= WHATSAPP FLOAT COMPONENT ================= */
 const WhatsAppFloat = ({ 
@@ -80,6 +81,10 @@ const CreateAccount = () => {
     password: "",
     confirmPassword: "",
   });
+
+  // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [popup, setPopup] = useState({
     show: false,
@@ -188,11 +193,6 @@ const CreateAccount = () => {
             <img src={logo} alt="InstaCoinXPay" />
           </div>
 
-          {/* Coin Image */}
-          {/* <div className="create-account-coin-wrapper">
-            <img src={coin} alt="Crypto Coin" />
-          </div> */}
-
           <h1 className="create-account-title">CREATE ACCOUNT</h1>
 
           {/* Show selected country */}
@@ -233,30 +233,52 @@ const CreateAccount = () => {
               />
             </div>
 
+            {/* Password Field with Eye Icon */}
             <div className="create-account-form-group">
               <label className="create-account-label">Enter Password</label>
-              <input
-                className="create-account-input"
-                type="password"
-                name="password"
-                placeholder="Enter password (min. 6 characters)"
-                value={formData.password}
-                onChange={handleChange}
-                disabled={isLoading}
-              />
+              <div className="password-input-container">
+                <input
+                  className="create-account-input password-input"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Enter password (min. 6 characters)"
+                  value={formData.password}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  disabled={isLoading}
+                >
+                  {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                </button>
+              </div>
             </div>
 
+            {/* Confirm Password Field with Eye Icon */}
             <div className="create-account-form-group">
               <label className="create-account-label">Re-enter Password</label>
-              <input
-                className="create-account-input"
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm your password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                disabled={isLoading}
-              />
+              <div className="password-input-container">
+                <input
+                  className="create-account-input password-input"
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  placeholder="Confirm your password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  disabled={isLoading}
+                >
+                  {showConfirmPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                </button>
+              </div>
             </div>
           </div>
 

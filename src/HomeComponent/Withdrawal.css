@@ -1,180 +1,253 @@
+/* Withdrawal.css */
+
 .withdrawal-page-container {
+  background-color: #2559a6;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding: 20px;
-  background: transparent;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
-/* CARD */
 .withdrawal-content-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  padding: 40px 30px;
   width: 100%;
-  max-width: 420px;
-  padding: 30px 30px 50px;
-  background: #eef9fc;
-  border-radius: 32px;
-  text-align: center;
-  position: relative; /* REQUIRED */
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .withdrawal-back-arrow {
   position: absolute;
   top: 20px;
   left: 20px;
-  font-size: 24px;
+  color: white;
+  font-size: 28px;
   cursor: pointer;
-  color: #000;
-  user-select: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
-/* LOGO (CENTERED) */
+.withdrawal-back-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
 .withdrawal-logo-wrapper {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
-  /* Add these lines to ensure logo stays centered on mobile */
-  width: 100%;
-  position: relative;
-  left: 0;
-  right: 0;
 }
 
 .withdrawal-logo-wrapper img {
-  height: 100px;     /* increased size */
-  width: auto;
-  /* Ensure image doesn't overflow on mobile */
-  max-width: 100%;
+  width: 200px;
+  height: auto;
   object-fit: contain;
 }
 
-/* TITLE */
 .withdrawal-heading {
-  margin-bottom: 45px;
+  color: white;
   font-size: 28px;
   font-weight: 700;
-  color: #000;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* BUTTON */
 .withdrawal-method-btn {
   width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 50px;
+  background: white;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px 22px;
-  margin-bottom: 24px;
-  background: #1f4fa3;
-  color: #fff;
-  border: none;
-  border-radius: 18px;
-  font-size: 18px;
-  font-weight: 600;
+  gap: 15px;
   cursor: pointer;
-  text-align: left;
-}
-
-.withdrawal-method-btn img {
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  border-radius: 50%;
-  padding: 6px;
-  flex-shrink: 0;
-}
-
-.withdrawal-method-btn span {
-  flex: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .withdrawal-method-btn:last-child {
   margin-bottom: 0;
 }
 
-/* ---------- MOBILE ---------- */
+.withdrawal-method-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background: #f8f9fa;
+}
+
+.withdrawal-method-btn:active {
+  transform: translateY(0);
+}
+
+.withdrawal-method-btn img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.withdrawal-method-btn span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  text-align: left;
+}
+
+/* Responsive Design */
 @media (max-width: 480px) {
   .withdrawal-content-card {
-    padding: 25px 20px 40px;
-    border-radius: 26px;
-    /* Ensure card stays centered */
-    margin: 0 auto;
-  }
-
-  /* Fix logo placement on mobile */
-  .withdrawal-logo-wrapper {
-    margin-bottom: 15px;
-    /* Reset any positioning to ensure center alignment */
-    position: static;
-    transform: none;
-    justify-content: center;
+    padding: 30px 20px;
   }
 
   .withdrawal-logo-wrapper img {
-    height: 80px; /* Adjusted from 60px to 80px for better visibility */
-    width: auto;
-    /* Ensure proper containment */
-    max-height: 80px;
+    width: 160px;
   }
 
   .withdrawal-heading {
     font-size: 24px;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
   }
 
   .withdrawal-method-btn {
-    font-size: 16px;
-    padding: 14px 18px;
+    padding: 12px 15px;
   }
 
   .withdrawal-method-btn img {
-    width: 36px;
-    height: 36px;
-    padding: 4px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .withdrawal-method-btn span {
+    font-size: 14px;
+  }
+
+  .withdrawal-back-arrow {
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    width: 35px;
+    height: 35px;
   }
 }
 
-/* Extra small devices */
 @media (max-width: 360px) {
   .withdrawal-content-card {
-    padding: 20px 15px 35px;
-    border-radius: 22px;
+    padding: 25px 15px;
   }
 
   .withdrawal-logo-wrapper img {
-    height: 70px;
-    max-height: 70px;
+    width: 140px;
   }
 
   .withdrawal-heading {
     font-size: 22px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .withdrawal-method-btn {
-    font-size: 15px;
-    padding: 12px 16px;
-    gap: 12px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
   }
 
   .withdrawal-method-btn img {
-    width: 32px;
-    height: 32px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .withdrawal-method-btn span {
+    font-size: 13px;
   }
 }
 
-/* Ensure logo doesn't get affected by any parent transforms */
-.withdrawal-content-card > .withdrawal-logo-wrapper {
-  transform: none !important;
-}
-
-/* Prevent any horizontal scrolling issues */
-@media (max-width: 480px) {
+/* For very short screens (landscape mode) */
+@media (max-height: 600px) and (orientation: landscape) {
   .withdrawal-page-container {
     padding: 15px;
-    overflow-x: hidden;
+    align-items: flex-start;
   }
-  
-  body {
-    overflow-x: hidden;
+
+  .withdrawal-content-card {
+    padding: 25px 20px;
+    margin: 20px 0;
+  }
+
+  .withdrawal-logo-wrapper img {
+    width: 120px;
+  }
+
+  .withdrawal-heading {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .withdrawal-method-btn {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+  }
+}
+
+/* For tall screens */
+@media (min-height: 900px) {
+  .withdrawal-content-card {
+    padding: 50px 40px;
+  }
+
+  .withdrawal-logo-wrapper img {
+    width: 220px;
+  }
+
+  .withdrawal-heading {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .withdrawal-method-btn {
+    padding: 18px 25px;
+    margin-bottom: 18px;
+  }
+}
+
+/* Animation for buttons */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* Disable animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .withdrawal-method-btn:first-of-type {
+    animation: none;
   }
 }

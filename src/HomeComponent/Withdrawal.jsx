@@ -5,6 +5,7 @@ import logo from "../assets/logo.png";
 import bank from "../assets/bank.png";
 import crypto from "../assets/crypto.png";
 import paypal from "../assets/paypal.png";
+import spinWheelIcon from "../assets/spinandwin.png"; // Add this import
 
 /* ================= WHATSAPP FLOAT COMPONENT ================= */
 const WhatsAppFloat = ({
@@ -61,6 +62,163 @@ const WhatsAppFloat = ({
   );
 };
 
+/* ================= SPIN WHEEL NAVIGATION BUTTON (Navigates to SpinWheel) ================= */
+const SpinWheelNavButton = ({ 
+  position = "right",
+  bottom = "100px", // Positioned above WhatsApp button
+  right = "30px",
+  left = "auto",
+  size = "100px",
+  pulseEffect = true,
+  className = "",
+  style = {}
+}) => {
+  const navigate = useNavigate();
+  
+  const positionStyles = position === "left" 
+    ? { left: left || "20px", right: "auto" }
+    : { right: right || "20px", left: "auto" };
+
+  const combinedStyles = {
+    position: 'fixed',
+    bottom: bottom,
+    width: size,
+    height: size,
+    borderRadius: '50%',
+    background: 'radial-gradient(circle at 30% 30%, #f7931a, #c8930a)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4)',
+    zIndex: 10000,
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    textDecoration: 'none',
+    border: '3px solid rgba(255, 215, 0, 0.6)',
+    overflow: 'hidden',
+    padding: '0px',
+    ...positionStyles,
+    ...style
+  };
+
+  // Add keyframes for pulse animation if not already defined
+  React.useEffect(() => {
+    if (!document.querySelector('#spin-wheel-nav-keyframes-withdrawal')) {
+      const styleSheet = document.createElement("style");
+      styleSheet.id = 'spin-wheel-nav-keyframes-withdrawal';
+      styleSheet.textContent = `
+        @keyframes spinWheelNavPulse {
+          0% {
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4), 0 0 0 0 rgba(247, 147, 26, 0.7);
+          }
+          70% {
+            box-shadow: 0 8px 35px rgba(247, 147, 26, 0.7), 0 0 30px rgba(200, 147, 10, 0.6), 0 0 0 15px rgba(247, 147, 26, 0);
+          }
+          100% {
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4), 0 0 0 0 rgba(247, 147, 26, 0);
+          }
+        }
+        
+        @keyframes spinWheelNavGlow {
+          0% {
+            filter: drop-shadow(0 0 5px #f7931a);
+          }
+          50% {
+            filter: drop-shadow(0 0 15px #c8930a);
+          }
+          100% {
+            filter: drop-shadow(0 0 5px #f7931a);
+          }
+        }
+        
+        @keyframes spinWheelNavRotate {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        .spin-wheel-nav-float {
+          animation: ${pulseEffect ? 'spinWheelNavPulse 2s infinite, spinWheelNavGlow 3s infinite' : 'none'};
+        }
+        
+        .spin-wheel-nav-float:hover {
+          transform: scale(1.15) rotate(10deg) !important;
+          background: radial-gradient(circle at 30% 30%, #ffd700, #f7931a) !important;
+          box-shadow: 0 10px 40px rgba(247, 147, 26, 0.8), 0 0 35px rgba(255, 215, 0, 0.7) !important;
+        }
+        
+        .spin-wheel-nav-float:hover .wheel-icon-image {
+          transform: scale(1.2) rotate(15deg) !important;
+        }
+        
+        .wheel-icon-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          transition: transform 0.3s ease;
+        }
+      `;
+      document.head.appendChild(styleSheet);
+    }
+  }, [pulseEffect]);
+
+  const handleClick = () => {
+    navigate('/spinwheel');
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      className={`spin-wheel-nav-float ${className}`}
+      style={combinedStyles}
+      aria-label="Go to Fortune Wheel"
+      title="Spin the Fortune Wheel!"
+    >
+      <img 
+        src={spinWheelIcon} 
+        alt="Fortune Wheel"
+        className="wheel-icon-image"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          borderRadius: '50%',
+          transition: 'transform 0.3s ease',
+          transform: 'scale(1.1)'
+        }}
+      />
+      
+      <div style={{
+        position: 'absolute',
+        inset: '-6px',
+        borderRadius: '50%',
+        border: '3px solid rgba(255, 215, 0, 0.5)',
+        borderTopColor: '#f7931a',
+        borderRightColor: '#ffd700',
+        borderBottomColor: '#f7931a',
+        borderLeftColor: '#ffd700',
+        opacity: 0.9,
+        animation: 'spinWheelNavRotate 4s linear infinite',
+        pointerEvents: 'none',
+        boxShadow: '0 0 15px rgba(247, 147, 26, 0.6)'
+      }} />
+      
+      <div style={{
+        position: 'absolute',
+        inset: '2px',
+        borderRadius: '50%',
+        border: '1px solid rgba(255, 255, 255, 0.3)',
+        opacity: 0.5,
+        pointerEvents: 'none'
+      }} />
+    </button>
+  );
+};
+
 /* ================= MAIN COMPONENT ================= */
 
 const Withdrawal = () => {
@@ -105,9 +263,24 @@ const Withdrawal = () => {
         </div>
       </div>
 
-      {/* ✅ SAME WHATSAPP FLOAT */}
-      <WhatsAppFloat />
+      {/* Spin Wheel Navigation Button - On Right Side ABOVE WhatsApp */}
+      <SpinWheelNavButton 
+        position="right"
+        bottom="100px"
+        right="30px"
+        pulseEffect={true}
+        size="60px"
+      />
 
+      {/* WhatsApp Float Button - On Right Side BELOW Spin Wheel */}
+      <WhatsAppFloat 
+        phoneNumber="15485825756"
+        message="Hello! I need assistance with withdrawal on InstaCoinXPay."
+        position="right"
+        bottom="30px"
+        right="30px"
+        pulseEffect={true}
+      />
     </>
   );
 };

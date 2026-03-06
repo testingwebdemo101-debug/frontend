@@ -36,7 +36,7 @@ export default function AdminReport() {
     fetchReports();
   }, []);
 
-  /* ===============================
+ /* ===============================
      RESOLVE REPORT (ADMIN)
   ================================ */
   const handleAction = async (id) => {
@@ -54,21 +54,15 @@ export default function AdminReport() {
         }
       );
 
-      // Update UI instantly
-      setTickets((prev) =>
-        prev.map((t) =>
-          t._id === id
-            ? { ...t, status: "RESOLVED", actionTaken }
-            : t
-        )
-      );
+      // ✅ Remove the resolved report from state (since it's deleted from DB)
+      setTickets((prev) => prev.filter((t) => t._id !== id));
+      
     } catch (err) {
       alert(
         err.response?.data?.error || "Failed to resolve report"
       );
     }
   };
-
   // Timeline: latest first
   const sortedTickets = [...tickets].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)

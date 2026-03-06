@@ -26,6 +26,7 @@
   text-align: center;
   width: 100%;
   margin: 0 auto 20px auto;
+  color: black;
 }
 
 .support-logo-container img {
@@ -55,6 +56,7 @@
   border-radius: 20px;
   padding: 25px;
   margin-top: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Form */
@@ -67,17 +69,37 @@
 .support-form-group label {
   font-size: 15px;
   margin-bottom: 8px;
-  font-weight: 500;
-  color: black;
+  font-weight: 600;
+  color: #1a2b4c;
 }
 
 .support-form-group input,
 .support-form-group textarea {
   padding: 14px;
-  border-radius: 6px;
-  border: none;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
   font-size: 16px;
   width: 100%;
+  background: white;
+  color: black;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* Style for disabled email input - White background with black text */
+.support-form-group input:disabled {
+  background: white;
+  color: black;
+  opacity: 0.8;
+  cursor: not-allowed;
+  border-color: #9ca3af;
+}
+
+/* Placeholder text color */
+.support-form-group input::placeholder,
+.support-form-group textarea::placeholder {
+  color: #6b7280;
+  opacity: 1;
 }
 
 /* Textarea */
@@ -85,6 +107,9 @@
   resize: vertical;
   min-height: 120px;
   max-height: 300px;
+  background: white;
+  color: black;
+  font-family: inherit;
 }
 
 /* File Input */
@@ -92,6 +117,7 @@
   background: #fff;
   padding: 12px;
   cursor: pointer;
+  border: 1px dashed #9ca3af;
 }
 
 /* Preview Image */
@@ -99,6 +125,8 @@
   max-width: 200px;
   margin-top: 10px;
   border-radius: 8px;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Message */
@@ -106,6 +134,10 @@
   text-align: center;
   margin-top: 15px;
   font-weight: bold;
+  color: #1f2937;
+  padding: 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* Submit Button */
@@ -117,14 +149,39 @@
   font-size: 22px;
   font-weight: 600;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(to right, #39d2ff, #1a6bff);
-  color: #000;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
 }
 
-.support-submit-button:active {
-  transform: scale(0.98);
+.support-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.support-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.support-submit-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Helper text for email */
+.support-email-helper {
+  color: #4b5563;
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  font-style: italic;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -133,6 +190,11 @@
 @media (max-width: 1024px) {
   .support-form-card {
     padding: 25px;
+    max-width: 550px;
+  }
+  
+  .support-submit-button {
+    max-width: 550px;
   }
 }
 
@@ -145,34 +207,55 @@
   .support-form-card {
     padding: 20px;
     border-radius: 15px;
+    max-width: 500px;
   }
 
   .support-submit-button {
     font-size: 20px;
     padding: 14px;
+    max-width: 500px;
+  }
+  
+  .support-title {
+    font-size: 28px;
   }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
+  .support-page-wrapper {
+    padding: 10px;
+  }
+  
   .support-form-card {
     padding: 18px;
     border-radius: 12px;
+    max-width: 100%;
   }
 
   .support-form-group label {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .support-form-group input,
   .support-form-group textarea {
     font-size: 14px;
-    padding: 10px;
+    padding: 12px;
   }
 
   .support-submit-button {
     font-size: 18px;
     padding: 12px;
+    max-width: 100%;
+  }
+  
+  .support-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .supportpage-back {
+    font-size: 22px;
   }
 }
 
@@ -180,6 +263,16 @@
 @media (max-width: 360px) {
   .support-submit-button {
     font-size: 16px;
+    padding: 10px;
+  }
+  
+  .support-title {
+    font-size: 22px;
+  }
+  
+  .support-form-group input,
+  .support-form-group textarea {
+    font-size: 13px;
     padding: 10px;
   }
 }
@@ -194,13 +287,30 @@
   .support-submit-button {
     max-width: 700px;
     font-size: 24px;
+    padding: 18px;
+  }
+  
+  .support-title {
+    font-size: 36px;
+  }
+  
+  .support-form-group label {
+    font-size: 16px;
+  }
+  
+  .support-form-group input,
+  .support-form-group textarea {
+    font-size: 16px;
+    padding: 16px;
   }
 }
 
-/* Focus UX */
+/* Focus States */
 .support-form-group input:focus,
 .support-form-group textarea:focus {
-  box-shadow: 0 0 0 2px rgba(57, 210, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+  outline: none;
+  border-color: #667eea;
 }
 
 /* Prevent iOS zoom */
@@ -211,10 +321,37 @@
   }
 }
 
-.supportpage-back{
-    left: 10px;
-    font-size: 25px;
-    cursor: pointer;
-    color: rgb(0, 0, 0);
-
+.supportpage-back {
+  left: 10px;
+  font-size: 25px;
+  cursor: pointer;
+  color: #1f2937;
+  display: inline-block;
+  margin-bottom: 15px;
+  transition: transform 0.2s ease;
+  font-weight: bold;
 }
+
+.supportpage-back:hover {
+  transform: translateX(-3px);
+}
+
+/* WhatsApp Float Animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+/* WhatsApp Float Hover Effect */
+.whatsapp-float:hover {
+  transform: scale(1.1) !important;
+  background-color: #20ba5a !important;
+}
+  

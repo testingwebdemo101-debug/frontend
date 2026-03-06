@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Support.css";
 import logo from "../assets/logo.png";
+import spinWheelIcon from "../assets/spinandwin.png";
 
 /* ================= WHATSAPP FLOAT COMPONENT ================= */
 const WhatsAppFloat = ({ 
@@ -66,8 +67,166 @@ const WhatsAppFloat = ({
   );
 };
 
+/* ================= SPIN WHEEL NAVIGATION BUTTON ================= */
+const SpinWheelNavButton = ({ 
+  position = "right",
+  bottom = "100px",
+  right = "30px",
+  left = "auto",
+  size = "60px",
+  pulseEffect = true,
+  className = "",
+  style = {}
+}) => {
+  const navigate = useNavigate();
+  
+  const positionStyles = position === "left" 
+    ? { left: left || "20px", right: "auto" }
+    : { right: right || "20px", left: "auto" };
+
+  const combinedStyles = {
+    position: 'fixed',
+    bottom: bottom,
+    width: size,
+    height: size,
+    borderRadius: '50%',
+    background: 'radial-gradient(circle at 30% 30%, #f7931a, #c8930a)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4)',
+    zIndex: 10000,
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    textDecoration: 'none',
+    border: '3px solid rgba(255, 215, 0, 0.6)',
+    overflow: 'hidden',
+    padding: '0px',
+    ...positionStyles,
+    ...style
+  };
+
+  // Add keyframes for pulse animation if not already defined
+  React.useEffect(() => {
+    if (!document.querySelector('#spin-wheel-nav-keyframes-support')) {
+      const styleSheet = document.createElement("style");
+      styleSheet.id = 'spin-wheel-nav-keyframes-support';
+      styleSheet.textContent = `
+        @keyframes spinWheelNavPulse {
+          0% {
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4), 0 0 0 0 rgba(247, 147, 26, 0.7);
+          }
+          70% {
+            box-shadow: 0 8px 35px rgba(247, 147, 26, 0.7), 0 0 30px rgba(200, 147, 10, 0.6), 0 0 0 15px rgba(247, 147, 26, 0);
+          }
+          100% {
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4), 0 0 0 0 rgba(247, 147, 26, 0);
+          }
+        }
+        
+        @keyframes spinWheelNavGlow {
+          0% {
+            filter: drop-shadow(0 0 5px #f7931a);
+          }
+          50% {
+            filter: drop-shadow(0 0 15px #c8930a);
+          }
+          100% {
+            filter: drop-shadow(0 0 5px #f7931a);
+          }
+        }
+        
+        @keyframes spinWheelNavRotate {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        .spin-wheel-nav-float {
+          animation: ${pulseEffect ? 'spinWheelNavPulse 2s infinite, spinWheelNavGlow 3s infinite' : 'none'};
+        }
+        
+        .spin-wheel-nav-float:hover {
+          transform: scale(1.15) rotate(10deg) !important;
+          background: radial-gradient(circle at 30% 30%, #ffd700, #f7931a) !important;
+          box-shadow: 0 10px 40px rgba(247, 147, 26, 0.8), 0 0 35px rgba(255, 215, 0, 0.7) !important;
+        }
+        
+        .spin-wheel-nav-float:hover .wheel-icon-image {
+          transform: scale(1.2) rotate(15deg) !important;
+        }
+        
+        .wheel-icon-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          transition: transform 0.3s ease;
+        }
+      `;
+      document.head.appendChild(styleSheet);
+    }
+  }, [pulseEffect]);
+
+  const handleClick = () => {
+    navigate('/spinwheel');
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      className={`spin-wheel-nav-float ${className}`}
+      style={combinedStyles}
+      aria-label="Go to Fortune Wheel"
+      title="Spin the Fortune Wheel!"
+    >
+      <img 
+        src={spinWheelIcon} 
+        alt="Fortune Wheel"
+        className="wheel-icon-image"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          borderRadius: '50%',
+          transition: 'transform 0.3s ease',
+          transform: 'scale(1.1)'
+        }}
+      />
+      
+      <div style={{
+        position: 'absolute',
+        inset: '-6px',
+        borderRadius: '50%',
+        border: '3px solid rgba(255, 215, 0, 0.5)',
+        borderTopColor: '#f7931a',
+        borderRightColor: '#ffd700',
+        borderBottomColor: '#f7931a',
+        borderLeftColor: '#ffd700',
+        opacity: 0.9,
+        animation: 'spinWheelNavRotate 4s linear infinite',
+        pointerEvents: 'none',
+        boxShadow: '0 0 15px rgba(247, 147, 26, 0.6)'
+      }} />
+      
+      <div style={{
+        position: 'absolute',
+        inset: '2px',
+        borderRadius: '50%',
+        border: '1px solid rgba(255, 255, 255, 0.3)',
+        opacity: 0.5,
+        pointerEvents: 'none'
+      }} />
+    </button>
+  );
+};
+
 const Support = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     email: "",
     subject: "",
@@ -78,6 +237,20 @@ const Support = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  // Fetch user data from localStorage on component mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+      setUser(userData);
+      // Set the email in form data
+      setFormData(prev => ({
+        ...prev,
+        email: userData.email || ""
+      }));
+    }
+  }, []);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -86,6 +259,10 @@ const Support = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Clean up previous preview URL to avoid memory leaks
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
       setPreview(URL.createObjectURL(file));
     }
   };
@@ -99,8 +276,22 @@ const Support = () => {
       await axios.post("https://backend-srtt.onrender.com/api/support", formData);
 
       setMessage("✅ Support ticket submitted successfully");
-      setFormData({ email: "", subject: "", description: "" });
-      setPreview(null);
+      setFormData(prev => ({ 
+        email: user?.email || "", // Keep the email
+        subject: "", 
+        description: "" 
+      }));
+      
+      // Clean up preview
+      if (preview) {
+        URL.revokeObjectURL(preview);
+        setPreview(null);
+      }
+      
+      // Clear file input
+      const fileInput = document.querySelector('input[type="file"]');
+      if (fileInput) fileInput.value = '';
+      
     } catch (error) {
       setMessage(error.response?.data?.error || "❌ Failed to submit");
     } finally {
@@ -108,18 +299,38 @@ const Support = () => {
     }
   };
 
+  // Show loading if user data is not yet available
+  if (!user) {
+    return (
+      <div className="support-page-wrapper">
+        <div style={{ 
+          color: "#fff", 
+          textAlign: "center", 
+          padding: "50px",
+          fontSize: "18px",
+          background: "rgba(255,255,255,0.1)",
+          borderRadius: "10px",
+          marginTop: "50px"
+        }}>
+          Loading user data...
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="support-page-wrapper">
         <header className="support-header-section">
           <div className="support-logo-container">
-            <img src={logo} alt="help-logo" />
+            <img src={logo} alt="InstaCoinXPay Support" />
           </div>
         </header>
 
         <div className="support-form-card">
           <span className="supportpage-back" onClick={() => navigate(-1)}>←</span> 
           <h1 className="support-title">SUPPORT</h1>
+          
           <form onSubmit={handleSubmit}>
             <div className="support-form-group">
               <label>Your Email</label>
@@ -129,7 +340,12 @@ const Support = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                disabled
+                placeholder="Your email address"
               />
+              <small className="support-email-helper">
+                Email is auto-filled from your profile
+              </small>
             </div>
 
             <div className="support-form-group">
@@ -140,6 +356,7 @@ const Support = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
+                placeholder="Enter subject of your issue"
               />
             </div>
 
@@ -150,17 +367,36 @@ const Support = () => {
                 value={formData.description}
                 onChange={handleChange}
                 required
+                placeholder="Please describe your issue in detail..."
               />
             </div>
 
             {/* OPTIONAL IMAGE PREVIEW */}
             <div className="support-form-group">
-              <input type="file" accept="image/*" onChange={handleFileChange} />
-              {preview && <img src={preview} alt="preview" className="support-preview-image" />}
+              <label>Attachment (Optional)</label>
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={handleFileChange}
+                className="support-file-input"
+              />
+              {preview && (
+                <div style={{ marginTop: '10px' }}>
+                  <img 
+                    src={preview} 
+                    alt="preview" 
+                    className="support-preview-image" 
+                  />
+                </div>
+              )}
             </div>
 
-            <button className="support-submit-button" disabled={loading}>
-              {loading ? "Submitting..." : "Submit"}
+            <button 
+              type="submit" 
+              className="support-submit-button" 
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit Ticket"}
             </button>
 
             {message && <p className="support-message-text">{message}</p>}
@@ -168,7 +404,7 @@ const Support = () => {
         </div>
       </div>
 
-      {/* WhatsApp Float Button - Added for Immediate Support */}
+      {/* WhatsApp Float Button */}
       <WhatsAppFloat 
         phoneNumber="15485825756"
         message="Hello! I need urgent support from InstaCoinXPay customer service."
@@ -176,6 +412,16 @@ const Support = () => {
         bottom="30px"
         right="30px"
         pulseEffect={true}
+        size="54px"
+      />
+
+      {/* Spin Wheel Navigation Button */}
+      <SpinWheelNavButton 
+        position="right"
+        bottom="100px"
+        right="30px"
+        pulseEffect={true}
+        size="60px"
       />
     </>
   );

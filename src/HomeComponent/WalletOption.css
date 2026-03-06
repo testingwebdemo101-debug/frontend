@@ -1,0 +1,275 @@
+.wallet-container-unique {
+  background-color: #f0faff;
+  height: 100vh; /* Lock height to viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 20px; /* Reduced vertical padding */
+  font-family: 'Arial', sans-serif;
+  overflow: hidden; /* Prevent body scroll */
+  box-sizing: border-box;
+}
+
+/* Header with back button */
+.wallet-header-with-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+/* Back button */
+.wallet-back-btn-unique {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(47, 125, 211, 0.1);
+  border: none;
+  color: #137ae8;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  min-height: 36px;
+  min-width: 36px;
+  padding: 0;
+  line-height: 1;
+}
+
+.wallet-back-btn-unique:hover {
+  background: rgba(47, 125, 211, 0.2);
+}
+
+.wallet-back-btn-unique:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Logo container */
+.wallet-logo-container-unique {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.main-logo-unique {
+  width: 120px;
+  object-fit: contain;
+  margin-bottom: -20px;
+}
+
+.wallet-title-unique {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  color: #000;
+  margin: 0 0 15px 0;
+}
+
+.wallet-list-unique {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Reduced gap between buttons to save space */
+  flex: 1; /* Allow list to take available space */
+  justify-content: center; /* Center items vertically if space allows */
+}
+
+.wallet-button-unique {
+  display: flex;
+  align-items: center;
+  padding: 6px 15px; /* Slimmer buttons */
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: white;
+  height: 48px; /* Fixed height to guarantee fit */
+}
+
+.wallet-button-unique:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.wallet-icon-box-unique {
+  width: 32px; /* Smaller icon containers */
+  height: 32px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallet-icon-unique {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.wallet-name-unique {
+  font-size: 15px; /* Smaller text to keep rows thin */
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Unique gradient classes for each wallet */
+.wallet-trust-gradient { background: linear-gradient(90deg, #0033ff, #00b2ff); }
+.wallet-safepal-gradient { background: linear-gradient(90deg, #4d00ff, #6a3dff); }
+.wallet-metamask-gradient { background: linear-gradient(90deg, #e2761b, #763d16); }
+.wallet-phantom-gradient { background: linear-gradient(90deg, #4264ab, #2c4a8a); }
+.wallet-cryptocom-gradient { background: linear-gradient(90deg, #062d64, #0a1d3f); }
+.wallet-atomic-gradient { background: linear-gradient(90deg, #105a8e, #2ea1d3); }
+.wallet-electrum-gradient { background: linear-gradient(90deg, #1d69d3, #154694); }
+.wallet-coin98-gradient { background: linear-gradient(90deg, #000000, #1a1a00); }
+.wallet-rainbow-gradient { background: linear-gradient(90deg, #0033aa, #001a66); }
+.wallet-exodus-gradient { background: linear-gradient(90deg, #3a2fa8, #8e54f7); }
+
+/* WhatsApp Float Button Styles */
+.wallet-whatsapp-float-unique {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.wallet-whatsapp-float-unique:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+}
+
+.wallet-pulse-unique {
+  animation: wallet-whatsapp-pulse-unique 2s infinite;
+}
+
+@keyframes wallet-whatsapp-pulse-unique {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+/* Spin Wheel Button Styles */
+.wallet-spin-wheel-float-unique {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f7931a, #c8930a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(247, 147, 26, 0.5), 0 0 20px rgba(200, 147, 10, 0.4);
+  z-index: 10000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid rgba(255, 215, 0, 0.6);
+  overflow: hidden;
+  padding: 0;
+}
+
+.wallet-spin-wheel-float-unique:hover {
+  transform: scale(1.15) rotate(10deg);
+  background: radial-gradient(circle at 30% 30%, #ffd700, #f7931a);
+  box-shadow: 0 10px 40px rgba(247, 147, 26, 0.8), 0 0 35px rgba(255, 215, 0, 0.7);
+}
+
+.wallet-spin-wheel-float-unique:hover .wallet-wheel-icon-image-unique {
+  transform: scale(1.2) rotate(15deg);
+}
+
+.wallet-wheel-icon-image-unique {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Responsive adjustment for very small screens */
+@media (max-height: 600px) {
+  .wallet-button-unique { height: 40px; padding: 4px 12px; }
+  .wallet-title-unique { font-size: 20px; }
+  .main-logo-unique { width: 50px; }
+  .wallet-back-btn-unique {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+}
+
+/* Responsive adjustments for float buttons */
+@media (max-width: 480px) {
+  .wallet-whatsapp-float-unique {
+    width: 48px;
+    height: 48px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .wallet-spin-wheel-float-unique {
+    width: 52px;
+    height: 52px;
+    bottom: 80px;
+    right: 20px;
+  }
+  
+  .wallet-back-btn-unique {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .wallet-whatsapp-float-unique {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .wallet-spin-wheel-float-unique {
+    width: 46px;
+    height: 46px;
+    bottom: 70px;
+  }
+  
+  .wallet-back-btn-unique {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+}
+
+/* Accessibility focus indicators */
+.wallet-back-btn-unique:focus-visible {
+  outline: 3px solid #137ae8;
+  outline-offset: 2px;
+}

@@ -3,45 +3,50 @@ import axios from "axios";
 import "./AdminTransactionStatus.css";
 
 const AdminTransactionStatus = () => {
+
   const [transactions, setTransactions] = useState([]);
   const [expandedTransaction, setExpandedTransaction] = useState(null);
 
   // =====================
   // FETCH PENDING TX FROM API
   // =====================
-const fetchPendingTransactions = async () => {
-  try {
-    const res = await axios.get(
-      "https://backend-srtt.onrender.com/api/admin-transactions/pending-transactions"
-    );
+  const fetchPendingTransactions = async () => {
+    try {
+      const res = await axios.get(
+        "https://backend-srtt.onrender.com/api/admin-transactions/pending-transactions"
+      );
 
-    const formatted = (res.data.data || []).map((tx) => ({
-      ...tx,
-      confirmations: tx.confirmations?.length
-        ? tx.confirmations
-        : [false, false, false, false],  // ✅ always 4
-      status: "pending"
-    }));
+      // ✅ FIXED AMOUNT DISPLAY HERE
+      const formatted = (res.data.data || []).map((tx) => ({
+        ...tx,
+        amount: `${tx.amount} ${tx.asset}`,   // ✅ FIXED LINE
+        toAddress: tx.toAddress || "—", // ✅ ADD THIS LINE - Include recipient address
+        confirmations: tx.confirmations?.length
+          ? tx.confirmations
+          : [false, false, false, false],
+        status: "pending"
+      }));
 
-    setTransactions(formatted);
-
-  } catch (err) {
-    console.error("Failed to load pending transactions", err);
-  }
-};
-
+      setTransactions(formatted);
+    }
+    catch (err) {
+      console.error("Failed to load pending transactions", err);
+    }
+  };
 
   useEffect(() => {
     fetchPendingTransactions();
   }, []);
 
   // =====================
-  // UI ACTIONS (LOCAL ONLY)
+  // UI ACTIONS
   // =====================
   const handleStatusChange = (id, newStatus) => {
     setTransactions((prev) =>
       prev.map((tx) =>
-        tx.id === id ? { ...tx, status: newStatus } : tx
+        tx.id === id
+          ? { ...tx, status: newStatus }
+          : tx
       )
     );
   };
@@ -52,7 +57,10 @@ const fetchPendingTransactions = async () => {
         if (tx.id === transactionId) {
           const updated = [...tx.confirmations];
           updated[index] = !updated[index];
-          return { ...tx, confirmations: updated };
+          return {
+            ...tx,
+            confirmations: updated
+          };
         }
         return tx;
       })
@@ -60,7 +68,7 @@ const fetchPendingTransactions = async () => {
   };
 
   // =====================
-  // SUBMIT (POPUP ADDED)
+  // SUBMIT
   // =====================
   const handleSubmit = async (id) => {
     const tx = transactions.find((t) => t.id === id);
@@ -75,26 +83,29 @@ const fetchPendingTransactions = async () => {
         }
       );
 
-      // ✅ POPUP AFTER DB UPDATE
       alert("Transaction updated successfully");
 
-      // ✅ REMOVE ONLY IF APPROVED OR REJECTED
-      if (tx.status === "approved" || tx.status === "rejected") {
+      if (
+        tx.status === "approved" ||
+        tx.status === "rejected"
+      ) {
         setTransactions((prev) =>
           prev.filter((t) => t.id !== id)
         );
       }
-
-      // ✅ PENDING → KEEP TRANSACTION (CONFIRMATIONS SAVED)
-
-    } catch (err) {
+    }
+    catch (err) {
       console.error("Failed to update transaction", err);
       alert("Failed to update transaction");
     }
   };
 
   const toggleTransactionDetails = (id) => {
-    setExpandedTransaction(expandedTransaction === id ? null : id);
+    setExpandedTransaction(
+      expandedTransaction === id
+        ? null
+        : id
+    );
   };
 
   return (
@@ -105,11 +116,21 @@ const fetchPendingTransactions = async () => {
 
       <div className="transactions-container">
         <div className="table-header-row">
-          <div className="header-cell user-name">User Name</div>
-          <div className="header-cell user-email">Email</div>
-          <div className="header-cell transaction-datetime">Date/Time</div>
-          <div className="header-cell transaction-status">Status</div>
-          <div className="header-cell view-actions">Actions</div>
+          <div className="header-cell user-name">
+            User Name
+          </div>
+          <div className="header-cell user-email">
+            Email
+          </div>
+          <div className="header-cell transaction-datetime">
+            Date/Time
+          </div>
+          <div className="header-cell transaction-status">
+            Status
+          </div>
+          <div className="header-cell view-actions">
+            Actions
+          </div>
         </div>
 
         {transactions.length === 0 && (
@@ -122,7 +143,9 @@ const fetchPendingTransactions = async () => {
           <div key={transaction.id} className="transaction-row-item">
             <div
               className="transaction-summary-row"
-              onClick={() => toggleTransactionDetails(transaction.id)}
+              onClick={() =>
+                toggleTransactionDetails(transaction.id)
+              }
             >
               <div className="summary-cell user-info">
                 <span className="user-initial-circle">
@@ -138,8 +161,12 @@ const fetchPendingTransactions = async () => {
               </div>
 
               <div className="summary-cell date-time-info">
-                <div className="transaction-date">{transaction.date}</div>
-                <div className="transaction-time">{transaction.time}</div>
+                <div className="transaction-date">
+                  {transaction.date}
+                </div>
+                <div className="transaction-time">
+                  {transaction.time}
+                </div>
               </div>
 
               <div className="summary-cell status-info">
@@ -150,7 +177,9 @@ const fetchPendingTransactions = async () => {
 
               <div className="summary-cell toggle-actions">
                 <button className="expand-details-btn">
-                  {expandedTransaction === transaction.id ? "▲" : "▼"}
+                  {expandedTransaction === transaction.id
+                    ? "▲"
+                    : "▼"}
                 </button>
               </div>
             </div>
@@ -158,26 +187,48 @@ const fetchPendingTransactions = async () => {
             {expandedTransaction === transaction.id && (
               <div className="transaction-full-details">
                 <div className="details-panel-content">
-
                   <div className="details-panel-section">
                     <h4>Transaction Details</h4>
                     <div className="details-grid-layout">
                       <div className="detail-grid-item">
-                        <span className="detail-title">Transaction ID:</span>
+                        <span className="detail-title">
+                          Transaction ID:
+                        </span>
                         <span className="detail-data">
                           {transaction.txid}
                         </span>
                       </div>
 
                       <div className="detail-grid-item">
-                        <span className="detail-title">Amount:</span>
+                        <span className="detail-title">
+                          Amount:
+                        </span>
                         <span className="detail-data amount-value">
                           {transaction.amount}
                         </span>
                       </div>
 
+                      {/* ✅ ADD THIS BLOCK - Display Recipient Address */}
+                      <div className="detail-grid-item" style={{ gridColumn: "span 2" }}>
+                        <span className="detail-title">
+                          Recipient Address:
+                        </span>
+                        <span className="detail-data address-value" style={{ 
+                          wordBreak: "break-all", 
+                          fontFamily: "monospace",
+                          fontSize: "0.9rem",
+                          background: "#f5f5f5",
+                          padding: "4px 8px",
+                          borderRadius: "4px"
+                        }}>
+                          {transaction.toAddress}
+                        </span>
+                      </div>
+
                       <div className="detail-grid-item">
-                        <span className="detail-title">Method:</span>
+                        <span className="detail-title">
+                          Method:
+                        </span>
                         <span className="detail-data payment-method">
                           {transaction.method}
                         </span>
@@ -189,36 +240,48 @@ const fetchPendingTransactions = async () => {
                     <h4>Transaction Status</h4>
                     <div className="status-action-buttons">
                       <button
-                        className={`status-action-btn approve-btn ${
-                          transaction.status === "approved" ? "active-state" : ""
-                        }`}
+                        className={`status-action-btn approve-btn ${transaction.status === "approved"
+                            ? "active-state"
+                            : ""
+                          }`}
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleStatusChange(transaction.id, "approved");
+                          handleStatusChange(
+                            transaction.id,
+                            "approved"
+                          );
                         }}
                       >
                         Approve
                       </button>
 
                       <button
-                        className={`status-action-btn reject-btn ${
-                          transaction.status === "rejected" ? "active-state" : ""
-                        }`}
+                        className={`status-action-btn reject-btn ${transaction.status === "rejected"
+                            ? "active-state"
+                            : ""
+                          }`}
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleStatusChange(transaction.id, "rejected");
+                          handleStatusChange(
+                            transaction.id,
+                            "rejected"
+                          );
                         }}
                       >
                         Reject
                       </button>
 
                       <button
-                        className={`status-action-btn pending-btn ${
-                          transaction.status === "pending" ? "active-state" : ""
-                        }`}
+                        className={`status-action-btn pending-btn ${transaction.status === "pending"
+                            ? "active-state"
+                            : ""
+                          }`}
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleStatusChange(transaction.id, "pending");
+                          handleStatusChange(
+                            transaction.id,
+                            "pending"
+                          );
                         }}
                       >
                         Pending
@@ -229,19 +292,26 @@ const fetchPendingTransactions = async () => {
                   <div className="details-panel-section">
                     <h4>Confirmations</h4>
                     <div className="confirmation-selection">
-                     {transaction.confirmations.map((checked, index) => (
-  <label key={index} className="confirmation-option-label">
-    <input
-      type="checkbox"
-      checked={checked}
-      onChange={() =>
-        handleConfirmationToggle(transaction.id, index)
-      }
-    />
-    Confirmation {index + 1}
-  </label>
-))}
-
+                      {transaction.confirmations.map(
+                        (checked, index) => (
+                          <label
+                            key={index}
+                            className="confirmation-option-label"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={checked}
+                              onChange={() =>
+                                handleConfirmationToggle(
+                                  transaction.id,
+                                  index
+                                )
+                              }
+                            />
+                            Confirmation {index + 1}
+                          </label>
+                        )
+                      )}
                     </div>
                   </div>
 
@@ -254,7 +324,6 @@ const fetchPendingTransactions = async () => {
                   >
                     Submit Changes
                   </button>
-
                 </div>
               </div>
             )}

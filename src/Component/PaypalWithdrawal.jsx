@@ -28,10 +28,32 @@ const coins = [
   { key: "doge", label: "Dogecoin", symbol: "DOGE", icon: doge },
   { key: "ltc", label: "Litecoin", symbol: "LTC", icon: ltc },
   { key: "trx", label: "TRX", symbol: "TRX", icon: trx },
- { key: "usdtTron", label: "USDT-TRC20", symbol: "USDT-TRC20", icon: usdttether },
-{ key: "usdtBnb", label: "USDT-BEP20", symbol: "USDT-BEP20", icon: usdt },
-
+  { key: "usdtTron", label: "USDT-TRC20", symbol: "USDT-TRC20", icon: usdttether },
+  { key: "usdtBnb", label: "USDT-BEP20", symbol: "USDT-BEP20", icon: usdt },
 ];
+
+/* ================= STATIC PRICES (matching backend) ================= */
+const STATIC_PRICES = {
+  btc: 85966.43,
+  eth: 2296.54,
+  bnb: 596.78,
+  sol: 172.45,
+  xrp: 0.52,
+  doge: 0.12,
+  ltc: 81.34,
+  trx: 0.104,
+  usdtTron: 1.00,
+  usdtBnb: 1.00
+};
+
+/* ================= FORMAT ================= */
+const formatCurrency = (amount) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount || 0);
 
 const PaypalWithdrawal = () => {
   const navigate = useNavigate();
@@ -42,9 +64,13 @@ const PaypalWithdrawal = () => {
   const [price, setPrice] = useState(0);
   const [coinBalance, setCoinBalance] = useState(0);
   const [usdBalance, setUsdBalance] = useState(0);
+  const [fullName, setFullName] = useState("");
+  const [paypalEmail, setPaypalEmail] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  /* ================= PRICE ================= */
-  const fetchLivePrice = async (coinKey) => {
+  /* ================= HELPER: Get CoinGecko ID ================= */
+  const getCoinGeckoId = (coinKey) => {
     const map = {
       btc: "bitcoin",
       eth: "ethereum",
@@ -57,37 +83,95 @@ const PaypalWithdrawal = () => {
       usdtTron: "tether",
       usdtBnb: "tether",
     };
-
-    const id = map[coinKey];
-    if (!id) return 0;
-
-    const res = await axios.get(
-      "https://api.coingecko.com/api/v3/simple/price",
-      { params: { ids: id, vs_currencies: "usd" } }
-    );
-
-    return res.data[id]?.usd || 0;
+    return map[coinKey] || coinKey;
   };
 
-  /* ================= BALANCE ================= */
-  const fetchBalance = async () => {
+  /* ================= FETCH PRICE FROM BACKEND FIRST ================= */
+  const fetchPriceFromBackend = async (coinKey) => {
     try {
       const token = localStorage.getItem("token");
+      const res = await axios.get(
+        `https://backend-srtt.onrender.com/api/crypto/price/${coinKey}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      
+      if (res.data.success) {
+        return res.data.data.price;
+      }
+      return null;
+    } catch (err) {
+      console.log("Backend price fetch failed, falling back to CoinGecko");
+      return null;
+    }
+  };
 
+  /* ================= FETCH LIVE PRICE WITH FALLBACK ================= */
+  const fetchLivePrice = async (coinKey) => {
+    // First try backend
+    const backendPrice = await fetchPriceFromBackend(coinKey);
+    if (backendPrice) {
+      return backendPrice;
+    }
+
+    // Fallback to CoinGecko
+    try {
+      const coinId = getCoinGeckoId(coinKey);
+      const res = await axios.get(
+        "https://api.coingecko.com/api/v3/simple/price",
+        { params: { ids: coinId, vs_currencies: "usd" } }
+      );
+      return res.data[coinId]?.usd || STATIC_PRICES[coinKey] || 0;
+    } catch (err) {
+      console.log("CoinGecko fetch failed, using static price");
+      return STATIC_PRICES[coinKey] || 0;
+    }
+  };
+
+  /* ================= FETCH BALANCE ================= */
+  const fetchBalance = async () => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      // Get balance from API
       const res = await axios.get(`${API}/balance`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       const balances = res.data.data.walletBalances || {};
       const bal = balances[selectedCoin.key] || 0;
-
-      const livePrice = await fetchLivePrice(selectedCoin.key);
-
+      
       setCoinBalance(bal);
-      setPrice(livePrice);
-      setUsdBalance(bal * livePrice);
+
+      // Get price (prioritize backend)
+      const currentPrice = await fetchLivePrice(selectedCoin.key);
+      setPrice(currentPrice);
+      setUsdBalance(bal * currentPrice);
+      setError("");
+
     } catch (err) {
-      console.error(err);
+      console.error("Balance fetch error:", err);
+      
+      // Fallback to localStorage (like Dashboard does)
+      try {
+        const savedProfile = localStorage.getItem("userProfile");
+        if (savedProfile) {
+          const profile = JSON.parse(savedProfile);
+          if (profile.walletBalances && profile.walletBalances[selectedCoin.key]) {
+            const bal = profile.walletBalances[selectedCoin.key];
+            setCoinBalance(bal);
+            
+            const staticPrice = STATIC_PRICES[selectedCoin.key] || 0;
+            setPrice(staticPrice);
+            setUsdBalance(bal * staticPrice);
+          }
+        }
+      } catch (e) {
+        console.error("LocalStorage fallback error:", e);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -104,6 +188,79 @@ const PaypalWithdrawal = () => {
     setCoinAmount(Number(usdAmount) / price);
   }, [usdAmount, price]);
 
+  /* ================= CHECK BALANCE ================= */
+  const hasInsufficientBalance = () => {
+    if (!usdAmount || !coinAmount) return false;
+    return coinAmount > coinBalance;
+  };
+
+  /* ================= HANDLE CONTINUE ================= */
+  const handleContinue = async () => {
+    // Clear previous error
+    setError("");
+
+    // Validate inputs
+    if (!fullName.trim()) {
+      setError("Please enter your full name");
+      return;
+    }
+
+    if (!paypalEmail.trim()) {
+      setError("Please enter your PayPal email");
+      return;
+    }
+
+    if (!usdAmount || Number(usdAmount) <= 0) {
+      setError("Please enter a valid amount");
+      return;
+    }
+
+    // Check balance
+    if (hasInsufficientBalance()) {
+      setError(`Insufficient ${selectedCoin.symbol} balance. You have ${coinBalance.toFixed(8)} ${selectedCoin.symbol} available.`);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(
+        "https://backend-srtt.onrender.com/api/paypal/initiate",
+        {
+          asset: selectedCoin.key,
+          amount: coinAmount,
+          usdAmount: Number(usdAmount),
+          paypalEmail: paypalEmail,
+          fullName: fullName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        navigate("/paypalwithdrawalotp", {
+          state: {
+            asset: selectedCoin.key,
+            amount: coinAmount,
+            usdAmount: Number(usdAmount),
+            paypalEmail,
+            fullName,
+            price: price,
+            transferId: response.data.data?.transferId
+          },
+        });
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to initiate withdrawal");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="paypal-withdrawal-page">
       <div className="paypal-withdrawal-card">
@@ -115,14 +272,32 @@ const PaypalWithdrawal = () => {
 
         <h2 className="paypal-withdrawal-title">Paypal Withdrawal</h2>
 
+        {error && (
+          <div className="paypal-withdrawal-error">
+            {error}
+          </div>
+        )}
+
         <div className="paypal-withdrawal-form-group">
           <label>Full Name</label>
-          <input type="text" placeholder="Enter your full name" />
+          <input 
+            type="text" 
+            placeholder="Enter your full name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            disabled={loading}
+          />
         </div>
 
         <div className="paypal-withdrawal-form-group">
           <label>Paypal Email Address</label>
-          <input type="email" placeholder="Enter email address" />
+          <input 
+            type="email" 
+            placeholder="Enter email address"
+            value={paypalEmail}
+            onChange={(e) => setPaypalEmail(e.target.value)}
+            disabled={loading}
+          />
         </div>
 
         <div className="paypal-withdrawal-form-group">
@@ -139,12 +314,12 @@ const PaypalWithdrawal = () => {
                   coins.find((c) => c.key === e.target.value)
                 )
               }
+              disabled={loading}
             >
               {coins.map((coin) => (
-             <option key={coin.key} value={coin.key}>
-  {coin.symbol}
-</option>
-
+                <option key={coin.key} value={coin.key}>
+                  {coin.symbol}
+                </option>
               ))}
             </select>
           </div>
@@ -159,6 +334,7 @@ const PaypalWithdrawal = () => {
               value={usdAmount}
               onChange={(e) => setUsdAmount(e.target.value)}
               placeholder="Enter amount in USD"
+              disabled={loading}
             />
           </div>
           <small>
@@ -173,41 +349,27 @@ const PaypalWithdrawal = () => {
             <span>
               {coinBalance.toFixed(8)} {selectedCoin.symbol}
             </span>
-            <small>(~${usdBalance.toFixed(2)})</small>
           </div>
         </div>
 
-        {/* 🔥 MODIFIED CONTINUE BUTTON (ONLY CHANGE) */}
+        {/* Show USD balance like other components */}
+        <div className="paypal-withdrawal-info-row" style={{ marginTop: "5px", fontSize: "12px", color: "#666" }}>
+          <span></span>
+          <span>{formatCurrency(usdBalance)} USD</span>
+        </div>
+
+        {hasInsufficientBalance() && (
+          <div className="paypal-withdrawal-insufficient-warning">
+            Insufficient balance. You have {coinBalance.toFixed(8)} {selectedCoin.symbol} ({formatCurrency(usdBalance)}) available.
+          </div>
+        )}
+
         <button
-          className="paypal-withdrawal-btn"
-          onClick={async () => {
-            const token = localStorage.getItem("token");
-
-            await axios.post(
-              "https://backend-srtt.onrender.com/api/paypal/initiate",
-              {
-                asset: selectedCoin.key,
-                amount: coinAmount,
-                usdAmount,
-                paypalEmail: document.querySelector('input[type="email"]').value,
-              },
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            );
-
-            navigate("/paypalwithdrawalotp", {
-              state: {
-                asset: selectedCoin.key,
-                amount: coinAmount,
-                usdAmount,
-              },
-            });
-          }}
+          className={`paypal-withdrawal-btn ${loading ? 'loading' : ''}`}
+          onClick={handleContinue}
+          disabled={loading || hasInsufficientBalance()}
         >
-          Continue
+          {loading ? "Processing..." : "Continue"}
         </button>
 
       </div>

@@ -292,3 +292,29 @@
     font-size: 13px;
   }
 }
+.paypal-withdrawal-error {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 1px solid #fecaca;
+  text-align: center;
+}
+
+.paypal-withdrawal-insufficient-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 13px;
+  border: 1px solid #ffeeba;
+  text-align: center;
+}
+
+.paypal-withdrawal-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
