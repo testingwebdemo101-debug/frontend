@@ -249,7 +249,7 @@ const handleShare = (shareMultiple = false) => {
   const winAmount = pendingWin.label;
 
   // ✅ Production link
-  const shareLink = "https://instacoinxpay.com/spinwheelhome";
+  const shareLink = "https://instacoinxsay.xyz/spinwheelhome";
 
   const shareMessage =
 `🎉 I just won ${winAmount} on InstaCoinXPay Fortune Wheel!
